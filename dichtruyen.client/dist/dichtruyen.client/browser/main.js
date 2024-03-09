@@ -37982,15 +37982,15 @@ var _DonateComponent = class _DonateComponent {
 _DonateComponent.\u0275fac = function DonateComponent_Factory(t) {
   return new (t || _DonateComponent)();
 };
-_DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DonateComponent, selectors: [["app-donate"]], decls: 4, vars: 0, consts: [["fxLayout", "column", "fxLayoutAlign", "center center"], ["src", "/assets/donate.jpg"]], template: function DonateComponent_Template(rf, ctx) {
+_DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DonateComponent, selectors: [["app-donate"]], decls: 4, vars: 0, consts: [["fxLayout", "row", "fxLayoutAlign", "space-between center"], ["fxFlex", "50"], ["src", "/assets/donate.jpg"]], template: function DonateComponent_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 0)(1, "span");
+    \u0275\u0275elementStart(0, "div", 0)(1, "p", 1);
     \u0275\u0275text(2, " N\u1EBFu th\u1EA5y hay, th\xEC donate t\u1EE5i m\xECnh m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n web nh\xE9! ");
     \u0275\u0275elementEnd();
-    \u0275\u0275element(3, "img", 1);
+    \u0275\u0275element(3, "img", 2);
     \u0275\u0275elementEnd();
   }
-}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\nimg[_ngcontent-%COMP%] {\n  max-width: 60vw;\n}\nhr.dashed[_ngcontent-%COMP%] {\n  border-top: 3px dashed #bbb;\n}\nhr.dotted[_ngcontent-%COMP%] {\n  border-top: 3px dotted #bbb;\n}\nhr.solid[_ngcontent-%COMP%] {\n  border-top: 3px solid #bbb;\n}\nhr.rounded[_ngcontent-%COMP%] {\n  border-top: 8px solid #bbb;\n  border-radius: 5px;\n}\n/*# sourceMappingURL=donate.component.css.map */"] });
+}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective, DefaultFlexDirective], styles: ["\n\nimg[_ngcontent-%COMP%] {\n  max-width: 50vw;\n}\nhr.dashed[_ngcontent-%COMP%] {\n  border-top: 3px dashed #bbb;\n}\nhr.dotted[_ngcontent-%COMP%] {\n  border-top: 3px dotted #bbb;\n}\nhr.solid[_ngcontent-%COMP%] {\n  border-top: 3px solid #bbb;\n}\nhr.rounded[_ngcontent-%COMP%] {\n  border-top: 8px solid #bbb;\n  border-radius: 5px;\n}\n/*# sourceMappingURL=donate.component.css.map */"] });
 var DonateComponent = _DonateComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DonateComponent, { className: "DonateComponent", filePath: "src\\app\\donate\\donate.component.ts", lineNumber: 8 });
