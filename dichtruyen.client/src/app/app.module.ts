@@ -21,9 +21,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDividerModule} from '@angular/material/divider';
+import { DonateComponent } from './donate/donate.component';
 
 @NgModule({
-  declarations: [AppComponent, SettingComponent],
+  declarations: [AppComponent, SettingComponent, DonateComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

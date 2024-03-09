@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/donate/donate.component.css"],
+  "sourcesContent": ["img{\r\n  max-width: 60vw;\r\n}\r\n\r\n/* Dashed border */\r\nhr.dashed {\r\n  border-top: 3px dashed #bbb;\r\n}\r\n\r\n/* Dotted border */\r\nhr.dotted {\r\n  border-top: 3px dotted #bbb;\r\n}\r\n\r\n/* Solid border */\r\nhr.solid {\r\n  border-top: 3px solid #bbb;\r\n}\r\n\r\n/* Rounded border */\r\nhr.rounded {\r\n  border-top: 8px solid #bbb;\r\n  border-radius: 5px;\r\n}\r\n"],
+  "mappings": ";AAAA;AACE,aAAW;AACb;AAGA,EAAE,CAAC;AACD,cAAY,IAAI,OAAO;AACzB;AAGA,EAAE,CAAC;AACD,cAAY,IAAI,OAAO;AACzB;AAGA,EAAE,CAAC;AACD,cAAY,IAAI,MAAM;AACxB;AAGA,EAAE,CAAC;AACD,cAAY,IAAI,MAAM;AACtB,iBAAe;AACjB;",
+  "names": []
+}

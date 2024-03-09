@@ -37976,6 +37976,29 @@ var SettingComponent = _SettingComponent;
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SettingComponent, { className: "SettingComponent", filePath: "src\\app\\setting\\setting.component.ts", lineNumber: 12 });
 })();
 
+// src/app/donate/donate.component.ts
+var _DonateComponent = class _DonateComponent {
+};
+_DonateComponent.\u0275fac = function DonateComponent_Factory(t) {
+  return new (t || _DonateComponent)();
+};
+_DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DonateComponent, selectors: [["app-donate"]], decls: 6, vars: 0, consts: [["fxLayout", "column", "fxLayoutAlign", "center center"], ["src", "/assets/donate.jpg"]], template: function DonateComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 0)(1, "p");
+    \u0275\u0275text(2, "******************************");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "h3");
+    \u0275\u0275text(4, " N\u1EBFu th\u1EA5y hay, th\xEC cho t\u1EE5i m\xECnh m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n web nh\xE9! ");
+    \u0275\u0275elementEnd();
+    \u0275\u0275element(5, "img", 1);
+    \u0275\u0275elementEnd();
+  }
+}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\nimg[_ngcontent-%COMP%] {\n  max-width: 60vw;\n}\nhr.dashed[_ngcontent-%COMP%] {\n  border-top: 3px dashed #bbb;\n}\nhr.dotted[_ngcontent-%COMP%] {\n  border-top: 3px dotted #bbb;\n}\nhr.solid[_ngcontent-%COMP%] {\n  border-top: 3px solid #bbb;\n}\nhr.rounded[_ngcontent-%COMP%] {\n  border-top: 8px solid #bbb;\n  border-radius: 5px;\n}\n/*# sourceMappingURL=donate.component.css.map */"] });
+var DonateComponent = _DonateComponent;
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(DonateComponent, { className: "DonateComponent", filePath: "src\\app\\donate\\donate.component.ts", lineNumber: 8 });
+})();
+
 // src/app/app.component.ts
 var _c012 = ["drawer"];
 function AppComponent_div_16_div_1_div_3_div_1_div_1_Template(rf, ctx) {
@@ -37987,20 +38010,20 @@ function AppComponent_div_16_div_1_div_3_div_1_div_1_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const line_r13 = ctx.$implicit;
+    const line_r14 = ctx.$implicit;
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", line_r13, " ");
+    \u0275\u0275textInterpolate1(" ", line_r14, " ");
   }
 }
 function AppComponent_div_16_div_1_div_3_div_1_button_2_Template(rf, ctx) {
   if (rf & 1) {
-    const _r16 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 23);
+    const _r17 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 24);
     \u0275\u0275listener("click", function AppComponent_div_16_div_1_div_3_div_1_button_2_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r16);
-      const i_r8 = \u0275\u0275nextContext(2).index;
-      const ctx_r14 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r14.retranslate(i_r8));
+      \u0275\u0275restoreView(_r17);
+      const i_r9 = \u0275\u0275nextContext(2).index;
+      const ctx_r15 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r15.retranslate(i_r9));
     });
     \u0275\u0275text(1, " D\u1ECBch l\u1EA1i ");
     \u0275\u0275elementStart(2, "mat-icon");
@@ -38008,25 +38031,25 @@ function AppComponent_div_16_div_1_div_3_div_1_button_2_Template(rf, ctx) {
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const ctx_r12 = \u0275\u0275nextContext(5);
-    \u0275\u0275property("disabled", !ctx_r12.isloading);
+    const ctx_r13 = \u0275\u0275nextContext(5);
+    \u0275\u0275property("disabled", !ctx_r13.isloading);
   }
 }
 var _c19 = () => [];
 function AppComponent_div_16_div_1_div_3_div_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_div_1_Template, 4, 1, "div", 20)(2, AppComponent_div_16_div_1_div_3_div_1_button_2_Template, 4, 1, "button", 22);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_div_1_Template, 4, 1, "div", 21)(2, AppComponent_div_16_div_1_div_3_div_1_button_2_Template, 4, 1, "button", 23);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const translatedPageChunk_r7 = \u0275\u0275nextContext().$implicit;
-    const ctx_r9 = \u0275\u0275nextContext(3);
+    const translatedPageChunk_r8 = \u0275\u0275nextContext().$implicit;
+    const ctx_r10 = \u0275\u0275nextContext(3);
     let tmp_0_0;
     \u0275\u0275advance();
-    \u0275\u0275property("ngForOf", (tmp_0_0 = translatedPageChunk_r7) !== null && tmp_0_0 !== void 0 ? tmp_0_0 : \u0275\u0275pureFunction0(2, _c19));
+    \u0275\u0275property("ngForOf", (tmp_0_0 = translatedPageChunk_r8) !== null && tmp_0_0 !== void 0 ? tmp_0_0 : \u0275\u0275pureFunction0(2, _c19));
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r9.translatedPageChunks.length > 0 && !translatedPageChunk_r7);
+    \u0275\u0275property("ngIf", ctx_r10.translatedPageChunks.length > 0 && !translatedPageChunk_r8);
   }
 }
 function AppComponent_div_16_div_1_div_3_div_2_div_1_Template(rf, ctx) {
@@ -38038,43 +38061,43 @@ function AppComponent_div_16_div_1_div_3_div_2_div_1_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const line_r19 = ctx.$implicit;
+    const line_r20 = ctx.$implicit;
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1(" ", line_r19, " ");
+    \u0275\u0275textInterpolate1(" ", line_r20, " ");
   }
 }
 function AppComponent_div_16_div_1_div_3_div_2_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_2_div_1_Template, 4, 1, "div", 20);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_2_div_1_Template, 4, 1, "div", 21);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const i_r8 = \u0275\u0275nextContext().index;
-    const ctx_r10 = \u0275\u0275nextContext(3);
+    const i_r9 = \u0275\u0275nextContext().index;
+    const ctx_r11 = \u0275\u0275nextContext(3);
     let tmp_0_0;
     \u0275\u0275advance();
-    \u0275\u0275property("ngForOf", (tmp_0_0 = ctx_r10.pageChunks[i_r8]) !== null && tmp_0_0 !== void 0 ? tmp_0_0 : \u0275\u0275pureFunction0(1, _c19));
+    \u0275\u0275property("ngForOf", (tmp_0_0 = ctx_r11.pageChunks[i_r9]) !== null && tmp_0_0 !== void 0 ? tmp_0_0 : \u0275\u0275pureFunction0(1, _c19));
   }
 }
 function AppComponent_div_16_div_1_div_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_Template, 3, 3, "div", 19)(2, AppComponent_div_16_div_1_div_3_div_2_Template, 2, 2, "div", 19);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_Template, 3, 3, "div", 20)(2, AppComponent_div_16_div_1_div_3_div_2_Template, 2, 2, "div", 20);
     \u0275\u0275element(3, "br");
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r5 = \u0275\u0275nextContext(3);
+    const ctx_r6 = \u0275\u0275nextContext(3);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r5.version == "translated");
+    \u0275\u0275property("ngIf", ctx_r6.version == "translated");
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r5.version == "origin");
+    \u0275\u0275property("ngIf", ctx_r6.version == "origin");
   }
 }
 function AppComponent_div_16_div_1_mat_spinner_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "mat-spinner", 24);
+    \u0275\u0275element(0, "mat-spinner", 25);
   }
 }
 function AppComponent_div_16_div_1_Template(rf, ctx) {
@@ -38082,39 +38105,46 @@ function AppComponent_div_16_div_1_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div")(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(3, AppComponent_div_16_div_1_div_3_Template, 4, 2, "div", 20);
+    \u0275\u0275template(3, AppComponent_div_16_div_1_div_3_Template, 4, 2, "div", 21);
     \u0275\u0275elementStart(4, "p");
     \u0275\u0275text(5, "-----------");
     \u0275\u0275elementEnd();
-    \u0275\u0275template(6, AppComponent_div_16_div_1_mat_spinner_6_Template, 1, 0, "mat-spinner", 21);
+    \u0275\u0275template(6, AppComponent_div_16_div_1_mat_spinner_6_Template, 1, 0, "mat-spinner", 22);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r4 = \u0275\u0275nextContext(2);
+    const ctx_r5 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("", ctx_r4.originalResponse.title, " ");
+    \u0275\u0275textInterpolate1("", ctx_r5.originalResponse.title, " ");
     \u0275\u0275advance();
-    \u0275\u0275property("ngForOf", ctx_r4.translatedPageChunks);
+    \u0275\u0275property("ngForOf", ctx_r5.translatedPageChunks);
     \u0275\u0275advance(3);
-    \u0275\u0275property("ngIf", ctx_r4.isloading);
+    \u0275\u0275property("ngIf", ctx_r5.isloading);
   }
 }
 function AppComponent_div_16_Template(rf, ctx) {
   if (rf & 1) {
-    const _r22 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "div", 18);
+    const _r23 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "div", 19);
     \u0275\u0275listener("scroll", function AppComponent_div_16_Template_div_scroll_0_listener($event) {
-      \u0275\u0275restoreView(_r22);
-      const ctx_r21 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r21.onScroll($event));
+      \u0275\u0275restoreView(_r23);
+      const ctx_r22 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r22.onScroll($event));
     });
-    \u0275\u0275template(1, AppComponent_div_16_div_1_Template, 7, 3, "div", 19);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_Template, 7, 3, "div", 20);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r3 = \u0275\u0275nextContext();
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r3.originalResponse);
+  }
+}
+function AppComponent_div_17_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div", 26);
+    \u0275\u0275element(1, "app-donate");
+    \u0275\u0275elementEnd();
   }
 }
 var _AppComponent = class _AppComponent {
@@ -38272,16 +38302,16 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     let _t;
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.drawer = _t.first);
   }
-}, decls: 32, vars: 6, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", "fxFlex", "80", "fxFlexOffset", "1", 1, "input", 3, "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], [4, "ngFor", "ngForOf"], ["color", "accent", "diameter", "30", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click"], ["color", "accent", "diameter", "30"]], template: function AppComponent_Template(rf, ctx) {
+}, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", "fxFlex", "80", "fxFlexOffset", "1", 1, "input", 3, "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["div", "", "fxLayout", "row", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], [4, "ngFor", "ngForOf"], ["color", "accent", "diameter", "30", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click"], ["color", "accent", "diameter", "30"], ["div", "", "fxLayout", "row", "fxLayoutAlign", "center center"]], template: function AppComponent_Template(rf, ctx) {
   if (rf & 1) {
-    const _r23 = \u0275\u0275getCurrentView();
+    const _r24 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "mat-drawer-container", 0)(1, "mat-drawer", 1, 2);
     \u0275\u0275element(3, "app-setting");
     \u0275\u0275elementEnd();
     \u0275\u0275element(4, "div", null, 3);
     \u0275\u0275elementStart(6, "mat-drawer-content", 4)(7, "mat-toolbar", 5)(8, "button", 6);
     \u0275\u0275listener("click", function AppComponent_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r23);
+      \u0275\u0275restoreView(_r24);
       const _r0 = \u0275\u0275reference(2);
       return \u0275\u0275resetView(_r0.toggle());
     });
@@ -38290,7 +38320,7 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(11, "input", 7, 8);
     \u0275\u0275listener("change", function AppComponent_Template_input_change_11_listener() {
-      \u0275\u0275restoreView(_r23);
+      \u0275\u0275restoreView(_r24);
       const _r2 = \u0275\u0275reference(12);
       return \u0275\u0275resetView(ctx.openSetting(_r2.value));
     });
@@ -38302,37 +38332,37 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     \u0275\u0275elementStart(14, "mat-icon");
     \u0275\u0275text(15, "subdirectory_arrow_right");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275template(16, AppComponent_div_16_Template, 2, 1, "div", 10);
-    \u0275\u0275elementStart(17, "mat-toolbar", 11)(18, "div", 12)(19, "button", 13);
-    \u0275\u0275listener("click", function AppComponent_Template_button_click_19_listener() {
-      \u0275\u0275restoreView(_r23);
+    \u0275\u0275template(16, AppComponent_div_16_Template, 2, 1, "div", 10)(17, AppComponent_div_17_Template, 2, 0, "div", 11);
+    \u0275\u0275elementStart(18, "mat-toolbar", 12)(19, "div", 13)(20, "button", 14);
+    \u0275\u0275listener("click", function AppComponent_Template_button_click_20_listener() {
+      \u0275\u0275restoreView(_r24);
       const _r1 = \u0275\u0275reference(5);
       ctx.previous();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));
     });
-    \u0275\u0275elementStart(20, "mat-icon");
-    \u0275\u0275text(21, "chevron_left");
+    \u0275\u0275elementStart(21, "mat-icon");
+    \u0275\u0275text(22, "chevron_left");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(22, "mat-button-toggle-group", 14);
-    \u0275\u0275twoWayListener("valueChange", function AppComponent_Template_mat_button_toggle_group_valueChange_22_listener($event) {
+    \u0275\u0275elementStart(23, "mat-button-toggle-group", 15);
+    \u0275\u0275twoWayListener("valueChange", function AppComponent_Template_mat_button_toggle_group_valueChange_23_listener($event) {
       \u0275\u0275twoWayBindingSet(ctx.version, $event) || (ctx.version = $event);
       return $event;
     });
-    \u0275\u0275elementStart(23, "mat-button-toggle", 15)(24, "mat-icon");
-    \u0275\u0275text(25, "language");
+    \u0275\u0275elementStart(24, "mat-button-toggle", 16)(25, "mat-icon");
+    \u0275\u0275text(26, "language");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(26, "mat-button-toggle", 16)(27, "mat-icon");
-    \u0275\u0275text(28, "translate");
+    \u0275\u0275elementStart(27, "mat-button-toggle", 17)(28, "mat-icon");
+    \u0275\u0275text(29, "translate");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(29, "button", 17);
-    \u0275\u0275listener("click", function AppComponent_Template_button_click_29_listener() {
-      \u0275\u0275restoreView(_r23);
+    \u0275\u0275elementStart(30, "button", 18);
+    \u0275\u0275listener("click", function AppComponent_Template_button_click_30_listener() {
+      \u0275\u0275restoreView(_r24);
       const _r1 = \u0275\u0275reference(5);
       ctx.next();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));
     });
-    \u0275\u0275elementStart(30, "mat-icon");
-    \u0275\u0275text(31, "chevron_right");
+    \u0275\u0275elementStart(31, "mat-icon");
+    \u0275\u0275text(32, "chevron_right");
     \u0275\u0275elementEnd()()()()()();
   }
   if (rf & 2) {
@@ -38340,6 +38370,8 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     \u0275\u0275property("disabled", ctx.isloading);
     \u0275\u0275advance(3);
     \u0275\u0275property("ngIf", ctx.originalResponse);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx.translatedPageChunks[0].length > 0);
     \u0275\u0275advance(3);
     \u0275\u0275property("disabled", ctx.isloading || !ctx.originalResponse);
     \u0275\u0275advance(3);
@@ -38348,7 +38380,7 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     \u0275\u0275advance(7);
     \u0275\u0275property("disabled", ctx.isloading || !ctx.originalResponse);
   }
-}, dependencies: [NgForOf, NgIf, DefaultLayoutDirective, DefaultLayoutAlignDirective, DefaultFlexOffsetDirective, DefaultFlexDirective, MatDrawer, MatDrawerContainer, MatDrawerContent, MatButton, MatIconButton, MatIcon, MatProgressSpinner, MatToolbar, MatButtonToggleGroup, MatButtonToggle, SettingComponent], styles: ["\n\n.container[_ngcontent-%COMP%] {\n  width: 100vw;\n  height: 100vh;\n  border: 1px solid rgba(142, 85, 85, 0.5);\n}\n.sidenav-content[_ngcontent-%COMP%] {\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n}\n.sidenav[_ngcontent-%COMP%] {\n  max-width: 60vw;\n}\n.header-bar[_ngcontent-%COMP%] {\n  max-height: 80px;\n}\n.header-bar[_ngcontent-%COMP%]   .input[_ngcontent-%COMP%] {\n  padding: 5px;\n}\n.header-bar[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%] {\n  padding-bottom: 22px;\n}\n.mat-icon[_ngcontent-%COMP%] {\n  vertical-align: middle;\n}\n.content[_ngcontent-%COMP%] {\n  padding: 20px;\n  overflow-y: scroll;\n  font-size: large !important;\n}\n.next-previous-button[_ngcontent-%COMP%] {\n  width: 20vw;\n  padding: 20px;\n}\n.footer-bar[_ngcontent-%COMP%] {\n  padding: 20px;\n}\n/*# sourceMappingURL=app.component.css.map */"] });
+}, dependencies: [NgForOf, NgIf, DefaultLayoutDirective, DefaultLayoutAlignDirective, DefaultFlexOffsetDirective, DefaultFlexDirective, MatDrawer, MatDrawerContainer, MatDrawerContent, MatButton, MatIconButton, MatIcon, MatProgressSpinner, MatToolbar, MatButtonToggleGroup, MatButtonToggle, SettingComponent, DonateComponent], styles: ["\n\n.container[_ngcontent-%COMP%] {\n  width: 100vw;\n  height: 100vh;\n  border: 1px solid rgba(142, 85, 85, 0.5);\n}\n.sidenav-content[_ngcontent-%COMP%] {\n  display: flex;\n  height: 100%;\n  align-items: center;\n  justify-content: center;\n}\n.sidenav[_ngcontent-%COMP%] {\n  max-width: 60vw;\n}\n.header-bar[_ngcontent-%COMP%] {\n  max-height: 80px;\n}\n.header-bar[_ngcontent-%COMP%]   .input[_ngcontent-%COMP%] {\n  padding: 5px;\n}\n.header-bar[_ngcontent-%COMP%]   .button[_ngcontent-%COMP%] {\n  padding-bottom: 22px;\n}\n.mat-icon[_ngcontent-%COMP%] {\n  vertical-align: middle;\n}\n.content[_ngcontent-%COMP%] {\n  padding: 20px;\n  overflow-y: scroll;\n  font-size: large !important;\n}\n.next-previous-button[_ngcontent-%COMP%] {\n  width: 20vw;\n  padding: 20px;\n}\n.footer-bar[_ngcontent-%COMP%] {\n  padding: 20px;\n}\n/*# sourceMappingURL=app.component.css.map */"] });
 var AppComponent = _AppComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src\\app\\app.component.ts", lineNumber: 18 });

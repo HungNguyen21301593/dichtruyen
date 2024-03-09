@@ -45,12 +45,15 @@
             </div>
           </div>
           <br>
-
         </div>
         <p>-----------</p>
         <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner>
       </div>
     </div>
+    <div *ngIf="translatedPageChunks[0].length>0" div fxLayout="row" fxLayoutAlign="center center" >
+      <app-donate></app-donate>
+    </div>
+
     <mat-toolbar class="full-width footer-bar" fxFlex="20" fxLayout="column" fxLayoutAlign="start stretch">
       <div fxLayout="row" fxLayoutAlign="space-around center">
         <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center"
