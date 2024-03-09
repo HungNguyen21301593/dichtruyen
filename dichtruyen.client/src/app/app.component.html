@@ -21,6 +21,7 @@
       <div *ngIf="originalResponse">
         <span>{{originalResponse.title}}
         </span>
+        <div id="container-5647e7df4213cecc3fd2fd9a7e9f7857"></div>
         <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index">
           <div *ngIf="version=='translated'">
             <div *ngFor="let line of translatedPageChunk??[]">
@@ -34,7 +35,6 @@
               Dịch lại
               <mat-icon>refresh</mat-icon>
             </button>
-            <div id="container-5647e7df4213cecc3fd2fd9a7e9f7857"></div>
           </div>
 
           <div *ngIf="version=='origin'">
@@ -44,7 +44,6 @@
               </span>
               <br>
             </div>
-            <div id="container-5647e7df4213cecc3fd2fd9a7e9f7857"></div>
           </div>
           <br>
 
