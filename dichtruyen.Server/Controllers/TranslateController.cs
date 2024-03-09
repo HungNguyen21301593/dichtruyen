@@ -26,7 +26,7 @@ namespace dichtruyen.Server.Controllers
         {
             try
             {
-                _logger.LogInformation($"Received {JsonConvert.SerializeObject(request)}");
+                _logger.LogInformation($"Received {DateTime.Now.ToLocalTime()} {JsonConvert.SerializeObject(request)}");
                 //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
                 var promt = $"Với các dữ liệu sau, " +
                     $"tên riêng: {request.Name}," +
