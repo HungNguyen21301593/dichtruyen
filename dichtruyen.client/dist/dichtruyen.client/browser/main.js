@@ -37978,7 +37978,7 @@ var SettingComponent = _SettingComponent;
 
 // src/app/app.component.ts
 var _c012 = ["drawer"];
-function AppComponent_div_16_div_1_div_4_div_1_div_1_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_div_1_div_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div")(1, "span");
     \u0275\u0275text(2);
@@ -37992,11 +37992,11 @@ function AppComponent_div_16_div_1_div_4_div_1_div_1_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", line_r13, " ");
   }
 }
-function AppComponent_div_16_div_1_div_4_div_1_button_2_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_div_1_button_2_Template(rf, ctx) {
   if (rf & 1) {
     const _r16 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 24);
-    \u0275\u0275listener("click", function AppComponent_div_16_div_1_div_4_div_1_button_2_Template_button_click_0_listener() {
+    \u0275\u0275elementStart(0, "button", 23);
+    \u0275\u0275listener("click", function AppComponent_div_16_div_1_div_3_div_1_button_2_Template_button_click_0_listener() {
       \u0275\u0275restoreView(_r16);
       const i_r8 = \u0275\u0275nextContext(2).index;
       const ctx_r14 = \u0275\u0275nextContext(3);
@@ -38013,10 +38013,10 @@ function AppComponent_div_16_div_1_div_4_div_1_button_2_Template(rf, ctx) {
   }
 }
 var _c19 = () => [];
-function AppComponent_div_16_div_1_div_4_div_1_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_div_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_4_div_1_div_1_Template, 4, 1, "div", 21)(2, AppComponent_div_16_div_1_div_4_div_1_button_2_Template, 4, 1, "button", 23);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_div_1_Template, 4, 1, "div", 20)(2, AppComponent_div_16_div_1_div_3_div_1_button_2_Template, 4, 1, "button", 22);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -38029,7 +38029,7 @@ function AppComponent_div_16_div_1_div_4_div_1_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r9.translatedPageChunks.length > 0 && !translatedPageChunk_r7);
   }
 }
-function AppComponent_div_16_div_1_div_4_div_2_div_1_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_div_2_div_1_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div")(1, "span");
     \u0275\u0275text(2);
@@ -38043,10 +38043,10 @@ function AppComponent_div_16_div_1_div_4_div_2_div_1_Template(rf, ctx) {
     \u0275\u0275textInterpolate1(" ", line_r19, " ");
   }
 }
-function AppComponent_div_16_div_1_div_4_div_2_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_div_2_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_4_div_2_div_1_Template, 4, 1, "div", 21);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_2_div_1_Template, 4, 1, "div", 20);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -38057,10 +38057,10 @@ function AppComponent_div_16_div_1_div_4_div_2_Template(rf, ctx) {
     \u0275\u0275property("ngForOf", (tmp_0_0 = ctx_r10.pageChunks[i_r8]) !== null && tmp_0_0 !== void 0 ? tmp_0_0 : \u0275\u0275pureFunction0(1, _c19));
   }
 }
-function AppComponent_div_16_div_1_div_4_Template(rf, ctx) {
+function AppComponent_div_16_div_1_div_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, AppComponent_div_16_div_1_div_4_div_1_Template, 3, 3, "div", 19)(2, AppComponent_div_16_div_1_div_4_div_2_Template, 2, 2, "div", 19);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_div_3_div_1_Template, 3, 3, "div", 19)(2, AppComponent_div_16_div_1_div_3_div_2_Template, 2, 2, "div", 19);
     \u0275\u0275element(3, "br");
     \u0275\u0275elementEnd();
   }
@@ -38072,9 +38072,9 @@ function AppComponent_div_16_div_1_div_4_Template(rf, ctx) {
     \u0275\u0275property("ngIf", ctx_r5.version == "origin");
   }
 }
-function AppComponent_div_16_div_1_mat_spinner_7_Template(rf, ctx) {
+function AppComponent_div_16_div_1_mat_spinner_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "mat-spinner", 25);
+    \u0275\u0275element(0, "mat-spinner", 24);
   }
 }
 function AppComponent_div_16_div_1_Template(rf, ctx) {
@@ -38082,19 +38082,18 @@ function AppComponent_div_16_div_1_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div")(1, "span");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275element(3, "div", 20);
-    \u0275\u0275template(4, AppComponent_div_16_div_1_div_4_Template, 4, 2, "div", 21);
-    \u0275\u0275elementStart(5, "p");
-    \u0275\u0275text(6, "-----------");
+    \u0275\u0275template(3, AppComponent_div_16_div_1_div_3_Template, 4, 2, "div", 20);
+    \u0275\u0275elementStart(4, "p");
+    \u0275\u0275text(5, "-----------");
     \u0275\u0275elementEnd();
-    \u0275\u0275template(7, AppComponent_div_16_div_1_mat_spinner_7_Template, 1, 0, "mat-spinner", 22);
+    \u0275\u0275template(6, AppComponent_div_16_div_1_mat_spinner_6_Template, 1, 0, "mat-spinner", 21);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r4 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1("", ctx_r4.originalResponse.title, " ");
-    \u0275\u0275advance(2);
+    \u0275\u0275advance();
     \u0275\u0275property("ngForOf", ctx_r4.translatedPageChunks);
     \u0275\u0275advance(3);
     \u0275\u0275property("ngIf", ctx_r4.isloading);
@@ -38109,7 +38108,7 @@ function AppComponent_div_16_Template(rf, ctx) {
       const ctx_r21 = \u0275\u0275nextContext();
       return \u0275\u0275resetView(ctx_r21.onScroll($event));
     });
-    \u0275\u0275template(1, AppComponent_div_16_div_1_Template, 8, 3, "div", 19);
+    \u0275\u0275template(1, AppComponent_div_16_div_1_Template, 7, 3, "div", 19);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -38273,7 +38272,7 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     let _t;
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.drawer = _t.first);
   }
-}, decls: 32, vars: 6, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", "fxFlex", "80", "fxFlexOffset", "1", 1, "input", 3, "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], ["id", "container-5647e7df4213cecc3fd2fd9a7e9f7857"], [4, "ngFor", "ngForOf"], ["color", "accent", "diameter", "30", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click"], ["color", "accent", "diameter", "30"]], template: function AppComponent_Template(rf, ctx) {
+}, decls: 32, vars: 6, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", "fxFlex", "80", "fxFlexOffset", "1", 1, "input", 3, "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], [4, "ngFor", "ngForOf"], ["color", "accent", "diameter", "30", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click", 4, "ngIf"], ["mat-button", "", "color", "accent", 3, "disabled", "click"], ["color", "accent", "diameter", "30"]], template: function AppComponent_Template(rf, ctx) {
   if (rf & 1) {
     const _r23 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "mat-drawer-container", 0)(1, "mat-drawer", 1, 2);
