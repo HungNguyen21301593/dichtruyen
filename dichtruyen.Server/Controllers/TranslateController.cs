@@ -25,7 +25,9 @@ namespace dichtruyen.Server.Controllers
         public async Task<IActionResult> Translate([FromBody] TranslationProxyRequest request)
         {
             try
-            {//hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
+            {
+                _logger.LogInformation($"Received {JsonConvert.SerializeObject(request)}");
+                //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
                 var promt = $"Với các dữ liệu sau, " +
                     $"tên riêng: {request.Name}," +
                     $" thể loại {request.Type}," +
@@ -38,12 +40,13 @@ namespace dichtruyen.Server.Controllers
                     $" sau đây là đoạn truyện:{request.TextToTranslate}";
                 var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
                 var tranlatedLines = translatedText.Split('\n');
+                _logger.LogError($"Success");
                 return new OkObjectResult(new TranslationProxyResponse { TranslatedLines = tranlatedLines.ToList() }); // Pass the result back to the view
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                _logger.LogError($"Failed: {e.Message}");
+                return new OkObjectResult(new TranslationProxyResponse { TranslatedLines = [] });
             }
         }
 
