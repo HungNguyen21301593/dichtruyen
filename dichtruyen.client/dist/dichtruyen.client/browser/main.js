@@ -38368,7 +38368,7 @@ _AppComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _A
     \u0275\u0275advance(3);
     \u0275\u0275property("ngIf", ctx.originalResponse);
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx.translatedPageChunks[0].length > 0);
+    \u0275\u0275property("ngIf", ctx.originalResponse);
     \u0275\u0275advance(3);
     \u0275\u0275property("disabled", ctx.isloading || !ctx.originalResponse);
     \u0275\u0275advance(3);
