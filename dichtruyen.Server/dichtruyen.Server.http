@@ -1,0 +1,6 @@
+@dichtruyen.Server_HostAddress = http://localhost:5084
+
+GET {{dichtruyen.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

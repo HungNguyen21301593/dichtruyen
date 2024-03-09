@@ -1,0 +1,52 @@
+<form [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="start start" >
+  <span>
+    Cài đặt thiết lập cho truyện, có thể bỏ qua !!!
+  </span>
+  <div fxLayout="column" fxLayoutAlign="start start" >
+    <mat-form-field class="form-field">
+      <mat-label>Thời đại</mat-label>
+      <mat-select formControlName="time" >
+        <mat-option value="Cổ đại">Cổ đại</mat-option>
+        <mat-option value="Hiện đại">Hiện đại</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Thể loại</mat-label>
+      <mat-select formControlName="type" >
+        <mat-option value="Tu tiên">Tu tiên</mat-option>
+        <mat-option value="Đô thị">Đô thị</mat-option>
+        <mat-option value="Võng du">Võng du</mat-option>
+        <mat-option value="Chưa biết">Chưa biết</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Giọng văn</mat-label>
+      <mat-select formControlName="voice" >
+        <mat-option value="Hài hước">Hài hước</mat-option>
+        <mat-option value="Nghiêm túc">Nghiêm túc</mat-option>
+        <mat-option value="Chưa biết">Chưa biết</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Tên riêng</mat-label>
+      <textarea  rows="5" matInput formControlName="name" placeholder="VD: Tiêu Viêm, Hồng Hài Nhi, Bất Diệt Thôn Viêm,..." >
+      </textarea>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Xưng hô</mat-label>
+      <textarea matInput formControlName="role" placeholder="hắn, ta, ngươi, chàng, nàng" >
+
+      </textarea>
+    </mat-form-field>
+  </div>
+
+  <br>
+  <button mat-raised-button color="primary" (click)="submit()">
+    <mat-icon>save</mat-icon>Lưu lại</button>
+</form>
+
+<p *ngIf="translatedText"> Translated Text: {{ translatedText }}</p>

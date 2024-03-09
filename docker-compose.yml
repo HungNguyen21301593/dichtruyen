@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  server:
+    container_name: server
+    build: ./dichtruyen.Server
+    restart: always
+    privileged: true
+    ports:
+      - 5000:8080
+      - 5001:8081
+    networks:
+          - web_net
+    volumes:
+      - ./dichtruyen.client/dist/dichtruyen.client/browser:/app/wwwroot:rw
+
+networks:
+    web_net:
+      external: false
+      driver:  bridge
+
+volumes:
+  rabbitmq_data:
+    driver: local
