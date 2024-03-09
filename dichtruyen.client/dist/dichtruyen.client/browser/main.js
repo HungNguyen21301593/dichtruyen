@@ -37984,7 +37984,7 @@ _DonateComponent.\u0275fac = function DonateComponent_Factory(t) {
 };
 _DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DonateComponent, selectors: [["app-donate"]], decls: 4, vars: 0, consts: [["fxLayout", "column", "fxLayoutAlign", "center center"], ["src", "/assets/donate.jpg"]], template: function DonateComponent_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 0)(1, "h3");
+    \u0275\u0275elementStart(0, "div", 0)(1, "span");
     \u0275\u0275text(2, " N\u1EBFu th\u1EA5y hay, th\xEC donate t\u1EE5i m\xECnh m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n web nh\xE9! ");
     \u0275\u0275elementEnd();
     \u0275\u0275element(3, "img", 1);
