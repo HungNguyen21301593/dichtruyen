@@ -40,7 +40,7 @@ namespace dichtruyen.Server.Controllers
                     $" sau đây là đoạn truyện:{request.TextToTranslate}";
                 var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
                 var tranlatedLines = translatedText.Split('\n');
-                _logger.LogError($"Success");
+                _logger.LogInformation($"Success");
                 return new OkObjectResult(new TranslationProxyResponse { TranslatedLines = tranlatedLines.ToList() }); // Pass the result back to the view
             }
             catch (Exception e)
