@@ -56,6 +56,10 @@ export class AppComponent implements OnInit {
     this.scanContent(newchapter);
   }
 
+  testad(){
+    this.dialog.open(AdComponent);
+  }
+
   previous() {
     window.scrollTo(0, 0);
     var newchapter = this.getNewChapterUrl(this.url, -1);
@@ -201,6 +205,7 @@ export class AppComponent implements OnInit {
     };
     this.settingService.saveData();
   }
+
 
 
 }

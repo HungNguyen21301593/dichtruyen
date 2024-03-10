@@ -4,6 +4,7 @@
   </mat-drawer>
   <div #top></div>
   <mat-drawer-content fxLayout="column" fxLayoutAlign="space-between stretch">
+
     <mat-toolbar class="header-bar" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="12">
       <button fxLayout="row" class="button" type="button" mat-icon-button color="primary" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
@@ -78,6 +79,9 @@
           [disabled]="isloading || !originalResponse" (click)="next(); top.scrollIntoView(true)">
           <mat-icon>chevron_right</mat-icon>
         </button>
+        <!-- <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center" (click)="testad()">
+          <mat-icon>chevron_right</mat-icon>
+        </button> -->
       </div>
 
     </mat-toolbar>
