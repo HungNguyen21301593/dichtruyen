@@ -1,9 +1,9 @@
-<form [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="start start" >
+<form [formGroup]="formGroup" fxLayout="column" fxLayoutAlign="start start">
   <span>
     Cài đặt thiết lập cho truyện, có thể bỏ qua !!!
   </span>
   <div fxLayout="column" fxLayoutAlign="start start" >
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" [color]="'accent'">
       <mat-label>Thời đại</mat-label>
       <mat-select formControlName="time" >
         <mat-option value="Cổ đại">Cổ đại</mat-option>
@@ -12,7 +12,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" [color]="'accent'">
       <mat-label>Thể loại</mat-label>
       <mat-select formControlName="type" >
         <mat-option value="Tu tiên">Tu tiên</mat-option>
@@ -22,7 +22,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field">
+    <mat-form-field class="form-field" [color]="'accent'">
       <mat-label>Giọng văn</mat-label>
       <mat-select formControlName="voice" >
         <mat-option value="Hài hước">Hài hước</mat-option>
@@ -31,7 +31,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="fill">
+    <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
       <mat-label>Xưng hô</mat-label>
       <mat-select formControlName="role" >
         <mat-option value="hắn, ta - ngươi, chàng - nàng, tỉ - muội">hắn, ta - ngươi, chàng - nàng, tỉ - muội</mat-option>
@@ -40,7 +40,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="fill">
+    <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
       <mat-label>Tên riêng</mat-label>
       <textarea  rows="5" matInput formControlName="name" placeholder="VD: Tiêu Viêm, Hồng Hài Nhi, Bất Diệt Thôn Viêm,..." >
       </textarea>
@@ -50,7 +50,7 @@
   </div>
 
   <br>
-  <button mat-raised-button color="primary" (click)="submit()">
+  <button mat-raised-button color="accent" (click)="submit()">
     <mat-icon>save</mat-icon>Lưu lại</button>
 </form>
 
