@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/donate/donate.component.css"],
+  "sourcesContent": ["img{\r\n  max-width: 60vw;\r\n  height: 100%;\r\n}\r\n"],
+  "mappings": ";AAAA;AACE,aAAW;AACX,UAAQ;AACV;",
+  "names": []
+}
