@@ -1,3 +1,5 @@
+using Treblle.Net.Core;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,7 +8,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddTreblle(
+    builder.Configuration["Treblle:ApiKey"],
+    builder.Configuration["Treblle:ProjectId"]);
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -26,5 +30,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
+app.UseTreblle(useExceptionHandler: true);
 
 app.Run();

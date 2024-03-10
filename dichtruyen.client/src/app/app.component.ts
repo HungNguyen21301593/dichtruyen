@@ -9,6 +9,8 @@ import {
 import { SettingService } from './setting.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDrawer, MatSidenav } from '@angular/material/sidenav';
+import { MatDialog } from '@angular/material/dialog';
+import { AdComponent } from './ad/ad.component';
 
 @Component({
   selector: 'app-root',
@@ -23,16 +25,17 @@ export class AppComponent implements OnInit {
   public currentpageIndex = 0;
   url: string = '';
   isloading = false;
-  version:'origin'|'translated' = 'translated';
+  version: 'origin' | 'translated' = 'translated';
 
   CHUNK_SIZE = 30;
-  UNKNOWN = 'chưa biết';
-  PRE_LOAD= 1000;
+  UNKNOWN = 'Tùy ý';
+  PRE_LOAD = 1000;
 
   constructor(
     private http: HttpClient,
     private ref: ChangeDetectorRef,
-    private settingService: SettingService
+    private settingService: SettingService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -41,6 +44,7 @@ export class AppComponent implements OnInit {
       this.url = savedData.url;
       this.pageChunks = savedData.pageChunks;
       this.translatedPageChunks = savedData.translatedPageChunks;
+      this.originalResponse = savedData.originalResponse;
     }
   }
 
@@ -70,17 +74,15 @@ export class AppComponent implements OnInit {
     return url;
   }
 
-  retranslate(index:number)
-  {
+  retranslate(index: number) {
     this.translateSinglePageChunk(this.pageChunks[index], index);
   }
 
-  openSetting(newurl:string)
-  {
+  openSetting(newurl: string) {
     if (newurl !== this.url) {
       this.drawer.open();
     }
-    this.url=newurl;
+    this.url = newurl;
   }
 
   scanContent(url: string) {
@@ -164,6 +166,7 @@ export class AppComponent implements OnInit {
   }
 
   onScroll(event: any) {
+
     if (this.isloading) {
       return;
     }
@@ -177,7 +180,6 @@ export class AppComponent implements OnInit {
     if (!this.pageChunks[this.currentpageIndex + 1]) {
       return;
     }
-
     this.translateSinglePageChunk(
       this.pageChunks[this.currentpageIndex + 1],
       this.currentpageIndex + 1
@@ -187,8 +189,9 @@ export class AppComponent implements OnInit {
       url: this.url,
       setting: this.settingService.value,
       pageChunks: this.pageChunks,
-      translatedPageChunks: this.translatedPageChunks
-    }
+      translatedPageChunks: this.translatedPageChunks,
+      originalResponse: this.originalResponse,
+    };
     this.settingService.saveData();
   }
 

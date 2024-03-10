@@ -22,9 +22,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDividerModule} from '@angular/material/divider';
 import { DonateComponent } from './donate/donate.component';
+import { AdComponent } from './ad/ad.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
-  declarations: [AppComponent, SettingComponent, DonateComponent],
+  declarations: [AppComponent, SettingComponent, DonateComponent, AdComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -44,7 +46,8 @@ import { DonateComponent } from './donate/donate.component';
     MatSnackBarModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatDividerModule
+    MatDividerModule,
+    MatDialogModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

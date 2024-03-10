@@ -32,4 +32,5 @@ export interface SavedDataModel {
   setting: SettingModel;
   pageChunks: string[][];
   translatedPageChunks: string[][];
+  originalResponse: ScanResponse |undefined;
 }

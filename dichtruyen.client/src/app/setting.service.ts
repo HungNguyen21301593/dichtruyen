@@ -20,10 +20,11 @@ export class SettingService {
 
   private dataKey = 'data';
   private initDataValue: SavedDataModel = {
-    url:'',
-    setting:this.initSettingValue,
+    url: '',
+    setting: this.initSettingValue,
     pageChunks: [[]],
-    translatedPageChunks: [[]]
+    translatedPageChunks: [[]],
+    originalResponse: undefined,
   };
   dataValue = this.initDataValue;
 

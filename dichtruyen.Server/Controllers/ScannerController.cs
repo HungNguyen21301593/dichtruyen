@@ -5,6 +5,7 @@ using dichtruyen.Server.Model.Response;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
+using Treblle.Net.Core;
 
 namespace dichtruyen.Server.Controllers
 {
@@ -20,6 +21,7 @@ namespace dichtruyen.Server.Controllers
         }
 
         [HttpPost(Name = "Execute")]
+        [Treblle]
         public async Task<IActionResult> Execute([FromBody] ScanRequest request)
         {
             if (string.IsNullOrEmpty(request.Url))

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.NetworkInformation;
 using System.Text;
+using Treblle.Net.Core;
 
 namespace dichtruyen.Server.Controllers
 {
@@ -22,6 +23,7 @@ namespace dichtruyen.Server.Controllers
 
 
         [HttpPost]
+        [Treblle]
         public async Task<IActionResult> Translate([FromBody] TranslationProxyRequest request)
         {
             try
@@ -100,7 +102,7 @@ namespace dichtruyen.Server.Controllers
                 var responseJson = await response.Content.ReadAsStringAsync();
 
                 var responseObject = JsonConvert.DeserializeObject<TranslationResponse>(responseJson)
-                    ?? throw new Exception($"API call failed with status code: {response.StatusCode}");
+                    ?? throw new Exception($"API call failed with status code: {response.StatusCode}, response: {responseJson}");
                 // Extract the translated text
                 string translatedText = responseObject.Candidates.First().Content.Parts.First().Text;
 

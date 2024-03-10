@@ -1,0 +1,11 @@
+.ad{
+  overflow: scroll;
+  width: 60vw;
+  height: 60vh;
+  display: inline-block;
+}
+
+.back-drop
+{
+  background-color: black;
+}
