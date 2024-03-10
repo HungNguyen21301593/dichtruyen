@@ -39653,7 +39653,7 @@ _DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type:
     \u0275\u0275text(3, " N\u1EBFu th\u1EA5y hay, th\xEC b\u1EA1n h\xE3y donate trang web m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n nh\xE9! ");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "p");
-    \u0275\u0275text(5, " M\u1ECDi \xFD ki\u1EBFn \u0111\xF3ng g\xF3p vui l\xF2ng li\xEAn h\u1EC7 v\u1EDBi ch\xFAng t\xF4i t\u1EA1i \u0111\xE2y: ");
+    \u0275\u0275text(5, " M\u1ECDi \xFD ki\u1EBFn \u0111\xF3ng g\xF3p vui l\xF2ng li\xEAn h\u1EC7: ");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(6, "a", 2);
     \u0275\u0275element(7, "img", 3);
