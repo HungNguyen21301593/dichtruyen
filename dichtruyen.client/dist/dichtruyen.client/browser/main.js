@@ -39501,7 +39501,7 @@ var MatInputModule = _MatInputModule;
 })();
 
 // src/app/setting/setting.component.ts
-function SettingComponent_p_49_Template(rf, ctx) {
+function SettingComponent_p_56_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "p");
     \u0275\u0275text(1);
@@ -39518,15 +39518,16 @@ var _SettingComponent = class _SettingComponent {
     this.fb = fb;
     this.settingService = settingService;
     this.snackBar = snackBar;
-    this.formGroup = this.fb.group({
-      name: ["", void 0],
-      role: ["", void 0],
-      type: ["", void 0],
-      voice: ["", void 0],
-      time: ["", void 0],
-      text: ["", void 0]
-    });
     this.translatedText = "";
+    this.UNKNOWN = "T\xF9y \xFD";
+    this.formGroup = this.fb.group({
+      name: [this.UNKNOWN, void 0],
+      role: [this.UNKNOWN, void 0],
+      type: [this.UNKNOWN, void 0],
+      voice: [this.UNKNOWN, void 0],
+      time: [this.UNKNOWN, void 0],
+      text: [this.UNKNOWN, void 0]
+    });
   }
   ngOnInit() {
     this.formGroup.patchValue(this.settingService.value);
@@ -39545,7 +39546,7 @@ var _SettingComponent = class _SettingComponent {
 _SettingComponent.\u0275fac = function SettingComponent_Factory(t) {
   return new (t || _SettingComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatSnackBar));
 };
-_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 50, vars: 2, consts: [["fxLayout", "column", "fxLayoutAlign", "start start", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["value", "Ch\u01B0a bi\u1EBFt"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field"], ["rows", "5", "matInput", "", "formControlName", "name", "placeholder", "VD: Ti\xEAu Vi\xEAm, H\u1ED3ng H\xE0i Nhi, B\u1EA5t Di\u1EC7t Th\xF4n Vi\xEAm,..."], ["matInput", "", "formControlName", "role", "placeholder", "h\u1EAFn, ta, ng\u01B0\u01A1i, ch\xE0ng, n\xE0ng"], ["mat-raised-button", "", "color", "primary", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
+_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 57, vars: 2, consts: [["fxLayout", "column", "fxLayoutAlign", "start start", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["value", "T\xF9y \xFD"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field"], ["formControlName", "role"], ["value", "h\u1EAFn, ta, ng\u01B0\u01A1i, ch\xE0ng, n\xE0ng"], ["value", "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, ch\u1ECB - em"], ["rows", "5", "matInput", "", "formControlName", "name", "placeholder", "VD: Ti\xEAu Vi\xEAm, H\u1ED3ng H\xE0i Nhi, B\u1EA5t Di\u1EC7t Th\xF4n Vi\xEAm,..."], ["mat-raised-button", "", "color", "primary", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "form", 0)(1, "span");
     \u0275\u0275text(2, " C\xE0i \u0111\u1EB7t thi\u1EBFt l\u1EADp cho truy\u1EC7n, c\xF3 th\u1EC3 b\u1ECF qua !!! ");
@@ -39558,61 +39559,70 @@ _SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(10, "mat-option", 5);
     \u0275\u0275text(11, "Hi\u1EC7n \u0111\u1EA1i");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(12, "mat-option", 6);
+    \u0275\u0275text(13, "T\xF9y \xFD");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(12, "mat-form-field", 2)(13, "mat-label");
-    \u0275\u0275text(14, "Th\u1EC3 lo\u1EA1i");
+    \u0275\u0275elementStart(14, "mat-form-field", 2)(15, "mat-label");
+    \u0275\u0275text(16, "Th\u1EC3 lo\u1EA1i");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(15, "mat-select", 6)(16, "mat-option", 7);
-    \u0275\u0275text(17, "Tu ti\xEAn");
-    \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(18, "mat-option", 8);
-    \u0275\u0275text(19, "\u0110\xF4 th\u1ECB");
+    \u0275\u0275elementStart(17, "mat-select", 7)(18, "mat-option", 8);
+    \u0275\u0275text(19, "Tu ti\xEAn");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(20, "mat-option", 9);
-    \u0275\u0275text(21, "V\xF5ng du");
+    \u0275\u0275text(21, "\u0110\xF4 th\u1ECB");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(22, "mat-option", 10);
-    \u0275\u0275text(23, "Ch\u01B0a bi\u1EBFt");
+    \u0275\u0275text(23, "V\xF5ng du");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(24, "mat-option", 6);
+    \u0275\u0275text(25, "T\xF9y \xFD");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(24, "mat-form-field", 2)(25, "mat-label");
-    \u0275\u0275text(26, "Gi\u1ECDng v\u0103n");
+    \u0275\u0275elementStart(26, "mat-form-field", 2)(27, "mat-label");
+    \u0275\u0275text(28, "Gi\u1ECDng v\u0103n");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(27, "mat-select", 11)(28, "mat-option", 12);
-    \u0275\u0275text(29, "H\xE0i h\u01B0\u1EDBc");
+    \u0275\u0275elementStart(29, "mat-select", 11)(30, "mat-option", 12);
+    \u0275\u0275text(31, "H\xE0i h\u01B0\u1EDBc");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(30, "mat-option", 13);
-    \u0275\u0275text(31, "Nghi\xEAm t\xFAc");
+    \u0275\u0275elementStart(32, "mat-option", 13);
+    \u0275\u0275text(33, "Nghi\xEAm t\xFAc");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(32, "mat-option", 10);
-    \u0275\u0275text(33, "Ch\u01B0a bi\u1EBFt");
+    \u0275\u0275elementStart(34, "mat-option", 6);
+    \u0275\u0275text(35, "T\xF9y \xFD");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(34, "mat-form-field", 14)(35, "mat-label");
-    \u0275\u0275text(36, "T\xEAn ri\xEAng");
+    \u0275\u0275elementStart(36, "mat-form-field", 14)(37, "mat-label");
+    \u0275\u0275text(38, "X\u01B0ng h\xF4");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(37, "textarea", 15);
-    \u0275\u0275text(38, "      ");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(39, "mat-form-field", 14)(40, "mat-label");
-    \u0275\u0275text(41, "X\u01B0ng h\xF4");
+    \u0275\u0275elementStart(39, "mat-select", 15)(40, "mat-option", 16);
+    \u0275\u0275text(41, "h\u1EAFn, ta - ng\u01B0\u01A1i, ch\xE0ng - n\xE0ng, t\u1EC9 - mu\u1ED9i");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(42, "textarea", 16);
-    \u0275\u0275text(43, "\n      ");
+    \u0275\u0275elementStart(42, "mat-option", 17);
+    \u0275\u0275text(43, "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, ch\u1ECB - em");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(44, "mat-option", 6);
+    \u0275\u0275text(45, "T\xF9y \xFD");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275element(44, "br");
-    \u0275\u0275elementStart(45, "button", 17);
-    \u0275\u0275listener("click", function SettingComponent_Template_button_click_45_listener() {
+    \u0275\u0275elementStart(46, "mat-form-field", 14)(47, "mat-label");
+    \u0275\u0275text(48, "T\xEAn ri\xEAng");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(49, "textarea", 18);
+    \u0275\u0275text(50, "      ");
+    \u0275\u0275elementEnd()()();
+    \u0275\u0275element(51, "br");
+    \u0275\u0275elementStart(52, "button", 19);
+    \u0275\u0275listener("click", function SettingComponent_Template_button_click_52_listener() {
       return ctx.submit();
     });
-    \u0275\u0275elementStart(46, "mat-icon");
-    \u0275\u0275text(47, "save");
+    \u0275\u0275elementStart(53, "mat-icon");
+    \u0275\u0275text(54, "save");
     \u0275\u0275elementEnd();
-    \u0275\u0275text(48, "L\u01B0u l\u1EA1i");
+    \u0275\u0275text(55, "L\u01B0u l\u1EA1i");
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(49, SettingComponent_p_49_Template, 2, 1, "p", 18);
+    \u0275\u0275template(56, SettingComponent_p_56_Template, 2, 1, "p", 20);
   }
   if (rf & 2) {
     \u0275\u0275property("formGroup", ctx.formGroup);
-    \u0275\u0275advance(49);
+    \u0275\u0275advance(56);
     \u0275\u0275property("ngIf", ctx.translatedText);
   }
 }, dependencies: [NgIf, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, DefaultLayoutDirective, DefaultLayoutAlignDirective, MatButton, MatIcon, MatFormField, MatLabel, MatSelect, MatOption, MatInput], styles: ["\n\n.form-field[_ngcontent-%COMP%] {\n  padding: 5px;\n}\n/*# sourceMappingURL=setting.component.css.map */"] });
@@ -39928,6 +39938,8 @@ var _AppComponent = class _AppComponent {
     }
     this.translateSinglePageChunk(this.pageChunks[this.currentpageIndex + 1], this.currentpageIndex + 1);
     this.currentpageIndex = this.currentpageIndex + 1;
+  }
+  saveData() {
     this.settingService.dataValue = {
       url: this.url,
       setting: this.settingService.value,

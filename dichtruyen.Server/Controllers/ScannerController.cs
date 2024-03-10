@@ -1,4 +1,4 @@
-using AngleSharp;
+﻿using AngleSharp;
 using AngleSharp.Dom;
 using dichtruyen.Server.Model.Request;
 using dichtruyen.Server.Model.Response;
@@ -28,6 +28,16 @@ namespace dichtruyen.Server.Controllers
             {
                 return BadRequest("Url is required");
             }
+            if (!request.Url.Contains("metruyencv"))
+            {
+                return BadRequest("Chỉ hỗ trợ nguồn truyện metruyencv");
+            }
+
+            if (!request.Url.Contains("chuong"))
+            {
+                return BadRequest("Vui lòng nhập link chương truyện");
+            }
+
 
             try
             {

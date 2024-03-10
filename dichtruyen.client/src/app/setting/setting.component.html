@@ -8,6 +8,7 @@
       <mat-select formControlName="time" >
         <mat-option value="Cổ đại">Cổ đại</mat-option>
         <mat-option value="Hiện đại">Hiện đại</mat-option>
+        <mat-option value="Tùy ý">Tùy ý</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -17,7 +18,7 @@
         <mat-option value="Tu tiên">Tu tiên</mat-option>
         <mat-option value="Đô thị">Đô thị</mat-option>
         <mat-option value="Võng du">Võng du</mat-option>
-        <mat-option value="Chưa biết">Chưa biết</mat-option>
+        <mat-option value="Tùy ý">Tùy ý</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -26,7 +27,16 @@
       <mat-select formControlName="voice" >
         <mat-option value="Hài hước">Hài hước</mat-option>
         <mat-option value="Nghiêm túc">Nghiêm túc</mat-option>
-        <mat-option value="Chưa biết">Chưa biết</mat-option>
+        <mat-option value="Tùy ý">Tùy ý</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill">
+      <mat-label>Xưng hô</mat-label>
+      <mat-select formControlName="role" >
+        <mat-option value="hắn, ta, ngươi, chàng, nàng">hắn, ta - ngươi, chàng - nàng, tỉ - muội</mat-option>
+        <mat-option value="tôi - bạn, anh - em, cha - mẹ, chị - em">tôi - bạn, anh - em, cha - mẹ, chị - em</mat-option>
+        <mat-option value="Tùy ý">Tùy ý</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -36,12 +46,7 @@
       </textarea>
     </mat-form-field>
 
-    <mat-form-field class="form-field" appearance="fill">
-      <mat-label>Xưng hô</mat-label>
-      <textarea matInput formControlName="role" placeholder="hắn, ta, ngươi, chàng, nàng" >
 
-      </textarea>
-    </mat-form-field>
   </div>
 
   <br>

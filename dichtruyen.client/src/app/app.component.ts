@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   CHUNK_SIZE = 30;
   UNKNOWN = 'Tùy ý';
   PRE_LOAD = 1000;
+  title = 'Dọc Truyện Convert';
 
   constructor(
     private http: HttpClient,
@@ -185,6 +186,11 @@ export class AppComponent implements OnInit {
       this.currentpageIndex + 1
     );
     this.currentpageIndex = this.currentpageIndex + 1;
+
+  }
+
+  saveData()
+  {
     this.settingService.dataValue = {
       url: this.url,
       setting: this.settingService.value,
@@ -195,5 +201,5 @@ export class AppComponent implements OnInit {
     this.settingService.saveData();
   }
 
-  title = 'Dọc Truyện Convert';
+
 }

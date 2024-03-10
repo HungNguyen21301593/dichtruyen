@@ -10,16 +10,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./setting.component.css'],
 })
 export class SettingComponent implements OnInit {
-  formGroup: FormGroup = this.fb.group({
-    name: ['', undefined],
-    role: ['', undefined],
-    type: ['', undefined],
-    voice: ['', undefined],
-    time: ['', undefined],
-    text: ['', undefined],
-  });
-  translatedText: string = '';
 
+  translatedText: string = '';
+  UNKNOWN = 'Tùy ý';
+  formGroup: FormGroup = this.fb.group({
+    name: [this.UNKNOWN, undefined],
+    role: [this.UNKNOWN, undefined],
+    type: [this.UNKNOWN, undefined],
+    voice: [this.UNKNOWN, undefined],
+    time: [this.UNKNOWN, undefined],
+    text: [this.UNKNOWN, undefined],
+  });
   constructor(
     private fb: FormBuilder,
     private settingService: SettingService,
