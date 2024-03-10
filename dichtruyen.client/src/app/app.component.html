@@ -8,8 +8,11 @@
       <button fxLayout="row" class="button" type="button" mat-icon-button color="primary" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text" fxFlex="80" fxFlexOffset="1" class="input" #input
+      <div fxFlex="80" fxFlexOffset="1" class="input" div fxLayout="column" fxLayoutAlign="start stretch">
+        <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text"  #input
         (change)="openSetting(input.value)" [value]="url">
+      </div>
+
       <button class="button" fxFlexOffset="1" [disabled]="isloading" type="button" mat-icon-button color="primary"
         (click)="scanContent(url)" fxLayout="row">
         <mat-icon>subdirectory_arrow_right</mat-icon>
@@ -18,8 +21,8 @@
     <div *ngIf="originalResponse" flex class="sidenav-content full-height content" fxLayout="column"
       fxLayoutAlign="space-between stretch" fxFlex="68" (scroll)="onScroll($event)">
       <div *ngIf="originalResponse">
-        <span>{{originalResponse.title}}
-        </span>
+        <p>{{originalResponse.title}}
+        </p>
 
         <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index">
           <div *ngIf="version=='translated'">
