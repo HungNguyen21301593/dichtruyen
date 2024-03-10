@@ -39918,6 +39918,7 @@ var _AppComponent = class _AppComponent {
       console.log(result);
       this.translatedPageChunks[index] = result.translatedLines;
       this.isloading = false;
+      this.saveData();
       this.ref.markForCheck();
     }, (error) => {
       console.error(error);

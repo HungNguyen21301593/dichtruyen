@@ -156,6 +156,7 @@ export class AppComponent implements OnInit {
           console.log(result);
           this.translatedPageChunks[index] = result.translatedLines;
           this.isloading = false;
+          this.saveData();
           this.ref.markForCheck();
         },
         (error) => {
