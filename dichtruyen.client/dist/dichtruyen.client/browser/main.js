@@ -39650,7 +39650,7 @@ _DonateComponent.\u0275fac = function DonateComponent_Factory(t) {
 _DonateComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _DonateComponent, selectors: [["app-donate"]], decls: 9, vars: 0, consts: [["fxLayout", "row", "fxLayoutAlign", "space-between start"], ["fxLayout", "column", "fxLayoutAlign", "space-between start", "fxFlex", "50"], ["href", "https://zalo.me/0966884977"], ["width", "50vw", "height", "50vh", "src", "/assets/zalo.png"], ["src", "/assets/donate.jpg"]], template: function DonateComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 0)(1, "div", 1)(2, "p");
-    \u0275\u0275text(3, " N\u1EBFu th\u1EA5y hay, th\xEC donate trang web m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n nh\xE9! ");
+    \u0275\u0275text(3, " N\u1EBFu th\u1EA5y hay, th\xEC b\u1EA1n h\xE3y donate trang web m\u1ED9t \xEDt kinh ph\xED v\u1EADn h\xE0nh v\xE0 ph\xE1t tri\u1EC3n nh\xE9! ");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(4, "p");
     \u0275\u0275text(5, " M\u1ECDi \xFD ki\u1EBFn \u0111\xF3ng g\xF3p vui l\xF2ng li\xEAn h\u1EC7 v\u1EDBi ch\xFAng t\xF4i t\u1EA1i \u0111\xE2y: ");
