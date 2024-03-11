@@ -27717,7 +27717,7 @@ var _AdComponent = class _AdComponent {
 _AdComponent.\u0275fac = function AdComponent_Factory(t) {
   return new (t || _AdComponent)(\u0275\u0275directiveInject(MatDialog));
 };
-_AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdComponent, selectors: [["app-ad"]], decls: 11, vars: 0, consts: [["color", "accent", "mode", "indeterminate"], [1, "ad", 3, "scroll"], ["height", "100%", "scrolling", "no", "src", "/ads", 1, "container"], ["height", "100%", "frameborder", "0", "scrolling", "no", "src", "/ads", 1, "container"]], template: function AdComponent_Template(rf, ctx) {
+_AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdComponent, selectors: [["app-ad"]], decls: 13, vars: 0, consts: [["color", "accent", "mode", "indeterminate"], [1, "ad", 3, "scroll"], ["height", "100%", "frameborder", "0", "scrolling", "no", "src", "/ads", 1, "container"]], template: function AdComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div")(1, "mat-card")(2, "mat-card-header")(3, "mat-card-subtitle");
     \u0275\u0275text(4, " Trang web \u0111ang t\u1EA3i, b\u1EA1n vui l\xF2ng xem \xEDt qu\u1EA3ng c\xE1o gi\xFAp trang web duy tr\xEC ph\xED v\u1EADn h\xE0nh nh\xE9! (K\xE9o xu\u1ED1ng d\u01B0\u1EDBi c\xF9ng \u0111\u1EC3 t\u1EAFt)");
@@ -27727,7 +27727,7 @@ _AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Ad
     \u0275\u0275listener("scroll", function AdComponent_Template_div_scroll_6_listener($event) {
       return ctx.onScroll($event);
     });
-    \u0275\u0275element(7, "iframe", 2)(8, "iframe", 3)(9, "iframe", 3)(10, "iframe", 3);
+    \u0275\u0275element(7, "iframe", 2)(8, "iframe", 2)(9, "iframe", 2)(10, "iframe", 2)(11, "iframe", 2)(12, "iframe", 2);
     \u0275\u0275elementEnd()();
   }
 }, dependencies: [MatProgressBar, MatCard, MatCardHeader, MatCardSubtitle], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  width: 100vw;\n  height: 80vh;\n  display: inline-block;\n}\n.container[_ngcontent-%COMP%] {\n  overflow-y: visible;\n  display: inline-block;\n  height: 300vh;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.component.css.map */"] });
