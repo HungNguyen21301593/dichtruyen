@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./setting.component.css'],
 })
 export class SettingComponent implements OnInit {
-
   translatedText: string = '';
   UNKNOWN = 'Tùy ý';
   formGroup: FormGroup = this.fb.group({
@@ -27,7 +26,7 @@ export class SettingComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
   ngOnInit(): void {
-    this.formGroup.patchValue(this.settingService.value);
+    this.formGroup.patchValue(this.settingService.settingValue);
   }
 
   submit() {
@@ -36,8 +35,7 @@ export class SettingComponent implements OnInit {
     }
     const data = this.formGroup.value;
     var newSetting: SettingModel = data;
-    this.settingService.value = newSetting;
-    this.settingService.saveSetting();
-    this.snackBar.open("Cập nhật hoàn tất", undefined,{duration:1000})
+    this.settingService.saveSetting(newSetting);
+    this.snackBar.open('Cập nhật hoàn tất', undefined, { duration: 1000 });
   }
 }
