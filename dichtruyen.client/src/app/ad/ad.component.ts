@@ -11,7 +11,7 @@ export class AdComponent implements OnInit {
   constructor(public dialog: MatDialog) {}
   async ngOnInit(): Promise<void> {
 
-    await this.delay(1000);
+    await this.delay(3000);
     this.onScroll = (event: any) => {
       if (
         event.target.offsetHeight + event.target.scrollTop + 500 <
