@@ -5,8 +5,12 @@
     </mat-card-header>
   </mat-card>
   <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
+  <!-- <button mat-raised-button color="primary" (click)="pageScroll()">Tự động kéo xuống</button> -->
   <div class="ad" (scroll)="onScroll($event)">
-    <iframe src="/ads" class="ad"></iframe>
+    <iframe height="100%" class="container" scrolling="no" src="/ads"></iframe>
+    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
+    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
+    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
   </div>
 </div>
 

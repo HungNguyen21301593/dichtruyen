@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 
@@ -29,9 +30,9 @@ export class MainComponent implements OnInit {
   isloading = false;
   version: 'origin' | 'translated' = 'translated';
 
-  CHUNK_SIZE = 30;
+  CHUNK_SIZE = 80;
   UNKNOWN = 'Tùy ý';
-  PRE_LOAD = 1500;
+  PRE_LOAD = 2000;
   title = 'Dọc Truyện Convert';
 
   constructor(
@@ -39,8 +40,7 @@ export class MainComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private settingService: SettingService,
     public dialog: MatDialog,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
+    private snackbar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -57,6 +57,33 @@ export class MainComponent implements OnInit {
 
   submit()
   {
+    if (!this.url) {
+      this.snackbar.open(
+        'Bạn vui lòng nhập nguồn nhé',
+        undefined,
+        { duration: 3000}
+      );
+      return;
+    }
+
+    if (!this.url.includes("metruyencv")) {
+      this.snackbar.open(
+        'Bạn vui lòng nhập nguồn từ ***metruyencv*** nhé',
+        undefined,
+        { duration: 3000 }
+      );
+      return;
+    }
+
+    if (!this.url.includes("chuong")) {
+      this.snackbar.open(
+        'Vui lòng nhập nguồn đến ***chương truyện*** bạn muốn dịch',
+        undefined,
+        { duration: 3000 }
+      );
+      return;
+    }
+
     this.reset();
     this.saveCurrentChapterToData();
     window.location.reload();
@@ -122,7 +149,10 @@ export class MainComponent implements OnInit {
     var request: ScanRequest = {
       url: url,
     };
-    this.runads();
+    if (this.url) {
+      this.runads();
+    }
+
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
     this.http

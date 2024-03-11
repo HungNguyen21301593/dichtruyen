@@ -1,8 +1,15 @@
 .ad{
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   width: 100vw;
   height: 80vh;
   display: inline-block;
+}
+
+.container{
+  overflow-y: visible;
+  display: inline-block;
+  height: 300vh;
 }
 
 .back-drop

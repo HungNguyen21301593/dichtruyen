@@ -13,7 +13,7 @@ export class AdContainerComponent {
   @ViewChild('adDiv3') adDiv3!: ElementRef<HTMLDivElement> | undefined;
   constructor(public dialog: MatDialog) {}
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
     if (this.adDiv0) {
       this.loadad(this.adDiv0, '77155276b520bade5bb993c885f93142');
     }
@@ -27,7 +27,12 @@ export class AdContainerComponent {
     }
   }
 
-  loadad(element: ElementRef<HTMLDivElement>, key:string) {
+  click()
+  {
+    this.adDiv0?.nativeElement.click();
+  }
+
+  loadad(element: ElementRef<HTMLDivElement>, key: string) {
     var options = this.generateOptions(key);
     const conf = document.createElement('script');
     var s = document.createElement('script');
@@ -38,10 +43,13 @@ export class AdContainerComponent {
     element?.nativeElement.append(s);
   }
 
-  generateOptions(key:string)
-  {
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  generateOptions(key: string) {
     return {
-      key: key ,
+      key: key,
       format: 'iframe',
       height: 90,
       width: 728,
