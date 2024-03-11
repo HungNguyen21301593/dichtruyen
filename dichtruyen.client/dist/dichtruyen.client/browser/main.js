@@ -27730,7 +27730,7 @@ _AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Ad
     \u0275\u0275element(7, "iframe", 2)(8, "iframe", 2)(9, "iframe", 2)(10, "iframe", 2)(11, "iframe", 2)(12, "iframe", 2);
     \u0275\u0275elementEnd()();
   }
-}, dependencies: [MatProgressBar, MatCard, MatCardHeader, MatCardSubtitle], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  width: 100vw;\n  height: 80vh;\n  display: inline-block;\n}\n.container[_ngcontent-%COMP%] {\n  overflow-y: visible;\n  display: inline-block;\n  height: 300vh;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.component.css.map */"] });
+}, dependencies: [MatProgressBar, MatCard, MatCardHeader, MatCardSubtitle], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  width: 100vw;\n  height: 80vh;\n  display: inline-block;\n}\n.container[_ngcontent-%COMP%] {\n  overflow-y: visible;\n  display: inline-block;\n  height: 200vh;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.component.css.map */"] });
 var AdComponent = _AdComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AdComponent, { className: "AdComponent", filePath: "src\\app\\ad\\ad.component.ts", lineNumber: 9 });

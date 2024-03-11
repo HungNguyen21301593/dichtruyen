@@ -1,7 +1,7 @@
 {
   "version": 3,
   "sources": ["src/app/ad/ad.component.css"],
-  "sourcesContent": [".ad{\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n  width: 100vw;\r\n  height: 80vh;\r\n  display: inline-block;\r\n}\r\n\r\n.container{\r\n  overflow-y: visible;\r\n  display: inline-block;\r\n  height: 300vh;\r\n}\r\n\r\n.back-drop\r\n{\r\n  background-color: black;\r\n}\r\n"],
+  "sourcesContent": [".ad{\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n  width: 100vw;\r\n  height: 80vh;\r\n  display: inline-block;\r\n}\r\n\r\n.container{\r\n  overflow-y: visible;\r\n  display: inline-block;\r\n  height: 200vh;\r\n}\r\n\r\n.back-drop\r\n{\r\n  background-color: black;\r\n}\r\n"],
   "mappings": ";AAAA,CAAC;AACC,cAAY;AACZ,cAAY;AACZ,SAAO;AACP,UAAQ;AACR,WAAS;AACX;AAEA,CAAC;AACC,cAAY;AACZ,WAAS;AACT,UAAQ;AACV;AAEA,CAAC;AAEC,oBAAkB;AACpB;",
   "names": []
 }
