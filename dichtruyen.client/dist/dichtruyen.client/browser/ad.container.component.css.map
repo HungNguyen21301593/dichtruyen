@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/ad.container/ad.container.component.css"],
+  "sourcesContent": [".ad{\r\n  overflow: scroll;\r\n  width: 100%;\r\n  height: 100%;\r\n  display: inline-block;\r\n}\r\n\r\n.back-drop\r\n{\r\n  background-color: black;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAC;AACC,YAAU;AACV,SAAO;AACP,UAAQ;AACR,WAAS;AACX;AAEA,CAAC;AAEC,oBAAkB;AACpB;",
+  "names": []
+}
