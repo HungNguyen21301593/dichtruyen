@@ -27717,7 +27717,7 @@ var _AdComponent = class _AdComponent {
 _AdComponent.\u0275fac = function AdComponent_Factory(t) {
   return new (t || _AdComponent)(\u0275\u0275directiveInject(MatDialog));
 };
-_AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdComponent, selectors: [["app-ad"]], decls: 12, vars: 0, consts: [["color", "accent", "mode", "indeterminate"], [1, "ad", 3, "scroll"], ["height", "100%", "frameborder", "0", "scrolling", "no", "src", "/ads", 1, "container"]], template: function AdComponent_Template(rf, ctx) {
+_AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdComponent, selectors: [["app-ad"]], decls: 11, vars: 0, consts: [["color", "accent", "mode", "indeterminate"], [1, "ad", 3, "scroll"], ["height", "100%", "frameborder", "0", "scrolling", "no", "src", "/ads", 1, "container"]], template: function AdComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div")(1, "mat-card")(2, "mat-card-header")(3, "mat-card-subtitle");
     \u0275\u0275text(4, " Trang web \u0111ang t\u1EA3i, b\u1EA1n vui l\xF2ng xem \xEDt qu\u1EA3ng c\xE1o gi\xFAp trang web duy tr\xEC ph\xED v\u1EADn h\xE0nh nh\xE9! (K\xE9o xu\u1ED1ng d\u01B0\u1EDBi c\xF9ng \u0111\u1EC3 t\u1EAFt)");
@@ -27727,10 +27727,10 @@ _AdComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Ad
     \u0275\u0275listener("scroll", function AdComponent_Template_div_scroll_6_listener($event) {
       return ctx.onScroll($event);
     });
-    \u0275\u0275element(7, "iframe", 2)(8, "iframe", 2)(9, "iframe", 2)(10, "iframe", 2)(11, "iframe", 2);
+    \u0275\u0275element(7, "iframe", 2)(8, "iframe", 2)(9, "iframe", 2)(10, "iframe", 2);
     \u0275\u0275elementEnd()();
   }
-}, dependencies: [MatProgressBar, MatCard, MatCardHeader, MatCardSubtitle], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  width: 100vw;\n  height: 80vh;\n  display: inline-block;\n}\n.container[_ngcontent-%COMP%] {\n  overflow-y: visible;\n  display: inline-block;\n  height: 200vh;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.component.css.map */"] });
+}, dependencies: [MatProgressBar, MatCard, MatCardHeader, MatCardSubtitle], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow-y: scroll;\n  overflow-x: hidden;\n  width: 100vw;\n  height: 80vh;\n  display: inline-block;\n}\n.container[_ngcontent-%COMP%] {\n  overflow-y: visible;\n  display: inline-block;\n  height: 150vh;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.component.css.map */"] });
 var AdComponent = _AdComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AdComponent, { className: "AdComponent", filePath: "src\\app\\ad\\ad.component.ts", lineNumber: 9 });
@@ -40865,20 +40865,16 @@ var _c014 = ["adDiv0"];
 var _c111 = ["adDiv1"];
 var _c28 = ["adDiv2"];
 var _c37 = ["adDiv3"];
+var _c46 = ["adDiv4"];
 var _AdContainerComponent = class _AdContainerComponent {
   constructor(dialog) {
     this.dialog = dialog;
   }
   ngAfterViewInit() {
     return __async(this, null, function* () {
+      yield this.delay(1e3);
       if (this.adDiv0) {
         this.loadad(this.adDiv0, "77155276b520bade5bb993c885f93142");
-      }
-      if (this.adDiv1) {
-        this.loadad(this.adDiv1, "e8313c9801987ece78d56d4394868f65");
-      }
-      if (this.adDiv2) {
-        this.loadad(this.adDiv2, "86887433aece9e1fd7aed810f14cb971");
       }
     });
   }
@@ -40917,6 +40913,7 @@ _AdContainerComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ 
     \u0275\u0275viewQuery(_c111, 5);
     \u0275\u0275viewQuery(_c28, 5);
     \u0275\u0275viewQuery(_c37, 5);
+    \u0275\u0275viewQuery(_c46, 5);
   }
   if (rf & 2) {
     let _t;
@@ -40924,12 +40921,13 @@ _AdContainerComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ 
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv1 = _t.first);
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv2 = _t.first);
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv3 = _t.first);
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv4 = _t.first);
   }
-}, decls: 9, vars: 0, consts: [["adDiv0", ""], ["adDiv1", ""], ["adDiv2", ""], ["adDiv3", ""], ["fxLayout", "column", "fxLayoutAlign", "space-around center", "id", "container-5647e7df4213cecc3fd2fd9a7e9f7857"]], template: function AdContainerComponent_Template(rf, ctx) {
+}, decls: 11, vars: 0, consts: [["adDiv0", ""], ["adDiv1", ""], ["adDiv2", ""], ["adDiv3", ""], ["adDiv4", ""], ["fxLayout", "column", "fxLayoutAlign", "space-around center", "id", "container-5647e7df4213cecc3fd2fd9a7e9f7857"]], template: function AdContainerComponent_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "div", null, 0)(2, "div", null, 1)(4, "div", null, 2)(6, "div", null, 3)(8, "div", 4);
+    \u0275\u0275element(0, "div", null, 0)(2, "div", null, 1)(4, "div", null, 2)(6, "div", null, 3)(8, "div", null, 4)(10, "div", 5);
   }
-}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  overflow: scroll;\n  width: 100%;\n  height: 100%;\n  display: inline-block;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.container.component.css.map */"] });
+}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  display: inline-block;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.container.component.css.map */"] });
 var AdContainerComponent = _AdContainerComponent;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AdContainerComponent, { className: "AdContainerComponent", filePath: "src\\app\\ad.container\\ad.container.component.ts", lineNumber: 9 });
