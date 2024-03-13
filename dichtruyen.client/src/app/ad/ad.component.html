@@ -1,16 +1,10 @@
 <div>
   <mat-card>
     <mat-card-header>
-      <mat-card-subtitle>  Trang web đang tải, bạn vui lòng xem ít quảng cáo giúp trang web duy trì phí vận hành nhé!  (Kéo xuống dưới cùng để tắt)</mat-card-subtitle>
+      <mat-card-subtitle>  Trang web đang tải, bạn vui lòng xem ít quảng cáo giúp trang web duy trì phí vận hành nhé!</mat-card-subtitle>
     </mat-card-header>
   </mat-card>
   <mat-progress-bar color="accent" mode="indeterminate"></mat-progress-bar>
-  <!-- <button mat-raised-button color="primary" (click)="pageScroll()">Tự động kéo xuống</button> -->
-  <div class="ad" (scroll)="onScroll($event)">
-    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
-    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
-    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
-    <iframe height="100%" class="container" frameborder="0" scrolling="no" src="/ads"></iframe>
-  </div>
+  <a mat-raised-button class="button" (click)="dialog.closeAll()" href="https://doruffleton.com/4/7210319" color="primary">Xem quảng cáo</a>
 </div>
 

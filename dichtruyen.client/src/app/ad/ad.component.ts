@@ -19,7 +19,7 @@ export class AdComponent implements OnInit {
       ) {
         return;
       }
-      this.dialog.closeAll();
+
     };
   }
 
