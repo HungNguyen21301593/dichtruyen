@@ -6,7 +6,7 @@ import { AdContainerComponent } from './ad.container/ad.container.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent, pathMatch: 'full' },
-  { path: 'ads', component: AdContainerComponent, pathMatch: 'full' },
+  { path: ':url', component: MainComponent, pathMatch: 'full' },
 ];
 
 @NgModule({

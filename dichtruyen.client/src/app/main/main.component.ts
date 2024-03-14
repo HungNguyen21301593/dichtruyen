@@ -40,19 +40,19 @@ export class MainComponent implements OnInit {
     private ref: ChangeDetectorRef,
     private settingService: SettingService,
     public dialog: MatDialog,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    var lastChapter = this.settingService.loadLatestData();
-    if (!lastChapter) {
-      return;
-    }
-    if (!lastChapter.url) {
-      return;
-    }
-    this.url = lastChapter.url;
-    this.scanContent(this.url);
+    this.activatedRoute.queryParams.subscribe(queryParams => {
+      var urlFromRoute = queryParams["url"];
+      if (urlFromRoute) {
+        this.url = urlFromRoute;
+        this.scanContent(this.url);
+      }
+    } )
   }
 
   submit()
@@ -84,23 +84,17 @@ export class MainComponent implements OnInit {
       return;
     }
 
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    this.router.navigate([''], { queryParams: { url: this.url } });
   }
 
   next() {
-    this.url = this.getNewChapterUrl(this.url, 1);
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    var nextChapter = this.getNewChapterUrl(this.url, 1);
+    this.router.navigate([''], { queryParams: { url: nextChapter } });
   }
 
   previous() {
-    this.url = this.getNewChapterUrl(this.url, -1);
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    var nextChapter = this.getNewChapterUrl(this.url, -1);
+    this.router.navigate([''], { queryParams: { url: nextChapter } });
   }
 
   reset()
@@ -149,9 +143,6 @@ export class MainComponent implements OnInit {
     var request: ScanRequest = {
       url: url,
     };
-    if (this.url) {
-      this.runads();
-    }
 
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');

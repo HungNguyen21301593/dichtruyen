@@ -40583,12 +40583,14 @@ function MainComponent_div_17_Template(rf, ctx) {
   }
 }
 var _MainComponent = class _MainComponent {
-  constructor(http, ref, settingService, dialog, snackbar) {
+  constructor(http, ref, settingService, dialog, snackbar, activatedRoute, router) {
     this.http = http;
     this.ref = ref;
     this.settingService = settingService;
     this.dialog = dialog;
     this.snackbar = snackbar;
+    this.activatedRoute = activatedRoute;
+    this.router = router;
     this.originalResponse = void 0;
     this.pageChunks = [[]];
     this.translatedPageChunks = [[]];
@@ -40602,15 +40604,13 @@ var _MainComponent = class _MainComponent {
     this.title = "D\u1ECDc Truy\u1EC7n Convert";
   }
   ngOnInit() {
-    var lastChapter = this.settingService.loadLatestData();
-    if (!lastChapter) {
-      return;
-    }
-    if (!lastChapter.url) {
-      return;
-    }
-    this.url = lastChapter.url;
-    this.scanContent(this.url);
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      var urlFromRoute = queryParams["url"];
+      if (urlFromRoute) {
+        this.url = urlFromRoute;
+        this.scanContent(this.url);
+      }
+    });
   }
   submit() {
     if (!this.url) {
@@ -40625,21 +40625,15 @@ var _MainComponent = class _MainComponent {
       this.snackbar.open("Vui l\xF2ng nh\u1EADp ngu\u1ED3n \u0111\u1EBFn ***ch\u01B0\u01A1ng truy\u1EC7n*** b\u1EA1n mu\u1ED1n d\u1ECBch", void 0, { duration: 3e3 });
       return;
     }
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    this.router.navigate([""], { queryParams: { url: this.url } });
   }
   next() {
-    this.url = this.getNewChapterUrl(this.url, 1);
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    var nextChapter = this.getNewChapterUrl(this.url, 1);
+    this.router.navigate([""], { queryParams: { url: nextChapter } });
   }
   previous() {
-    this.url = this.getNewChapterUrl(this.url, -1);
-    this.reset();
-    this.saveCurrentChapterToData();
-    window.location.reload();
+    var nextChapter = this.getNewChapterUrl(this.url, -1);
+    this.router.navigate([""], { queryParams: { url: nextChapter } });
   }
   reset() {
     this.originalResponse = void 0;
@@ -40679,9 +40673,6 @@ var _MainComponent = class _MainComponent {
     var request = {
       url
     };
-    if (this.url) {
-      this.runads();
-    }
     const headers = new HttpHeaders();
     headers.set("Content-Type", "application/x-www-form-urlencoded");
     this.http.post("/api/Scanner", request, { headers }).subscribe((result) => {
@@ -40765,7 +40756,7 @@ var _MainComponent = class _MainComponent {
   }
 };
 _MainComponent.\u0275fac = function MainComponent_Factory(t) {
-  return new (t || _MainComponent)(\u0275\u0275directiveInject(HttpClient), \u0275\u0275directiveInject(ChangeDetectorRef), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(MatSnackBar));
+  return new (t || _MainComponent)(\u0275\u0275directiveInject(HttpClient), \u0275\u0275directiveInject(ChangeDetectorRef), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(MatSnackBar), \u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(Router));
 };
 _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _MainComponent, selectors: [["app", 8, "main"]], viewQuery: function MainComponent_Query(rf, ctx) {
   if (rf & 1) {
@@ -40859,83 +40850,10 @@ var MainComponent = _MainComponent;
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(MainComponent, { className: "MainComponent", filePath: "src\\app\\main\\main.component.ts", lineNumber: 23 });
 })();
 
-// src/app/ad.container/ad.container.component.ts
-var _c014 = ["adDiv0"];
-var _c111 = ["adDiv1"];
-var _c28 = ["adDiv2"];
-var _c37 = ["adDiv3"];
-var _c46 = ["adDiv4"];
-var _AdContainerComponent = class _AdContainerComponent {
-  constructor(dialog) {
-    this.dialog = dialog;
-  }
-  ngAfterViewInit() {
-    return __async(this, null, function* () {
-      yield this.delay(1e3);
-      if (this.adDiv0) {
-        this.loadad(this.adDiv0, "77155276b520bade5bb993c885f93142");
-      }
-    });
-  }
-  click() {
-    this.adDiv0?.nativeElement.click();
-  }
-  loadad(element, key) {
-    var options = this.generateOptions(key);
-    const conf = document.createElement("script");
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = `//www.profitablecreativeformat.com/${options.key}/invoke.js`;
-    conf.innerHTML = `atOptions = ${JSON.stringify(options)}`;
-    element?.nativeElement.append(conf);
-    element?.nativeElement.append(s);
-  }
-  delay(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-  generateOptions(key) {
-    return {
-      key,
-      format: "iframe",
-      height: 90,
-      width: 728,
-      params: {}
-    };
-  }
-};
-_AdContainerComponent.\u0275fac = function AdContainerComponent_Factory(t) {
-  return new (t || _AdContainerComponent)(\u0275\u0275directiveInject(MatDialog));
-};
-_AdContainerComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdContainerComponent, selectors: [["app-ad-container"]], viewQuery: function AdContainerComponent_Query(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275viewQuery(_c014, 5);
-    \u0275\u0275viewQuery(_c111, 5);
-    \u0275\u0275viewQuery(_c28, 5);
-    \u0275\u0275viewQuery(_c37, 5);
-    \u0275\u0275viewQuery(_c46, 5);
-  }
-  if (rf & 2) {
-    let _t;
-    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv0 = _t.first);
-    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv1 = _t.first);
-    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv2 = _t.first);
-    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv3 = _t.first);
-    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv4 = _t.first);
-  }
-}, decls: 11, vars: 0, consts: [["adDiv0", ""], ["adDiv1", ""], ["adDiv2", ""], ["adDiv3", ""], ["adDiv4", ""], ["fxLayout", "column", "fxLayoutAlign", "space-around center", "id", "container-5647e7df4213cecc3fd2fd9a7e9f7857"]], template: function AdContainerComponent_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275element(0, "div", null, 0)(2, "div", null, 1)(4, "div", null, 2)(6, "div", null, 3)(8, "div", null, 4)(10, "div", 5);
-  }
-}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  display: inline-block;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.container.component.css.map */"] });
-var AdContainerComponent = _AdContainerComponent;
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AdContainerComponent, { className: "AdContainerComponent", filePath: "src\\app\\ad.container\\ad.container.component.ts", lineNumber: 9 });
-})();
-
 // src/app/app-routing.module.ts
 var routes = [
   { path: "", component: MainComponent, pathMatch: "full" },
-  { path: "ads", component: AdContainerComponent, pathMatch: "full" }
+  { path: ":url", component: MainComponent, pathMatch: "full" }
 ];
 var _AppRoutingModule = class _AppRoutingModule {
 };
@@ -43592,6 +43510,79 @@ var MatDividerModule = _MatDividerModule;
       exports: [MatDivider, MatCommonModule]
     }]
   }], null, null);
+})();
+
+// src/app/ad.container/ad.container.component.ts
+var _c014 = ["adDiv0"];
+var _c111 = ["adDiv1"];
+var _c28 = ["adDiv2"];
+var _c37 = ["adDiv3"];
+var _c46 = ["adDiv4"];
+var _AdContainerComponent = class _AdContainerComponent {
+  constructor(dialog) {
+    this.dialog = dialog;
+  }
+  ngAfterViewInit() {
+    return __async(this, null, function* () {
+      yield this.delay(1e3);
+      if (this.adDiv0) {
+        this.loadad(this.adDiv0, "77155276b520bade5bb993c885f93142");
+      }
+    });
+  }
+  click() {
+    this.adDiv0?.nativeElement.click();
+  }
+  loadad(element, key) {
+    var options = this.generateOptions(key);
+    const conf = document.createElement("script");
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = `//www.profitablecreativeformat.com/${options.key}/invoke.js`;
+    conf.innerHTML = `atOptions = ${JSON.stringify(options)}`;
+    element?.nativeElement.append(conf);
+    element?.nativeElement.append(s);
+  }
+  delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+  generateOptions(key) {
+    return {
+      key,
+      format: "iframe",
+      height: 90,
+      width: 728,
+      params: {}
+    };
+  }
+};
+_AdContainerComponent.\u0275fac = function AdContainerComponent_Factory(t) {
+  return new (t || _AdContainerComponent)(\u0275\u0275directiveInject(MatDialog));
+};
+_AdContainerComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _AdContainerComponent, selectors: [["app-ad-container"]], viewQuery: function AdContainerComponent_Query(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275viewQuery(_c014, 5);
+    \u0275\u0275viewQuery(_c111, 5);
+    \u0275\u0275viewQuery(_c28, 5);
+    \u0275\u0275viewQuery(_c37, 5);
+    \u0275\u0275viewQuery(_c46, 5);
+  }
+  if (rf & 2) {
+    let _t;
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv0 = _t.first);
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv1 = _t.first);
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv2 = _t.first);
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv3 = _t.first);
+    \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.adDiv4 = _t.first);
+  }
+}, decls: 11, vars: 0, consts: [["adDiv0", ""], ["adDiv1", ""], ["adDiv2", ""], ["adDiv3", ""], ["adDiv4", ""], ["fxLayout", "column", "fxLayoutAlign", "space-around center", "id", "container-5647e7df4213cecc3fd2fd9a7e9f7857"]], template: function AdContainerComponent_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275element(0, "div", null, 0)(2, "div", null, 1)(4, "div", null, 2)(6, "div", null, 3)(8, "div", null, 4)(10, "div", 5);
+  }
+}, dependencies: [DefaultLayoutDirective, DefaultLayoutAlignDirective], styles: ["\n\n.ad[_ngcontent-%COMP%] {\n  width: 100%;\n  height: 100%;\n  display: inline-block;\n}\n.back-drop[_ngcontent-%COMP%] {\n  background-color: black;\n}\n/*# sourceMappingURL=ad.container.component.css.map */"] });
+var AdContainerComponent = _AdContainerComponent;
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AdContainerComponent, { className: "AdContainerComponent", filePath: "src\\app\\ad.container\\ad.container.component.ts", lineNumber: 9 });
 })();
 
 // src/app/app.module.ts
