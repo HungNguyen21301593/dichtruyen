@@ -1,5 +1,6 @@
 ﻿using AngleSharp;
 using AngleSharp.Dom;
+using AngleSharp.Io;
 using dichtruyen.Server.Model.Request;
 using dichtruyen.Server.Model.Response;
 using Microsoft.AspNetCore.Mvc;
@@ -28,25 +29,39 @@ namespace dichtruyen.Server.Controllers
             {
                 return BadRequest("Url is required");
             }
-            if (!request.Url.Contains("metruyencv"))
+            if (!request.Url.Contains("metruyencv") && !request.Url.Contains("69shu"))
             {
-                return BadRequest("Chỉ hỗ trợ nguồn truyện metruyencv");
-            }
-
-            if (!request.Url.Contains("chuong"))
-            {
-                return BadRequest("Vui lòng nhập link chương truyện");
+                return BadRequest("Chỉ hỗ trợ nguồn truyện metruyencv, 69shu");
             }
 
 
             try
             {
-                var config = Configuration.Default.WithDefaultLoader();
-                var document = await BrowsingContext.New(config).OpenAsync(request.Url);
+
+                return new OkObjectResult(await Scan(request.Url));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error scanning website: {request.Url}");
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        private async Task<ScanReqsponse> Scan(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                throw new ArgumentException(url, nameof(url));
+            }
+            var config = Configuration.Default.WithDefaultLoader();
+
+            if (url.Contains("metruyencv"))
+            {
+                var document = await BrowsingContext.New(config).OpenAsync(url);
 
                 if (document == null)
                 {
-                    return NotFound("Failed to load the website");
+                    throw new Exception("Failed to load the website");
                 }
 
 
@@ -55,7 +70,7 @@ namespace dichtruyen.Server.Controllers
                 var articleNodes = document.QuerySelector("#article")?.ChildNodes;
                 if (articleNodes == null)
                 {
-                    return NotFound("Failed to load the website");
+                    throw new Exception("Failed to load the website");
                 }
                 var lines = new List<string>();
                 foreach (var node in articleNodes.ToList())
@@ -64,18 +79,47 @@ namespace dichtruyen.Server.Controllers
                     lines.Add(node.TextContent);
                 }
 
-                return Ok(new ScanReqsponse
-                { 
-                    Url = request.Url,
-                    Title = title??"",
+                return new ScanReqsponse
+                {
+                    Url = url,
+                    Title = title ?? "",
                     lines = lines
-                });
+                };
             }
-            catch (Exception ex)
+
+            if (url.Contains("69shu"))
             {
-                _logger.LogError(ex, $"Error scanning website: {request.Url}");
-                return StatusCode(500, "Internal server error");
+                var document = await BrowsingContext.New(config).OpenAsync(url);
+
+                if (document == null)
+                {
+                    throw new Exception("Failed to load the website");
+                }
+
+
+                // Extract text from the website
+                var title = document.QuerySelector("h1.hide720").TextContent;
+                var articleNodes = document.QuerySelector(".txtnav").ChildNodes;
+                if (articleNodes == null)
+                {
+                    throw new Exception("Failed to load the website");
+                }
+                var lines = new List<string>();
+                foreach (var node in articleNodes.ToList())
+                {
+
+                    lines.Add(node.TextContent);
+                }
+
+                return new ScanReqsponse
+                {
+                    Url = url,
+                    Title = title ?? "",
+                    lines = lines
+                };
             }
+            throw new NotImplementedException("Failed to load the website");
+
         }
     }
 }
