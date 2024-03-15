@@ -177,8 +177,7 @@ export class MainComponent implements OnInit {
       type: currentSetting.type ?? this.UNKNOWN,
       voice: currentSetting.voice ?? this.UNKNOWN,
       lastUrl: this.url,
-      promt:
-        'hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa',
+      promt: currentSetting.promt,
       exampleInput: ' nhà tôi đang đi về. ',
       exampleOutput: 'tôi đang đi về nhà.',
       textToTranslate: textToTranslate,

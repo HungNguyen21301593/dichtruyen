@@ -40717,7 +40717,7 @@ var _MainComponent = class _MainComponent {
       type: currentSetting.type ?? this.UNKNOWN,
       voice: currentSetting.voice ?? this.UNKNOWN,
       lastUrl: this.url,
-      promt: "h\xE3y s\u1EEDa l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho Thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 ch\u1EC9nh s\u1EEDa",
+      promt: currentSetting.promt,
       exampleInput: " nh\xE0 t\xF4i \u0111ang \u0111i v\u1EC1. ",
       exampleOutput: "t\xF4i \u0111ang \u0111i v\u1EC1 nh\xE0.",
       textToTranslate
