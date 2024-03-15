@@ -6,7 +6,7 @@ services:
     restart: always
     privileged: true
     ports:
-      - 5000:8080
+      - 80:8080
       - 5001:8081
     networks:
           - web_net
