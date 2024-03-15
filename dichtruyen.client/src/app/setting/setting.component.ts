@@ -19,6 +19,7 @@ export class SettingComponent implements OnInit {
     voice: [this.UNKNOWN, undefined],
     time: [this.UNKNOWN, undefined],
     text: [this.UNKNOWN, undefined],
+    promt: [this.UNKNOWN, undefined],
   });
   constructor(
     private fb: FormBuilder,

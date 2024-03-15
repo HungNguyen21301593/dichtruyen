@@ -41,11 +41,18 @@
     </mat-form-field>
 
     <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
+      <mat-label>Câu promt</mat-label>
+      <mat-select formControlName="promt" >
+        <mat-option value="Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa">Convert</mat-option>
+        <mat-option value="hãy dịch lại đoạn truyện sau cho thuần Việt và chỉ trả về kết quả đã dịch">Dịch</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
       <mat-label>Tên riêng</mat-label>
       <textarea  rows="5" matInput formControlName="name" placeholder="VD: Tiêu Viêm, Hồng Hài Nhi, Bất Diệt Thôn Viêm,..." >
       </textarea>
     </mat-form-field>
-
 
   </div>
 

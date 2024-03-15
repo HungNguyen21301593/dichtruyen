@@ -66,18 +66,9 @@ export class MainComponent implements OnInit {
       return;
     }
 
-    if (!this.url.includes("metruyencv")) {
+    if (!this.url.includes("metruyencv") && !this.url.includes("69shu")) {
       this.snackbar.open(
-        'Bạn vui lòng nhập nguồn từ ***metruyencv*** nhé',
-        undefined,
-        { duration: 3000 }
-      );
-      return;
-    }
-
-    if (!this.url.includes("chuong")) {
-      this.snackbar.open(
-        'Vui lòng nhập nguồn đến ***chương truyện*** bạn muốn dịch',
+        'Bạn vui lòng nhập nguồn từ ***metruyencv, 69shu*** nhé',
         undefined,
         { duration: 3000 }
       );
