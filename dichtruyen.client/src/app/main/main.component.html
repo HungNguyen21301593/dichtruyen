@@ -27,17 +27,17 @@
 
         <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index">
           <div *ngIf="version=='translated'">
+            <button *ngIf="translatedPageChunks.length>0" [disabled]="!isloading" mat-button color="primary"
+              (click)="retranslate(i)">
+               Dịch lại
+             </button>
+             <mat-spinner *ngIf="isloading && translatedPageChunk.length==0" color="accent" diameter="30"></mat-spinner>
             <div *ngFor="let line of translatedPageChunk??[]">
               <span>
                 {{line}}
               </span>
               <br>
             </div>
-            <button *ngIf="translatedPageChunks.length>0 && !translatedPageChunk" [disabled]="!isloading" mat-button
-              color="accent" (click)="retranslate(i)">
-              Dịch lại
-              <mat-icon>refresh</mat-icon>
-            </button>
           </div>
 
           <div *ngIf="version=='origin'">
@@ -49,11 +49,10 @@
             </div>
           </div>
           <br>
-
           <br>
         </div>
         <p>-----------</p>
-        <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner>
+        <!-- <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner> -->
 
         <div *ngIf="originalResponse" div fxLayout="column" fxLayoutAlign="center center" >
           <app-donate></app-donate>

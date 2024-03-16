@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
   isloading = false;
   version: 'origin' | 'translated' = 'translated';
 
-  CHUNK_SIZE = 80;
+  CHUNK_SIZE = 40;
   UNKNOWN = 'Tùy ý';
   PRE_LOAD = 2000;
   title = 'Dọc Truyện Convert';
@@ -108,6 +108,7 @@ export class MainComponent implements OnInit {
   }
 
   retranslate(index: number) {
+
     this.translateSinglePageChunk(this.pageChunks[index], index);
   }
 
@@ -163,6 +164,7 @@ export class MainComponent implements OnInit {
 
   translateSinglePageChunk(page: string[], index: number) {
     this.isloading = true;
+    this.translatedPageChunks[index]=[];
     var textToTranslate = page.join('\n');
     var currentSetting = this.settingService.settingValue;
     var request: TranslationProxyRequest = {
