@@ -26,9 +26,9 @@ import { AdComponent } from './ad/ad.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
-import { MainComponent } from './main/main.component';
 import { AdContainerComponent } from './ad.container/ad.container.component';
 import {MatChipsModule} from '@angular/material/chips';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [

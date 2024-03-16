@@ -1,3 +1,4 @@
+import { AdditionalSettting } from './../additional-settting.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
@@ -14,7 +15,6 @@ import {
 import { AdComponent } from '../ad/ad.component';
 import { SettingService } from '../setting.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 @Component({
   selector: 'app.main',
   templateUrl: './main.component.html',
@@ -46,27 +46,24 @@ export class MainComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(queryParams => {
-      var urlFromRoute = queryParams["url"];
+    this.activatedRoute.queryParams.subscribe((queryParams) => {
+      var urlFromRoute = queryParams['url'];
       if (urlFromRoute) {
         this.url = urlFromRoute;
         this.scanContent(this.url);
       }
-    } )
+    });
   }
 
-  submit()
-  {
+  submit() {
     if (!this.url) {
-      this.snackbar.open(
-        'Bạn vui lòng nhập nguồn nhé',
-        undefined,
-        { duration: 3000}
-      );
+      this.snackbar.open('Bạn vui lòng nhập nguồn nhé', undefined, {
+        duration: 3000,
+      });
       return;
     }
 
-    if (!this.url.includes("metruyencv") && !this.url.includes("69shu")) {
+    if (!this.url.includes('metruyencv') && !this.url.includes('69shu')) {
       this.snackbar.open(
         'Bạn vui lòng nhập nguồn từ ***metruyencv, 69shu*** nhé',
         undefined,
@@ -88,8 +85,7 @@ export class MainComponent implements OnInit {
     this.router.navigate([''], { queryParams: { url: nextChapter } });
   }
 
-  reset()
-  {
+  reset() {
     this.originalResponse = undefined;
     this.pageChunks = [[]];
     this.translatedPageChunks = [[]];
@@ -98,7 +94,6 @@ export class MainComponent implements OnInit {
   runads() {
     this.dialog.open(AdComponent, { hasBackdrop: true, disableClose: true });
   }
-
 
   getNewChapterUrl(url: string, add: number): string {
     // Use regular expression to search for the number within the URL path
@@ -181,7 +176,8 @@ export class MainComponent implements OnInit {
       exampleInput: ' nhà tôi đang đi về. ',
       exampleOutput: 'tôi đang đi về nhà.',
       textToTranslate: textToTranslate,
-      additionalRequirements: currentSetting.additionalRequirements ?? [],
+      additional: currentSetting.additional,
+      additionalRequirements: this.mapToAdditionalRequirements(currentSetting.additional),
     };
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
@@ -203,6 +199,22 @@ export class MainComponent implements OnInit {
           this.ref.markForCheck();
         }
       );
+  }
+
+  mapToAdditionalRequirements(settings: AdditionalSettting[]) {
+    return settings.map((key) => {
+      switch (key.toString()) {
+        case "GiuNguyenCadao":
+          return AdditionalSettting.GiuNguyenCadao.toString();
+          break;
+        case "GiuNguyenThuTuTen":
+          return AdditionalSettting.GiuNguyenThuTuTen.toString();
+          break;
+        default:
+          return ""
+          break;
+      }
+    });
   }
 
   onScroll(event: any) {

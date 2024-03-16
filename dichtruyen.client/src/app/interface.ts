@@ -20,11 +20,12 @@ export interface SettingModel {
   promt: string;
   exampleInput: string;
   exampleOutput: string;
-  additionalRequirements: AdditionalSettting[];
+  additional: AdditionalSettting[];
 }
 
 export interface TranslationProxyRequest extends SettingModel {
   textToTranslate: string;
+  additionalRequirements: string[];
 }
 
 export interface TranslationProxyResponse {

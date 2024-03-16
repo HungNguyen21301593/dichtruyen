@@ -15375,6 +15375,13 @@ function provideRouterInitializer() {
 }
 var VERSION3 = new Version("17.2.3");
 
+// src/app/additional-settting.enum.ts
+var AdditionalSettting;
+(function(AdditionalSettting2) {
+  AdditionalSettting2["GiuNguyenThuTuTen"] = "Gi\u1EEF nguy\xEAn th\u1EE9 t\u1EF1 t\xEAn ri\xEAng, v\xED d\u1EE5 : L\xE3m Nguy\u1EC7t T\xF4ng, Ng\u1ECDc L\xE2n Cung, M\xE3 s\u01B0 huynh";
+  AdditionalSettting2["GiuNguyenCadao"] = "Gi\u1EEF nguy\xEAn ca giao, t\u1EE5c ng\u1EEF, th\u01A1";
+})(AdditionalSettting || (AdditionalSettting = {}));
+
 // node_modules/@angular/cdk/fesm2022/coercion.mjs
 function coerceBooleanProperty(value) {
   return value != null && `${value}` !== "false";
@@ -28905,7 +28912,7 @@ var _SettingService = class _SettingService {
       exampleOutput: "",
       promt: "",
       lastUrl: "",
-      additionalRequirements: []
+      additional: []
     };
     this.initDataValue = [];
     this.settingValue = this.initSettingValue;
@@ -43442,7 +43449,9 @@ var _MainComponent = class _MainComponent {
   }
   submit() {
     if (!this.url) {
-      this.snackbar.open("B\u1EA1n vui l\xF2ng nh\u1EADp ngu\u1ED3n nh\xE9", void 0, { duration: 3e3 });
+      this.snackbar.open("B\u1EA1n vui l\xF2ng nh\u1EADp ngu\u1ED3n nh\xE9", void 0, {
+        duration: 3e3
+      });
       return;
     }
     if (!this.url.includes("metruyencv") && !this.url.includes("69shu")) {
@@ -43537,7 +43546,8 @@ var _MainComponent = class _MainComponent {
       exampleInput: " nh\xE0 t\xF4i \u0111ang \u0111i v\u1EC1. ",
       exampleOutput: "t\xF4i \u0111ang \u0111i v\u1EC1 nh\xE0.",
       textToTranslate,
-      additionalRequirements: currentSetting.additionalRequirements ?? []
+      additional: currentSetting.additional,
+      additionalRequirements: this.mapToAdditionalRequirements(currentSetting.additional)
     };
     const headers = new HttpHeaders();
     headers.set("Content-Type", "application/x-www-form-urlencoded");
@@ -43553,6 +43563,21 @@ var _MainComponent = class _MainComponent {
       console.error(error);
       this.isloading = false;
       this.ref.markForCheck();
+    });
+  }
+  mapToAdditionalRequirements(settings) {
+    return settings.map((key) => {
+      switch (key.toString()) {
+        case "GiuNguyenCadao":
+          return AdditionalSettting.GiuNguyenCadao.toString();
+          break;
+        case "GiuNguyenThuTuTen":
+          return AdditionalSettting.GiuNguyenThuTuTen.toString();
+          break;
+        default:
+          return "";
+          break;
+      }
     });
   }
   onScroll(event) {
