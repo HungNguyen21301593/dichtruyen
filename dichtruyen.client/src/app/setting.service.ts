@@ -16,7 +16,8 @@ export class SettingService {
     exampleInput: '',
     exampleOutput: '',
     promt: '',
-    lastUrl:''
+    lastUrl:'',
+    additionalRequirements:[],
   };
 
   private initDataValue: SavedDataModel[] = [];

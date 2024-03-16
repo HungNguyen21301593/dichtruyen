@@ -43,9 +43,22 @@
     <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
       <mat-label>Câu promt</mat-label>
       <mat-select formControlName="promt" >
-        <mat-option value="Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa">Convert</mat-option>
-        <mat-option value="hãy dịch lại đoạn truyện sau cho thuần Việt và chỉ trả về kết quả đã dịch">Dịch</mat-option>
+        <mat-option value="Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa">Edit truyện convert</mat-option>
+        <mat-option value="hãy dịch lại đoạn truyện sau cho thuần Việt và chỉ trả về kết quả đã dịch">Dịch truyện tiếng trung</mat-option>
       </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
+      <mat-label>Các yều cầu khác</mat-label>
+      <mat-select formControlName="additional" multiple>
+        <mat-select-trigger>
+        </mat-select-trigger>
+        <mat-option [value]="'GiuNguyenThuTuTen'">Giữ nguyên thứ tự tên riêng, ví dụ : Lãm Nguyệt Tông, Ngọc Lân Cung, Mã sư huynh'</mat-option>
+        <mat-option [value]="'GiuNguyenCadao'">Giữ nguyên ca giao, tục ngữ, thơ</mat-option>
+      </mat-select>
+      <mat-chip-listbox aria-label="Fish selection">
+        <mat-chip-option *ngFor="let item of (formGroup.get('additional')?.value)">{{item}}</mat-chip-option>
+      </mat-chip-listbox>
     </mat-form-field>
 
     <mat-form-field class="form-field" appearance="fill" [color]="'accent'">
@@ -53,6 +66,7 @@
       <textarea  rows="5" matInput formControlName="name" placeholder="VD: Tiêu Viêm, Hồng Hài Nhi, Bất Diệt Thôn Viêm,..." >
       </textarea>
     </mat-form-field>
+
 
   </div>
 

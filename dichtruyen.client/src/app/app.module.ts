@@ -28,6 +28,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MainComponent } from './main/main.component';
 import { AdContainerComponent } from './ad.container/ad.container.component';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { AdContainerComponent } from './ad.container/ad.container.component';
     MatDialogModule,
     MatProgressBarModule,
     MatCardModule,
+    MatChipsModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

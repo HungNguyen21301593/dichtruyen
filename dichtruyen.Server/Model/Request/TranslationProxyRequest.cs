@@ -11,6 +11,7 @@
         public string ExampleInput { get; set; }
         public string ExampleOutput { get; set; }
         public string TextToTranslate { get; set; }
+        public string[] AdditionalRequirements { get; set; }
     }
 
 }

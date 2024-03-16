@@ -181,6 +181,7 @@ export class MainComponent implements OnInit {
       exampleInput: ' nhà tôi đang đi về. ',
       exampleOutput: 'tôi đang đi về nhà.',
       textToTranslate: textToTranslate,
+      additionalRequirements: currentSetting.additionalRequirements ?? [],
     };
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');

@@ -19,7 +19,8 @@ export class SettingComponent implements OnInit {
     voice: [this.UNKNOWN, undefined],
     time: [this.UNKNOWN, undefined],
     text: [this.UNKNOWN, undefined],
-    promt: [this.UNKNOWN, undefined],
+    promt: ['Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa:', undefined],
+    additional: [[], undefined],
   });
   constructor(
     private fb: FormBuilder,

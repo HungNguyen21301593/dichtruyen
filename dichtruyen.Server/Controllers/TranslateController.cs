@@ -30,20 +30,26 @@ namespace dichtruyen.Server.Controllers
             {
                 _logger.LogInformation($"Received {DateTime.Now} {JsonConvert.SerializeObject(request)}");
                 //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
-                var promt = $"Với các dữ liệu sau, " +
-                    $"tên riêng: {request.Name}," +
-                    $" thể loại {request.Type}," +
-                    $" giọng văn {request.Voice}," +
-                    $" bối cảnh {request.Time}," +
-                    $" xưng hô {request.Role}," +
-                    $"{request.Promt}," +
-                    $" ví dụ, input: {request.ExampleInput}, " +
-                    $" output: {request.ExampleOutput}," +
-                    $" sau đây là đoạn truyện:{request.TextToTranslate}";
+                var stringbuilder = new StringBuilder();
+                stringbuilder.AppendLine("Với các dữ liệu sau, ");
+                stringbuilder.AppendLine($"tên riêng: {request.Name},");
+                stringbuilder.AppendLine($" thể loại {request.Type},");
+                stringbuilder.AppendLine($" giọng văn: {request.Voice},");
+                stringbuilder.AppendLine($" bối cảnh: {request.Time},");
+                stringbuilder.AppendLine($" xưng hô {request.Role},");
+                if (request.AdditionalRequirements.Any())
+                {
+                    stringbuilder.AppendLine($" một số yêu cầu khác: {string.Join(",", request.AdditionalRequirements)} ");
+                }                
+                stringbuilder.AppendLine($" ví dụ, input: {request.ExampleInput}, ");
+                stringbuilder.AppendLine($" output: {request.ExampleOutput}");
+                stringbuilder.AppendLine($" sau đây là đoạn truyện:");
+                stringbuilder.AppendLine(request.TextToTranslate);
+                var promt = stringbuilder.ToString();
                 var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
                 var tranlatedLines = translatedText.Split('\n');
                 _logger.LogInformation($"Success");
-                return new OkObjectResult(new TranslationProxyResponse { TranslatedLines = tranlatedLines.ToList() }); // Pass the result back to the view
+                return new OkObjectResult(new TranslationProxyResponse { TranslatedLines = [.. tranlatedLines] }); // Pass the result back to the view
             }
             catch (Exception e)
             {

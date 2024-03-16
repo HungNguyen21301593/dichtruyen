@@ -1,3 +1,5 @@
+import { AdditionalSettting } from "./additional-settting.enum";
+
 export interface ScanResponse {
   url: string;
   title: string;
@@ -18,6 +20,7 @@ export interface SettingModel {
   promt: string;
   exampleInput: string;
   exampleOutput: string;
+  additionalRequirements: AdditionalSettting[];
 }
 
 export interface TranslationProxyRequest extends SettingModel {
