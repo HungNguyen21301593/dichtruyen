@@ -25,7 +25,9 @@
         <p>{{originalResponse.title}}
         </p>
 
-        <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index">
+        <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index" class="full-width">
+          <p>Phần {{i+1}}:
+          </p>
           <div *ngIf="version=='translated'">
             <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
               [disabled]="isloading" mat-button color="primary" (click)="retranslate(i)">
@@ -33,27 +35,21 @@
               <mat-icon><mat-spinner *ngIf="isloading && translatedPageChunk.length==0" color="accent"
                   diameter="20"></mat-spinner></mat-icon>
             </button>
-
-            <div *ngFor="let line of translatedPageChunk??[]">
-              <span>
-                {{line}}
-              </span>
-              <br>
-            </div>
+            <mat-form-field class="full-width">
+              <textarea matInput [value]="translatedPageChunk.join('\r\n')" [rows]="50">
+              </textarea>
+            </mat-form-field>
           </div>
 
           <div *ngIf="version=='origin'">
-            <div *ngFor="let line of pageChunks[i]??[]">
-              <span>
-                {{line}}
-              </span>
-              <br>
-            </div>
+            <mat-form-field class="full-width">
+              <textarea matInput [value]="pageChunks[i].join('\r\n')" [rows]="50">
+              </textarea>
+            </mat-form-field>
           </div>
           <br>
           <br>
         </div>
-        <p>-----------</p>
         <!-- <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner> -->
 
         <div *ngIf="originalResponse" div fxLayout="column" fxLayoutAlign="center center">
