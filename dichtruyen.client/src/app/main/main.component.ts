@@ -30,7 +30,7 @@ export class MainComponent implements OnInit {
   isloading = false;
   version: 'origin' | 'translated' = 'translated';
 
-  CHUNK_SIZE = 80;
+  CHUNK_SIZE = 100;
   UNKNOWN = 'Tùy ý';
   PRE_LOAD = 2000;
   title = 'Dọc Truyện Convert';
