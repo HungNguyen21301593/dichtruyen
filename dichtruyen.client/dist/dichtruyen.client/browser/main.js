@@ -43608,6 +43608,13 @@ var _MainComponent = class _MainComponent {
     };
     this.settingService.addData(value);
   }
+  copy() {
+    return __async(this, null, function* () {
+      yield navigator.clipboard.writeText(this.translatedPageChunks.join("\r\n"));
+      var sumOflines = this.translatedPageChunks.map((t) => t.length).reduce((a, b) => a + b, 0);
+      this.snackbar.open(`\u0110\xE3 sao ch\xE9p: ${sumOflines} d\xF2ng`, void 0, { duration: 3e3 });
+    });
+  }
 };
 _MainComponent.\u0275fac = function MainComponent_Factory(t) {
   return new (t || _MainComponent)(\u0275\u0275directiveInject(HttpClient), \u0275\u0275directiveInject(ChangeDetectorRef), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatDialog), \u0275\u0275directiveInject(MatSnackBar), \u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(Router));
@@ -43620,7 +43627,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     let _t;
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.drawer = _t.first);
   }
-}, attrs: _c111, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["fxFlex", "80", "fxFlexOffset", "1", "div", "", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "input"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", 3, "value", "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], [4, "ngFor", "ngForOf"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click"], ["color", "accent", "diameter", "20", 4, "ngIf"], ["color", "accent", "diameter", "20"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center"]], template: function MainComponent_Template(rf, ctx) {
+}, attrs: _c111, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["fxFlex", "80", "fxFlexOffset", "1", "div", "", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "input"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", 3, "value", "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], [4, "ngFor", "ngForOf"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click"], ["color", "accent", "diameter", "20", 4, "ngIf"], ["color", "accent", "diameter", "20"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center"]], template: function MainComponent_Template(rf, ctx) {
   if (rf & 1) {
     const _r25 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "mat-drawer-container", 0)(1, "mat-drawer", 1, 2);
@@ -43669,7 +43676,11 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275elementStart(24, "mat-button-toggle", 16)(25, "mat-icon");
     \u0275\u0275text(26, "language");
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(27, "mat-button-toggle", 17)(28, "mat-icon");
+    \u0275\u0275elementStart(27, "mat-button-toggle", 17);
+    \u0275\u0275listener("click", function MainComponent_Template_mat_button_toggle_click_27_listener() {
+      return ctx.copy();
+    });
+    \u0275\u0275elementStart(28, "mat-icon");
     \u0275\u0275text(29, "translate");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(30, "button", 18);

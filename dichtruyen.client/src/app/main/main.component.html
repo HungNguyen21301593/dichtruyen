@@ -72,7 +72,7 @@
 
         <mat-button-toggle-group [(value)]="version" [disabled]="!originalResponse">
           <mat-button-toggle value="origin"> <mat-icon>language</mat-icon></mat-button-toggle>
-          <mat-button-toggle value="translated"> <mat-icon>translate</mat-icon></mat-button-toggle>
+          <mat-button-toggle (click)="copy()" value="translated"> <mat-icon>translate</mat-icon></mat-button-toggle>
         </mat-button-toggle-group>
 
         <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center"

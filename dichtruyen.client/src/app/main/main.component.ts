@@ -108,7 +108,6 @@ export class MainComponent implements OnInit {
   }
 
   retranslate(index: number) {
-
     this.translateSinglePageChunk(this.pageChunks[index], index);
   }
 
@@ -164,7 +163,7 @@ export class MainComponent implements OnInit {
 
   translateSinglePageChunk(page: string[], index: number) {
     this.isloading = true;
-    this.translatedPageChunks[index]=[];
+    this.translatedPageChunks[index] = [];
     var textToTranslate = page.join('\n');
     var currentSetting = this.settingService.settingValue;
     var request: TranslationProxyRequest = {
@@ -179,7 +178,9 @@ export class MainComponent implements OnInit {
       exampleOutput: 'tôi đang đi về nhà.',
       textToTranslate: textToTranslate,
       additional: currentSetting.additional,
-      additionalRequirements: this.mapToAdditionalRequirements(currentSetting.additional),
+      additionalRequirements: this.mapToAdditionalRequirements(
+        currentSetting.additional
+      ),
     };
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
@@ -206,14 +207,14 @@ export class MainComponent implements OnInit {
   mapToAdditionalRequirements(settings: AdditionalSettting[]) {
     return settings.map((key) => {
       switch (key.toString()) {
-        case "GiuNguyenCadao":
+        case 'GiuNguyenCadao':
           return AdditionalSettting.GiuNguyenCadao.toString();
           break;
-        case "GiuNguyenThuTuTen":
+        case 'GiuNguyenThuTuTen':
           return AdditionalSettting.GiuNguyenThuTuTen.toString();
           break;
         default:
-          return ""
+          return '';
           break;
       }
     });
@@ -249,5 +250,15 @@ export class MainComponent implements OnInit {
       originalResponse: this.originalResponse,
     };
     this.settingService.addData(value);
+  }
+
+  async copy() {
+    await navigator.clipboard.writeText(this.translatedPageChunks.join('\r\n'));
+    var sumOflines = this.translatedPageChunks.map(t=>t.length).reduce((a, b) => a + b, 0)
+    this.snackbar.open(
+      `Đã sao chép: ${sumOflines} dòng`,
+      undefined,
+      { duration: 3000 }
+    );
   }
 }
