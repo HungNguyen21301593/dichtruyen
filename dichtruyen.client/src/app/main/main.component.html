@@ -10,8 +10,8 @@
         <mat-icon>menu</mat-icon>
       </button>
       <div fxFlex="80" fxFlexOffset="1" class="input" div fxLayout="column" fxLayoutAlign="start stretch">
-        <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text"  #input
-        (change)="openSetting(input.value)" [value]="url">
+        <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text" #input (change)="openSetting(input.value)"
+          [value]="url">
       </div>
 
       <button class="button" fxFlexOffset="1" [disabled]="isloading" type="button" mat-icon-button color="primary"
@@ -27,11 +27,13 @@
 
         <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index">
           <div *ngIf="version=='translated'">
-            <button *ngIf="translatedPageChunks.length>0" [disabled]="!isloading" mat-button color="primary"
-              (click)="retranslate(i)">
-               Dịch lại
-             </button>
-             <mat-spinner *ngIf="isloading && translatedPageChunk.length==0" color="accent" diameter="30"></mat-spinner>
+            <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
+              [disabled]="isloading" mat-button color="primary" (click)="retranslate(i)">
+              <span>Dịch lại</span>
+              <mat-icon><mat-spinner *ngIf="isloading && translatedPageChunk.length==0" color="accent"
+                  diameter="20"></mat-spinner></mat-icon>
+            </button>
+
             <div *ngFor="let line of translatedPageChunk??[]">
               <span>
                 {{line}}
@@ -54,7 +56,7 @@
         <p>-----------</p>
         <!-- <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner> -->
 
-        <div *ngIf="originalResponse" div fxLayout="column" fxLayoutAlign="center center" >
+        <div *ngIf="originalResponse" div fxLayout="column" fxLayoutAlign="center center">
           <app-donate></app-donate>
         </div>
       </div>
@@ -64,8 +66,7 @@
     <mat-toolbar class="full-width footer-bar" fxFlex="20" fxLayout="column" fxLayoutAlign="start stretch">
       <div fxLayout="row" fxLayoutAlign="space-around center">
         <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center"
-          class="full-height" [disabled]="!originalResponse"
-          (click)="previous(); top.scrollIntoView(true)">
+          class="full-height" [disabled]="!originalResponse" (click)="previous(); top.scrollIntoView(true)">
           <mat-icon>chevron_left</mat-icon>
         </button>
 
