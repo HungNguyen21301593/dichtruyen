@@ -32,7 +32,7 @@ namespace dichtruyen.Server.Controllers
                 //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
                 var stringbuilder = new StringBuilder();
                 stringbuilder.AppendLine("Với các dữ liệu sau, ");
-                stringbuilder.AppendLine($"tên riêng: {request.Name},");
+                stringbuilder.AppendLine($" ưu tiên các tên riêng: {request.Name},");
                 stringbuilder.AppendLine($" thể loại {request.Type},");
                 stringbuilder.AppendLine($" giọng văn: {request.Voice},");
                 stringbuilder.AppendLine($" bối cảnh: {request.Time},");
