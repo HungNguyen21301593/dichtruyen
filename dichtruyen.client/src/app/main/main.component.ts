@@ -1,3 +1,4 @@
+import { AnalyzeResponse } from './../interface';
 import { AdditionalSettting } from './../additional-settting.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -6,6 +7,7 @@ import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import { MatDialog } from '@angular/material/dialog';
 import {
+  AnalyzeProxyRequest,
   SavedDataModel,
   ScanRequest,
   ScanResponse,
@@ -139,6 +141,43 @@ export class MainComponent implements OnInit {
           this.originalResponse = result;
           this.pageChunks = this.getPageChunk(this.originalResponse);
           this.isloading = false;
+          this.ref.markForCheck();
+        },
+        (error) => {
+          console.error(error);
+          this.isloading = false;
+        }
+      );
+  }
+
+  analyzeAndTranslateToTheEnd(chunkindex:number)
+  {
+    for (let index = chunkindex; index < this.pageChunks.length; index++) {
+      this.analyzeNameAndSaveToSetting(index);
+    }
+  }
+
+  analyzeNameAndSaveToSetting(chunkindex:number)
+  {
+    var textToAnalyze = this.pageChunks[chunkindex].join("\r\n");
+    var previousResult: AnalyzeResponse = {
+      name: this.settingService.settingValue.name
+    }
+    this.isloading = true;
+    var request: AnalyzeProxyRequest = {
+      text:textToAnalyze,
+      previousResult: previousResult
+    };
+
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.set('Content-Type', 'application/x-www-form-urlencoded');
+    this.http
+      .post<AnalyzeResponse>('/api/Translate/analyze', request, { headers: headers })
+      .subscribe(
+        (result: AnalyzeResponse) => {
+          this.settingService.settingValue.name = result.name;
+          this.settingService.saveSetting(this.settingService.settingValue);
+          this.retranslate(chunkindex);
           this.ref.markForCheck();
         },
         (error) => {

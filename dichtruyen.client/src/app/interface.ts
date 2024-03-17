@@ -1,4 +1,4 @@
-import { AdditionalSettting } from "./additional-settting.enum";
+import { AdditionalSettting } from './additional-settting.enum';
 
 export interface ScanResponse {
   url: string;
@@ -37,5 +37,15 @@ export interface SavedDataModel {
   setting: SettingModel;
   pageChunks: string[][];
   translatedPageChunks: string[][];
-  originalResponse: ScanResponse |undefined;
+  originalResponse: ScanResponse | undefined;
+}
+
+export interface AnalyzeResponse {
+  name: string;
+}
+
+
+export interface AnalyzeProxyRequest {
+  text: string;
+  previousResult: AnalyzeResponse;
 }

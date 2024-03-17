@@ -59,6 +59,36 @@ namespace dichtruyen.Server.Controllers
             }
         }
 
+
+        [HttpPost]
+        [Treblle]
+        [Route("analyze")]
+        public async Task<IActionResult> Analyze([FromBody] AnalyzeProxyRequest request)
+        {
+            try
+            {
+                _logger.LogInformation($"Received {DateTime.Now} {JsonConvert.SerializeObject(request)}");
+                //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
+                var promt = $" Cho đoạn truyện: {request.Text}" +
+                    "Hãy phân tích tên riêng, tên địa danh, tên đồ vật trong đoạn truyện sau và trả về kết quả JSON theo mẫu:\r\n" +
+                   "{\"name\":\"tên riêng, tên địa danh, tên đồ vật\"} \r\n" +
+                    "Lưu ý:\r\n" +
+                    "- Chỉ trả về kết quả JSON, không chứa thêm bất kỳ giải thích nào. Ví dụ: {\"name\":\"Lâm Phàm, Vân Tiêu Cốc\"}\r\n" +
+                    "- Toàn bộ tên riêng được dịch sang tiếng Việt.\r\n"+
+                    "- Kết quả trả về phải tổng hợp tất cả tên riêng. Kết quả trả về phải tổng hợp tất cả tên riêng. ví dụ: Kết quả đoạn truyện trước đó: {\"name\":\"Lâm Phàm\"}, kết quả phân tích của đoạn truyện đang phân tích: {\"name\": \"Tiêu Linh Nhi\"}, kết quả trả về: {\"name\": \"Lâm Phàm, Tiêu Linh Nhi\"}\r\n" +
+                    $"- Đây là kết quả phân tích của đoạn truyện trước đó: {JsonConvert.SerializeObject(request.PreviousResult)}";                    
+                var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
+                var result = JsonConvert.DeserializeObject<AnalyzeResponse>(translatedText);
+                _logger.LogInformation($"Success");
+                return new OkObjectResult(result);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError($"Failed: {e.Message}");
+                return new OkObjectResult(new AnalyzeResponse { name = "" });
+            }
+        }
+
         public static async Task<string> CallGenerateContentApi(string prompt, string apiKey)
         {
             try
