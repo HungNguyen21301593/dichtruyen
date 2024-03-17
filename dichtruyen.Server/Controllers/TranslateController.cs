@@ -31,6 +31,7 @@ namespace dichtruyen.Server.Controllers
                 _logger.LogInformation($"Received {DateTime.Now} {JsonConvert.SerializeObject(request)}");
                 //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
                 var stringbuilder = new StringBuilder();
+                stringbuilder.AppendLine($"Hãy {request.Promt} ");
                 stringbuilder.AppendLine("Với các dữ liệu sau, ");
                 stringbuilder.AppendLine($" ưu tiên các tên riêng: {request.Name},");
                 stringbuilder.AppendLine($" thể loại {request.Type},");
