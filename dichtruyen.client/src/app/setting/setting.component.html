@@ -55,6 +55,7 @@
         </mat-select-trigger>
         <mat-option [value]="'GiuNguyenThuTuTen'">Giữ nguyên thứ tự tên riêng, ví dụ : Lãm Nguyệt Tông, Ngọc Lân Cung, Mã sư huynh'</mat-option>
         <mat-option [value]="'GiuNguyenCadao'">Giữ nguyên ca giao, tục ngữ, thơ</mat-option>
+        <mat-option [value]="'SoDemHanViet'">Dùng số đếm Hán Việt: nhất, nhị, tam</mat-option>
       </mat-select>
       <mat-chip-listbox aria-label="Fish selection">
         <mat-chip-option *ngFor="let item of (formGroup.get('additional')?.value)">{{item}}</mat-chip-option>

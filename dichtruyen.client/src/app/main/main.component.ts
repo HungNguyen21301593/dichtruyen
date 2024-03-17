@@ -138,7 +138,8 @@ export class MainComponent implements OnInit {
         (result) => {
           this.originalResponse = result;
           this.pageChunks = this.getPageChunk(this.originalResponse);
-          this.translatePage(0);
+          this.isloading = false;
+          this.ref.markForCheck();
         },
         (error) => {
           console.error(error);
@@ -221,6 +222,7 @@ export class MainComponent implements OnInit {
   }
 
   onScroll(event: any) {
+    return;
     if (this.isloading) {
       return;
     }

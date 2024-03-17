@@ -208,6 +208,7 @@ import {
   ɵɵprojection,
   ɵɵprojectionDef,
   ɵɵproperty,
+  ɵɵpureFunction0,
   ɵɵqueryRefresh,
   ɵɵreference,
   ɵɵresetView,
@@ -225,7 +226,7 @@ import {
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty,
   ɵɵviewQuery
-} from "./chunk-CT2B7POI.js";
+} from "./chunk-NHTEZCHH.js";
 
 // node_modules/@angular/common/fesm2022/http.mjs
 var HttpHandler = class {
@@ -15379,6 +15380,7 @@ var AdditionalSettting;
 (function(AdditionalSettting2) {
   AdditionalSettting2["GiuNguyenThuTuTen"] = "Gi\u1EEF nguy\xEAn th\u1EE9 t\u1EF1 t\xEAn ri\xEAng, v\xED d\u1EE5 : L\xE3m Nguy\u1EC7t T\xF4ng, Ng\u1ECDc L\xE2n Cung, M\xE3 s\u01B0 huynh";
   AdditionalSettting2["GiuNguyenCadao"] = "Gi\u1EEF nguy\xEAn ca giao, t\u1EE5c ng\u1EEF, th\u01A1";
+  AdditionalSettting2["SoDemHanViet"] = "D\xF9ng s\u1ED1 \u0111\u1EBFm H\xE1n Vi\u1EC7t, v\xED d\u1EE5: nh\u1EA5t, nh\u1ECB, tam, t\u1EE9, ng\u0169, l\u1EE5c, th\u1EA5t, b\xE1t, c\u1EEDu, th\u1EADp";
 })(AdditionalSettting || (AdditionalSettting = {}));
 
 // node_modules/@angular/cdk/fesm2022/coercion.mjs
@@ -43057,7 +43059,7 @@ var MatChipsModule = _MatChipsModule;
 })();
 
 // src/app/setting/setting.component.ts
-function SettingComponent_mat_chip_option_64_Template(rf, ctx) {
+function SettingComponent_mat_chip_option_66_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "mat-chip-option");
     \u0275\u0275text(1);
@@ -43069,7 +43071,7 @@ function SettingComponent_mat_chip_option_64_Template(rf, ctx) {
     \u0275\u0275textInterpolate(item_r2);
   }
 }
-function SettingComponent_p_75_Template(rf, ctx) {
+function SettingComponent_p_77_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "p");
     \u0275\u0275text(1);
@@ -43115,7 +43117,7 @@ var _SettingComponent = class _SettingComponent {
 _SettingComponent.\u0275fac = function SettingComponent_Factory(t) {
   return new (t || _SettingComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatSnackBar));
 };
-_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 76, vars: 12, consts: [["fxLayout", "column", "fxLayoutAlign", "start start", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field", 3, "color"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["value", "T\xF9y \xFD"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field", 3, "color"], ["formControlName", "role"], ["value", "h\u1EAFn - ta - ng\u01B0\u01A1i, ch\xE0ng - n\xE0ng, huynh-\u0111\u1EC7, t\u1EC9 - mu\u1ED9i"], ["value", "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, anh - em, ch\u1ECB - em"], ["formControlName", "promt"], ["value", "H\xE3y s\u1EEDa l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho Thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 ch\u1EC9nh s\u1EEDa"], ["value", "h\xE3y d\u1ECBch l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 d\u1ECBch"], ["formControlName", "additional", "multiple", ""], [3, "value"], ["aria-label", "Fish selection"], [4, "ngFor", "ngForOf"], ["rows", "5", "matInput", "", "formControlName", "name", "placeholder", "VD: Ti\xEAu Vi\xEAm, H\u1ED3ng H\xE0i Nhi, B\u1EA5t Di\u1EC7t Th\xF4n Vi\xEAm,..."], ["mat-raised-button", "", "color", "accent", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
+_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 78, vars: 13, consts: [["fxLayout", "column", "fxLayoutAlign", "start start", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field", 3, "color"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["value", "T\xF9y \xFD"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field", 3, "color"], ["formControlName", "role"], ["value", "h\u1EAFn - ta - ng\u01B0\u01A1i, ch\xE0ng - n\xE0ng, huynh-\u0111\u1EC7, t\u1EC9 - mu\u1ED9i"], ["value", "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, anh - em, ch\u1ECB - em"], ["formControlName", "promt"], ["value", "H\xE3y s\u1EEDa l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho Thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 ch\u1EC9nh s\u1EEDa"], ["value", "h\xE3y d\u1ECBch l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 d\u1ECBch"], ["formControlName", "additional", "multiple", ""], [3, "value"], ["aria-label", "Fish selection"], [4, "ngFor", "ngForOf"], ["rows", "5", "matInput", "", "formControlName", "name", "placeholder", "VD: Ti\xEAu Vi\xEAm, H\u1ED3ng H\xE0i Nhi, B\u1EA5t Di\u1EC7t Th\xF4n Vi\xEAm,..."], ["mat-raised-button", "", "color", "accent", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "form", 0)(1, "span");
     \u0275\u0275text(2, " C\xE0i \u0111\u1EB7t thi\u1EBFt l\u1EADp cho truy\u1EC7n, c\xF3 th\u1EC3 b\u1ECF qua !!! ");
@@ -43190,30 +43192,33 @@ _SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(61, "mat-option", 22);
     \u0275\u0275text(62, "Gi\u1EEF nguy\xEAn ca giao, t\u1EE5c ng\u1EEF, th\u01A1");
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(63, "mat-chip-listbox", 23);
-    \u0275\u0275template(64, SettingComponent_mat_chip_option_64_Template, 2, 1, "mat-chip-option", 24);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(65, "mat-form-field", 14)(66, "mat-label");
-    \u0275\u0275text(67, "T\xEAn ri\xEAng");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(68, "textarea", 25);
-    \u0275\u0275text(69, "      ");
+    \u0275\u0275elementStart(63, "mat-option", 22);
+    \u0275\u0275text(64, "D\xF9ng s\u1ED1 \u0111\u1EBFm H\xE1n Vi\u1EC7t: nh\u1EA5t, nh\u1ECB, tam");
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(65, "mat-chip-listbox", 23);
+    \u0275\u0275template(66, SettingComponent_mat_chip_option_66_Template, 2, 1, "mat-chip-option", 24);
+    \u0275\u0275elementEnd()();
+    \u0275\u0275elementStart(67, "mat-form-field", 14)(68, "mat-label");
+    \u0275\u0275text(69, "T\xEAn ri\xEAng");
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(70, "textarea", 25);
+    \u0275\u0275text(71, "      ");
     \u0275\u0275elementEnd()()();
-    \u0275\u0275element(70, "br");
-    \u0275\u0275elementStart(71, "button", 26);
-    \u0275\u0275listener("click", function SettingComponent_Template_button_click_71_listener() {
+    \u0275\u0275element(72, "br");
+    \u0275\u0275elementStart(73, "button", 26);
+    \u0275\u0275listener("click", function SettingComponent_Template_button_click_73_listener() {
       return ctx.submit();
     });
-    \u0275\u0275elementStart(72, "mat-icon");
-    \u0275\u0275text(73, "save");
+    \u0275\u0275elementStart(74, "mat-icon");
+    \u0275\u0275text(75, "save");
     \u0275\u0275elementEnd();
-    \u0275\u0275text(74, "L\u01B0u l\u1EA1i");
+    \u0275\u0275text(76, "L\u01B0u l\u1EA1i");
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(75, SettingComponent_p_75_Template, 2, 1, "p", 27);
+    \u0275\u0275template(77, SettingComponent_p_77_Template, 2, 1, "p", 27);
   }
   if (rf & 2) {
-    let tmp_9_0;
+    let tmp_10_0;
     \u0275\u0275property("formGroup", ctx.formGroup);
     \u0275\u0275advance(4);
     \u0275\u0275property("color", "accent");
@@ -43231,8 +43236,10 @@ _SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type
     \u0275\u0275property("value", "GiuNguyenThuTuTen");
     \u0275\u0275advance(2);
     \u0275\u0275property("value", "GiuNguyenCadao");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("value", "SoDemHanViet");
     \u0275\u0275advance(3);
-    \u0275\u0275property("ngForOf", (tmp_9_0 = ctx.formGroup.get("additional")) == null ? null : tmp_9_0.value);
+    \u0275\u0275property("ngForOf", (tmp_10_0 = ctx.formGroup.get("additional")) == null ? null : tmp_10_0.value);
     \u0275\u0275advance();
     \u0275\u0275property("color", "accent");
     \u0275\u0275advance(10);
@@ -43273,6 +43280,7 @@ function MainComponent_div_17_div_1_div_3_div_3_button_1_mat_spinner_4_Template(
     \u0275\u0275element(0, "mat-spinner", 28);
   }
 }
+var _c28 = () => [];
 function MainComponent_div_17_div_1_div_3_div_3_button_1_Template(rf, ctx) {
   if (rf & 1) {
     const _r15 = \u0275\u0275getCurrentView();
@@ -43284,35 +43292,37 @@ function MainComponent_div_17_div_1_div_3_div_3_button_1_Template(rf, ctx) {
       return \u0275\u0275resetView(ctx_r13.retranslate(i_r8));
     });
     \u0275\u0275elementStart(1, "span");
-    \u0275\u0275text(2, "D\u1ECBch l\u1EA1i");
+    \u0275\u0275text(2, "D\u1ECBch");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "mat-icon");
     \u0275\u0275template(4, MainComponent_div_17_div_1_div_3_div_3_button_1_mat_spinner_4_Template, 1, 0, "mat-spinner", 27);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const translatedPageChunk_r7 = \u0275\u0275nextContext(2).$implicit;
+    const i_r8 = \u0275\u0275nextContext(2).index;
     const ctx_r11 = \u0275\u0275nextContext(3);
+    let tmp_1_0;
     \u0275\u0275property("disabled", ctx_r11.isloading);
     \u0275\u0275advance(4);
-    \u0275\u0275property("ngIf", ctx_r11.isloading && translatedPageChunk_r7.length == 0);
+    \u0275\u0275property("ngIf", ctx_r11.isloading && ((tmp_1_0 = ctx_r11.translatedPageChunks[i_r8]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(2, _c28)).length == 0);
   }
 }
 function MainComponent_div_17_div_1_div_3_div_3_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div");
-    \u0275\u0275template(1, MainComponent_div_17_div_1_div_3_div_3_button_1_Template, 5, 2, "button", 24);
+    \u0275\u0275template(1, MainComponent_div_17_div_1_div_3_div_3_button_1_Template, 5, 3, "button", 24);
     \u0275\u0275elementStart(2, "mat-form-field", 23)(3, "textarea", 25);
     \u0275\u0275text(4, "              ");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const translatedPageChunk_r7 = \u0275\u0275nextContext().$implicit;
+    const i_r8 = \u0275\u0275nextContext().index;
     const ctx_r9 = \u0275\u0275nextContext(3);
+    let tmp_1_0;
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r9.translatedPageChunks.length > 0);
     \u0275\u0275advance(2);
-    \u0275\u0275property("value", translatedPageChunk_r7.join("\r\n"))("rows", 50);
+    \u0275\u0275property("value", ((tmp_1_0 = ctx_r9.translatedPageChunks[i_r8]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(3, _c28)).join("\r\n"))("rows", 20);
   }
 }
 function MainComponent_div_17_div_1_div_3_div_4_Template(rf, ctx) {
@@ -43325,7 +43335,7 @@ function MainComponent_div_17_div_1_div_3_div_4_Template(rf, ctx) {
     const i_r8 = \u0275\u0275nextContext().index;
     const ctx_r10 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(2);
-    \u0275\u0275property("value", ctx_r10.pageChunks[i_r8].join("\r\n"))("rows", 50);
+    \u0275\u0275property("value", ctx_r10.pageChunks[i_r8].join("\r\n"))("rows", 20);
   }
 }
 function MainComponent_div_17_div_1_div_3_Template(rf, ctx) {
@@ -43333,7 +43343,7 @@ function MainComponent_div_17_div_1_div_3_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div", 23)(1, "p");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(3, MainComponent_div_17_div_1_div_3_div_3_Template, 5, 3, "div", 20)(4, MainComponent_div_17_div_1_div_3_div_4_Template, 4, 2, "div", 20);
+    \u0275\u0275template(3, MainComponent_div_17_div_1_div_3_div_3_Template, 5, 4, "div", 20)(4, MainComponent_div_17_div_1_div_3_div_4_Template, 4, 2, "div", 20);
     \u0275\u0275element(5, "br")(6, "br");
     \u0275\u0275elementEnd();
   }
@@ -43368,7 +43378,7 @@ function MainComponent_div_17_div_1_Template(rf, ctx) {
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1("", ctx_r4.originalResponse.title, " ");
     \u0275\u0275advance();
-    \u0275\u0275property("ngForOf", ctx_r4.translatedPageChunks);
+    \u0275\u0275property("ngForOf", ctx_r4.pageChunks);
     \u0275\u0275advance();
     \u0275\u0275property("ngIf", ctx_r4.originalResponse);
   }
@@ -43485,7 +43495,8 @@ var _MainComponent = class _MainComponent {
     this.http.post("/api/Scanner", request, { headers }).subscribe((result) => {
       this.originalResponse = result;
       this.pageChunks = this.getPageChunk(this.originalResponse);
-      this.translatePage(0);
+      this.isloading = false;
+      this.ref.markForCheck();
     }, (error) => {
       console.error(error);
       this.isloading = false;
@@ -43556,6 +43567,7 @@ var _MainComponent = class _MainComponent {
     });
   }
   onScroll(event) {
+    return;
     if (this.isloading) {
       return;
     }
@@ -43746,7 +43758,7 @@ var _AsyncAnimationRendererFactory = class _AsyncAnimationRendererFactory {
    * @internal
    */
   loadImpl() {
-    const moduleImpl = this.moduleImpl ?? import("./chunk-FCF6CAYT.js");
+    const moduleImpl = this.moduleImpl ?? import("./chunk-2YKD42K4.js");
     return moduleImpl.catch((e) => {
       throw new RuntimeError(5300, (typeof ngDevMode === "undefined" || ngDevMode) && "Async loading for animations package was enabled, but loading failed. Angular falls back to using regular rendering. No animations will be displayed and their styles won't be applied.");
     }).then(({
@@ -46351,7 +46363,7 @@ var MatDividerModule = _MatDividerModule;
 // src/app/ad.container/ad.container.component.ts
 var _c015 = ["adDiv0"];
 var _c112 = ["adDiv1"];
-var _c28 = ["adDiv2"];
+var _c29 = ["adDiv2"];
 var _c38 = ["adDiv3"];
 var _c47 = ["adDiv4"];
 var _AdContainerComponent = class _AdContainerComponent {
@@ -46399,7 +46411,7 @@ _AdContainerComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ 
   if (rf & 1) {
     \u0275\u0275viewQuery(_c015, 5);
     \u0275\u0275viewQuery(_c112, 5);
-    \u0275\u0275viewQuery(_c28, 5);
+    \u0275\u0275viewQuery(_c29, 5);
     \u0275\u0275viewQuery(_c38, 5);
     \u0275\u0275viewQuery(_c47, 5);
   }

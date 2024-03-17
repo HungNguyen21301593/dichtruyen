@@ -25,25 +25,25 @@
         <p>{{originalResponse.title}}
         </p>
 
-        <div *ngFor="let translatedPageChunk of translatedPageChunks; let i=index" class="full-width">
+        <div *ngFor="let pageChunk of pageChunks; let i=index" class="full-width">
           <p>Phần {{i+1}}:
           </p>
           <div *ngIf="version=='translated'">
             <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
               [disabled]="isloading" mat-button color="primary" (click)="retranslate(i)">
-              <span>Dịch lại</span>
-              <mat-icon><mat-spinner *ngIf="isloading && translatedPageChunk.length==0" color="accent"
+              <span>Dịch</span>
+              <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                   diameter="20"></mat-spinner></mat-icon>
             </button>
             <mat-form-field class="full-width">
-              <textarea matInput [value]="translatedPageChunk.join('\r\n')" [rows]="50">
+              <textarea matInput [value]="(translatedPageChunks[i]??[]).join('\r\n')" [rows]="20">
               </textarea>
             </mat-form-field>
           </div>
 
           <div *ngIf="version=='origin'">
             <mat-form-field class="full-width">
-              <textarea matInput [value]="pageChunks[i].join('\r\n')" [rows]="50">
+              <textarea matInput [value]="pageChunks[i].join('\r\n')" [rows]="20">
               </textarea>
             </mat-form-field>
           </div>
