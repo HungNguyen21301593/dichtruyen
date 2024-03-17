@@ -15378,7 +15378,7 @@ var VERSION3 = new Version("17.2.3");
 // src/app/additional-settting.enum.ts
 var AdditionalSettting;
 (function(AdditionalSettting2) {
-  AdditionalSettting2["GiuNguyenThuTuTen"] = "Gi\u1EEF nguy\xEAn th\u1EE9 t\u1EF1 t\xEAn ri\xEAng, v\xED d\u1EE5 : L\xE3m Nguy\u1EC7t T\xF4ng, Ng\u1ECDc L\xE2n Cung, M\xE3 s\u01B0 huynh";
+  AdditionalSettting2["GiuNguyenThuTuTen"] = "Gi\u1EEF nguy\xEAn th\u1EE9 t\u1EF1 t\xEAn ri\xEAng trong ti\u1EBFng Trung, v\xED d\u1EE5 : L\xE3m Nguy\u1EC7t T\xF4ng, Ng\u1ECDc L\xE2n Cung, M\xE3 s\u01B0 huynh, L\xE2m huynh, L\xFD huynh, Tr\u01B0\u01A1ng \u0111\u1EC7,...";
   AdditionalSettting2["GiuNguyenCadao"] = "Gi\u1EEF nguy\xEAn ca giao, t\u1EE5c ng\u1EEF, th\u01A1";
   AdditionalSettting2["SoDemHanViet"] = "D\xF9ng s\u1ED1 \u0111\u1EBFm v\xE0 s\u1ED1 th\u1EE9 t\u1EF1 H\xE1n Vi\u1EC7t, v\xED d\u1EE5: nh\u1EA5t, nh\u1ECB, tam, t\u1EE9, ng\u0169, l\u1EE5c, th\u1EA5t, b\xE1t, c\u1EEDu, th\u1EADp";
 })(AdditionalSettting || (AdditionalSettting = {}));
