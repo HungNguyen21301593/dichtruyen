@@ -32,14 +32,14 @@
             <div fxLayout="row" fxLayoutAlign="start start" >
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
                 [disabled]="isloading" mat-button color="primary" (click)="analyzeNameAndSaveToSetting(i)">
-                <span>Phân tích tên và dịch</span>
+                <span>Dịch</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
               </button>
 
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
                 [disabled]="isloading" mat-button color="primary" (click)="analyzeNameAndSaveToSetting(i)">
-                <span>Phân tích tên và dịch lần lượt tất cả các phần tiếp theo</span>
+                <span>Dịch hết</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
               </button>

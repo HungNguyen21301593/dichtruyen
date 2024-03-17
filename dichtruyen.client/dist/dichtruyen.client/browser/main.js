@@ -43292,7 +43292,7 @@ function MainComponent_div_17_div_1_div_3_div_3_button_2_Template(rf, ctx) {
       return \u0275\u0275resetView(ctx_r14.analyzeNameAndSaveToSetting(i_r8));
     });
     \u0275\u0275elementStart(1, "span");
-    \u0275\u0275text(2, "Ph\xE2n t\xEDch t\xEAn v\xE0 d\u1ECBch");
+    \u0275\u0275text(2, "D\u1ECBch");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "mat-icon");
     \u0275\u0275template(4, MainComponent_div_17_div_1_div_3_div_3_button_2_mat_spinner_4_Template, 1, 0, "mat-spinner", 28);
@@ -43323,7 +43323,7 @@ function MainComponent_div_17_div_1_div_3_div_3_button_3_Template(rf, ctx) {
       return \u0275\u0275resetView(ctx_r19.analyzeNameAndSaveToSetting(i_r8));
     });
     \u0275\u0275elementStart(1, "span");
-    \u0275\u0275text(2, "Ph\xE2n t\xEDch t\xEAn v\xE0 d\u1ECBch l\u1EA7n l\u01B0\u1EE3t t\u1EA5t c\u1EA3 c\xE1c ph\u1EA7n ti\u1EBFp theo");
+    \u0275\u0275text(2, "D\u1ECBch h\u1EBFt");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "mat-icon");
     \u0275\u0275template(4, MainComponent_div_17_div_1_div_3_div_3_button_3_mat_spinner_4_Template, 1, 0, "mat-spinner", 28);
