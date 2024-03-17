@@ -214,6 +214,9 @@ export class MainComponent implements OnInit {
         case 'GiuNguyenThuTuTen':
           return AdditionalSettting.GiuNguyenThuTuTen.toString();
           break;
+          case 'SoDemHanViet':
+            return AdditionalSettting.SoDemHanViet.toString();
+            break;
         default:
           return '';
           break;
