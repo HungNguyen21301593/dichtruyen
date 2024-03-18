@@ -43289,7 +43289,7 @@ function MainComponent_div_17_div_1_div_3_div_3_button_2_Template(rf, ctx) {
       \u0275\u0275restoreView(_r16);
       const i_r8 = \u0275\u0275nextContext(2).index;
       const ctx_r14 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r14.analyzeNameAndSaveToSetting(i_r8));
+      return \u0275\u0275resetView(ctx_r14.analyzeAndTranslateCurrent(i_r8));
     });
     \u0275\u0275elementStart(1, "span");
     \u0275\u0275text(2, "D\u1ECBch");
@@ -43314,13 +43314,12 @@ function MainComponent_div_17_div_1_div_3_div_3_button_3_mat_spinner_4_Template(
 }
 function MainComponent_div_17_div_1_div_3_div_3_button_3_Template(rf, ctx) {
   if (rf & 1) {
-    const _r21 = \u0275\u0275getCurrentView();
+    const _r20 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "button", 27);
     \u0275\u0275listener("click", function MainComponent_div_17_div_1_div_3_div_3_button_3_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r21);
-      const i_r8 = \u0275\u0275nextContext(2).index;
-      const ctx_r19 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r19.analyzeNameAndSaveToSetting(i_r8));
+      \u0275\u0275restoreView(_r20);
+      const ctx_r19 = \u0275\u0275nextContext(5);
+      return \u0275\u0275resetView(ctx_r19.analyzeAndTranslateToTheEnd());
     });
     \u0275\u0275elementStart(1, "span");
     \u0275\u0275text(2, "D\u1ECBch h\u1EBFt");
@@ -43419,12 +43418,12 @@ function MainComponent_div_17_div_1_Template(rf, ctx) {
 }
 function MainComponent_div_17_Template(rf, ctx) {
   if (rf & 1) {
-    const _r26 = \u0275\u0275getCurrentView();
+    const _r25 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "div", 19);
     \u0275\u0275listener("scroll", function MainComponent_div_17_Template_div_scroll_0_listener($event) {
-      \u0275\u0275restoreView(_r26);
-      const ctx_r25 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r25.onScroll($event));
+      \u0275\u0275restoreView(_r25);
+      const ctx_r24 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r24.onScroll($event));
     });
     \u0275\u0275template(1, MainComponent_div_17_div_1_Template, 5, 3, "div", 20);
     \u0275\u0275elementEnd();
@@ -43505,7 +43504,9 @@ var _MainComponent = class _MainComponent {
     return url;
   }
   retranslate(index) {
-    this.translateSinglePageChunk(this.pageChunks[index], index);
+    return __async(this, null, function* () {
+      yield this.translateSinglePageChunk(this.pageChunks[index], index);
+    });
   }
   openSetting(newurl) {
     if (newurl !== this.url) {
@@ -43536,31 +43537,67 @@ var _MainComponent = class _MainComponent {
       this.isloading = false;
     });
   }
-  analyzeAndTranslateToTheEnd(chunkindex) {
-    for (let index = chunkindex; index < this.pageChunks.length; index++) {
-      this.analyzeNameAndSaveToSetting(index);
-    }
+  analyzeAndTranslateCurrent(chunkindex) {
+    return __async(this, null, function* () {
+      yield this.retranslate(chunkindex);
+    });
   }
-  analyzeNameAndSaveToSetting(chunkindex) {
-    var textToAnalyze = this.pageChunks[chunkindex].join("\r\n");
-    var previousResult = {
-      name: this.settingService.settingValue.name
-    };
-    this.isloading = true;
-    var request = {
-      text: textToAnalyze,
-      previousResult
-    };
-    const headers = new HttpHeaders();
-    headers.set("Content-Type", "application/x-www-form-urlencoded");
-    this.http.post("/api/Translate/analyze", request, { headers }).subscribe((result) => {
-      this.settingService.settingValue.name = result.name;
+  analyzeAndTranslateToTheEnd() {
+    return __async(this, null, function* () {
+      yield this.analyzeToTheEnd(0);
+      for (let index = 0; index < this.pageChunks.length; index++) {
+        yield this.retranslate(index);
+      }
+    });
+  }
+  analyzeToTheEnd(chunkindex) {
+    return __async(this, null, function* () {
+      var targetingSetting = {
+        name: this.settingService.settingValue.name
+      };
+      for (let index = chunkindex; index < this.pageChunks.length; index = index + 10) {
+        var textToTranslate = this.pageChunks.slice(index, index + 10).join("\r\n") ?? "";
+        var result = yield this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
+        if (!result) {
+          this.snackbar.open("Ph\xE2n t\xEDch b\u1ECB l\u1ED7i");
+          return;
+        }
+        targetingSetting.name = `${targetingSetting.name + result.name}, ${result.name}`;
+      }
+      this.settingService.settingValue.name = targetingSetting.name;
       this.settingService.saveSetting(this.settingService.settingValue);
-      this.retranslate(chunkindex);
-      this.ref.markForCheck();
-    }, (error) => {
-      console.error(error);
-      this.isloading = false;
+    });
+  }
+  analyzeNameFromTextAndPreviousSetting(previousSetting, textToAnalyze) {
+    return __async(this, null, function* () {
+      var previousResult = {
+        name: previousSetting.name
+      };
+      this.isloading = true;
+      var request = {
+        text: textToAnalyze,
+        previousResult
+      };
+      const headers = new HttpHeaders();
+      headers.set("Content-Type", "application/x-www-form-urlencoded");
+      try {
+        var result = yield this.http.post("/api/Translate/analyze", request, {
+          headers
+        }).toPromise();
+        if (!result) {
+          console.error(result);
+          this.isloading = false;
+          return void 0;
+        }
+        previousSetting.name = result?.name;
+        this.ref.markForCheck();
+        return previousSetting;
+      } catch (error) {
+        console.error(error);
+        this.isloading = false;
+        this.ref.markForCheck();
+        return void 0;
+      }
     });
   }
   getPageChunk(originalMasterPage) {
@@ -43574,42 +43611,50 @@ var _MainComponent = class _MainComponent {
   }
   translatePage(targetIndex) {
     return __async(this, null, function* () {
-      this.translateSinglePageChunk(this.pageChunks[targetIndex], targetIndex);
+      yield this.translateSinglePageChunk(this.pageChunks[targetIndex], targetIndex);
     });
   }
   translateSinglePageChunk(page, index) {
-    this.isloading = true;
-    this.translatedPageChunks[index] = [];
-    var textToTranslate = page.join("\n");
-    var currentSetting = this.settingService.settingValue;
-    var request = {
-      name: currentSetting.name ?? this.UNKNOWN,
-      role: currentSetting.role ?? this.UNKNOWN,
-      time: currentSetting.time ?? this.UNKNOWN,
-      type: currentSetting.type ?? this.UNKNOWN,
-      voice: currentSetting.voice ?? this.UNKNOWN,
-      lastUrl: this.url,
-      promt: currentSetting.promt,
-      exampleInput: " nh\xE0 t\xF4i \u0111ang \u0111i v\u1EC1. ",
-      exampleOutput: "t\xF4i \u0111ang \u0111i v\u1EC1 nh\xE0.",
-      textToTranslate,
-      additional: currentSetting.additional,
-      additionalRequirements: this.mapToAdditionalRequirements(currentSetting.additional)
-    };
-    const headers = new HttpHeaders();
-    headers.set("Content-Type", "application/x-www-form-urlencoded");
-    this.http.post("/api/Translate", request, {
-      headers
-    }).subscribe((result) => {
-      console.log(result);
-      this.translatedPageChunks[index] = result.translatedLines;
-      this.isloading = false;
-      this.saveCurrentChapterToData();
-      this.ref.markForCheck();
-    }, (error) => {
-      console.error(error);
-      this.isloading = false;
-      this.ref.markForCheck();
+    return __async(this, null, function* () {
+      this.isloading = true;
+      this.translatedPageChunks[index] = [];
+      var textToTranslate = page.join("\n");
+      var currentSetting = this.settingService.settingValue;
+      var request = {
+        name: currentSetting.name ?? this.UNKNOWN,
+        role: currentSetting.role ?? this.UNKNOWN,
+        time: currentSetting.time ?? this.UNKNOWN,
+        type: currentSetting.type ?? this.UNKNOWN,
+        voice: currentSetting.voice ?? this.UNKNOWN,
+        lastUrl: this.url,
+        promt: currentSetting.promt,
+        exampleInput: " nh\xE0 t\xF4i \u0111ang \u0111i v\u1EC1. ",
+        exampleOutput: "t\xF4i \u0111ang \u0111i v\u1EC1 nh\xE0.",
+        textToTranslate,
+        additional: currentSetting.additional,
+        additionalRequirements: this.mapToAdditionalRequirements(currentSetting.additional)
+      };
+      const headers = new HttpHeaders();
+      headers.set("Content-Type", "application/x-www-form-urlencoded");
+      try {
+        var result = yield this.http.post("/api/Translate", request, {
+          headers
+        }).toPromise();
+        if (!result) {
+          console.error(result);
+          this.isloading = false;
+          return;
+        }
+        console.log(result);
+        this.translatedPageChunks[index] = result.translatedLines;
+        this.isloading = false;
+        this.saveCurrentChapterToData();
+        this.ref.markForCheck();
+      } catch (error) {
+        console.error(error);
+        this.isloading = false;
+        this.ref.markForCheck();
+      }
     });
   }
   mapToAdditionalRequirements(settings) {
@@ -43646,6 +43691,7 @@ var _MainComponent = class _MainComponent {
     this.currentpageIndex = this.currentpageIndex + 1;
   }
   saveCurrentChapterToData() {
+    return;
     var value = {
       url: this.url,
       setting: this.settingService.settingValue,
@@ -43659,7 +43705,9 @@ var _MainComponent = class _MainComponent {
     return __async(this, null, function* () {
       yield navigator.clipboard.writeText(this.translatedPageChunks.join("\r\n"));
       var sumOflines = this.translatedPageChunks.map((t) => t.length).reduce((a, b) => a + b, 0);
-      this.snackbar.open(`\u0110\xE3 sao ch\xE9p: ${sumOflines} d\xF2ng`, void 0, { duration: 3e3 });
+      this.snackbar.open(`\u0110\xE3 sao ch\xE9p: ${sumOflines} d\xF2ng`, void 0, {
+        duration: 3e3
+      });
     });
   }
 };
@@ -43676,14 +43724,14 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
   }
 }, attrs: _c111, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["fxFlex", "80", "fxFlexOffset", "1", "div", "", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "input"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", 3, "value", "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], ["class", "full-width", 4, "ngFor", "ngForOf"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], [1, "full-width"], ["fxLayout", "row", "fxLayoutAlign", "start start"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click", 4, "ngIf"], ["matInput", "", 3, "value", "rows"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click"], ["color", "accent", "diameter", "20", 4, "ngIf"], ["color", "accent", "diameter", "20"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center"]], template: function MainComponent_Template(rf, ctx) {
   if (rf & 1) {
-    const _r27 = \u0275\u0275getCurrentView();
+    const _r26 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "mat-drawer-container", 0)(1, "mat-drawer", 1, 2);
     \u0275\u0275element(3, "app-setting");
     \u0275\u0275elementEnd();
     \u0275\u0275element(4, "div", null, 3);
     \u0275\u0275elementStart(6, "mat-drawer-content", 4)(7, "mat-toolbar", 5)(8, "button", 6);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r27);
+      \u0275\u0275restoreView(_r26);
       const _r0 = \u0275\u0275reference(2);
       return \u0275\u0275resetView(_r0.toggle());
     });
@@ -43692,7 +43740,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(11, "div", 7)(12, "input", 8, 9);
     \u0275\u0275listener("change", function MainComponent_Template_input_change_12_listener() {
-      \u0275\u0275restoreView(_r27);
+      \u0275\u0275restoreView(_r26);
       const _r2 = \u0275\u0275reference(13);
       return \u0275\u0275resetView(ctx.openSetting(_r2.value));
     });
@@ -43707,7 +43755,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275template(17, MainComponent_div_17_Template, 2, 1, "div", 11);
     \u0275\u0275elementStart(18, "mat-toolbar", 12)(19, "div", 13)(20, "button", 14);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r27);
+      \u0275\u0275restoreView(_r26);
       const _r1 = \u0275\u0275reference(5);
       ctx.previous();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));
@@ -43732,7 +43780,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(30, "button", 18);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_30_listener() {
-      \u0275\u0275restoreView(_r27);
+      \u0275\u0275restoreView(_r26);
       const _r1 = \u0275\u0275reference(5);
       ctx.next();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));

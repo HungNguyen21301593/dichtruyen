@@ -109,8 +109,8 @@ export class MainComponent implements OnInit {
     return url;
   }
 
-  retranslate(index: number) {
-    this.translateSinglePageChunk(this.pageChunks[index], index);
+  async retranslate(index: number) {
+    await this.translateSinglePageChunk(this.pageChunks[index], index);
   }
 
   openSetting(newurl: string) {
@@ -150,41 +150,70 @@ export class MainComponent implements OnInit {
       );
   }
 
-  analyzeAndTranslateToTheEnd(chunkindex:number)
-  {
-    for (let index = chunkindex; index < this.pageChunks.length; index++) {
-      this.analyzeNameAndSaveToSetting(index);
-    }
+  async analyzeAndTranslateCurrent(chunkindex: number) {
+    await this.retranslate(chunkindex);
   }
 
-  analyzeNameAndSaveToSetting(chunkindex:number)
+  async analyzeAndTranslateToTheEnd() {
+    await this.analyzeToTheEnd(0);
+    for (let index = 0; index < this.pageChunks.length; index++) {
+      await this.retranslate(index);
+     }
+  }
+
+  async analyzeToTheEnd(chunkindex:number)
   {
-    var textToAnalyze = this.pageChunks[chunkindex].join("\r\n");
-    var previousResult: AnalyzeResponse = {
-      name: this.settingService.settingValue.name
+    var targetingSetting: AnalyzeResponse = {
+      name: this.settingService.settingValue.name,
+    };
+    for (let index = chunkindex; index < this.pageChunks.length; index=index+10) {
+      var textToTranslate = this.pageChunks.slice(index, index + 10).join('\r\n') ?? '';
+      var result = await this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
+      if (!result) {
+        this.snackbar.open("Phân tích bị lỗi")
+        return;
+      }
+      targetingSetting.name =  `${targetingSetting.name +result.name}, ${result.name}`;
     }
+    this.settingService.settingValue.name = targetingSetting.name;
+    this.settingService.saveSetting(this.settingService.settingValue);
+  }
+
+  async analyzeNameFromTextAndPreviousSetting(
+    previousSetting: AnalyzeResponse,
+    textToAnalyze:string
+  ): Promise<AnalyzeResponse | undefined> {
+    var previousResult: AnalyzeResponse = {
+      name: previousSetting.name,
+    };
     this.isloading = true;
     var request: AnalyzeProxyRequest = {
-      text:textToAnalyze,
-      previousResult: previousResult
+      text: textToAnalyze,
+      previousResult: previousResult,
     };
 
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.http
-      .post<AnalyzeResponse>('/api/Translate/analyze', request, { headers: headers })
-      .subscribe(
-        (result: AnalyzeResponse) => {
-          this.settingService.settingValue.name = result.name;
-          this.settingService.saveSetting(this.settingService.settingValue);
-          this.retranslate(chunkindex);
-          this.ref.markForCheck();
-        },
-        (error) => {
-          console.error(error);
-          this.isloading = false;
-        }
-      );
+    try {
+      var result: AnalyzeResponse | undefined = await this.http
+        .post<AnalyzeResponse>('/api/Translate/analyze', request, {
+          headers: headers,
+        })
+        .toPromise();
+      if (!result) {
+        console.error(result);
+        this.isloading = false;
+        return undefined;
+      }
+      previousSetting.name = result?.name;
+      this.ref.markForCheck();
+      return previousSetting;
+    } catch (error) {
+      console.error(error);
+      this.isloading = false;
+      this.ref.markForCheck();
+      return undefined;
+    }
   }
 
   getPageChunk(originalMasterPage: ScanResponse) {
@@ -198,10 +227,13 @@ export class MainComponent implements OnInit {
   }
 
   async translatePage(targetIndex: number) {
-    this.translateSinglePageChunk(this.pageChunks[targetIndex], targetIndex);
+    await this.translateSinglePageChunk(
+      this.pageChunks[targetIndex],
+      targetIndex
+    );
   }
 
-  translateSinglePageChunk(page: string[], index: number) {
+  async translateSinglePageChunk(page: string[], index: number) {
     this.isloading = true;
     this.translatedPageChunks[index] = [];
     var textToTranslate = page.join('\n');
@@ -224,24 +256,27 @@ export class MainComponent implements OnInit {
     };
     const headers: HttpHeaders = new HttpHeaders();
     headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    this.http
-      .post<TranslationProxyResponse>('/api/Translate', request, {
-        headers: headers,
-      })
-      .subscribe(
-        (result) => {
-          console.log(result);
-          this.translatedPageChunks[index] = result.translatedLines;
-          this.isloading = false;
-          this.saveCurrentChapterToData();
-          this.ref.markForCheck();
-        },
-        (error) => {
-          console.error(error);
-          this.isloading = false;
-          this.ref.markForCheck();
-        }
-      );
+    try {
+      var result = await this.http
+        .post<TranslationProxyResponse>('/api/Translate', request, {
+          headers: headers,
+        })
+        .toPromise();
+      if (!result) {
+        console.error(result);
+        this.isloading = false;
+        return;
+      }
+      console.log(result);
+      this.translatedPageChunks[index] = result.translatedLines;
+      this.isloading = false;
+      this.saveCurrentChapterToData();
+      this.ref.markForCheck();
+    } catch (error) {
+      console.error(error);
+      this.isloading = false;
+      this.ref.markForCheck();
+    }
   }
 
   mapToAdditionalRequirements(settings: AdditionalSettting[]) {
@@ -253,9 +288,9 @@ export class MainComponent implements OnInit {
         case 'GiuNguyenThuTuTen':
           return AdditionalSettting.GiuNguyenThuTuTen.toString();
           break;
-          case 'SoDemHanViet':
-            return AdditionalSettting.SoDemHanViet.toString();
-            break;
+        case 'SoDemHanViet':
+          return AdditionalSettting.SoDemHanViet.toString();
+          break;
         default:
           return '';
           break;
@@ -286,6 +321,7 @@ export class MainComponent implements OnInit {
   }
 
   saveCurrentChapterToData() {
+    return;
     var value = {
       url: this.url,
       setting: this.settingService.settingValue,
@@ -298,11 +334,11 @@ export class MainComponent implements OnInit {
 
   async copy() {
     await navigator.clipboard.writeText(this.translatedPageChunks.join('\r\n'));
-    var sumOflines = this.translatedPageChunks.map(t=>t.length).reduce((a, b) => a + b, 0)
-    this.snackbar.open(
-      `Đã sao chép: ${sumOflines} dòng`,
-      undefined,
-      { duration: 3000 }
-    );
+    var sumOflines = this.translatedPageChunks
+      .map((t) => t.length)
+      .reduce((a, b) => a + b, 0);
+    this.snackbar.open(`Đã sao chép: ${sumOflines} dòng`, undefined, {
+      duration: 3000,
+    });
   }
 }
