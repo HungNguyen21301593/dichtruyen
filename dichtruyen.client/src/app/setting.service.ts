@@ -8,7 +8,7 @@ export class SettingService {
   settingKey = 'settingKey';
   dataKey = 'dataKey';
   private initSettingValue: SettingModel = {
-    name: '',
+    name: [],
     role: '',
     time: '',
     type: '',

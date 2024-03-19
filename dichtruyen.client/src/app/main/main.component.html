@@ -24,25 +24,33 @@
       <div *ngIf="originalResponse">
         <p>{{originalResponse.title}}
         </p>
+        <div fxLayout="row" fxLayoutAlign="start start" >
+          <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
+            [disabled]="isloading" mat-button color="primary" (click)="analyzeToTheEnd(0)">
+            <span>Phân tích tên</span>
+            <mat-icon><mat-spinner *ngIf="isloading" color="accent"
+                diameter="20"></mat-spinner></mat-icon>
+          </button>
 
+          <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
+            [disabled]="isloading" mat-button color="primary" (click)="translateToTheEnd()">
+            <span>Dịch hết</span>
+            <mat-icon><mat-spinner *ngIf="isloading" color="accent"
+                diameter="20"></mat-spinner></mat-icon>
+          </button>
+        </div>
         <div *ngFor="let pageChunk of pageChunks; let i=index" class="full-width">
           <p>Phần {{i+1}}:
           </p>
           <div *ngIf="version=='translated'">
             <div fxLayout="row" fxLayoutAlign="start start" >
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-                [disabled]="isloading" mat-button color="primary" (click)="analyzeAndTranslateCurrent(i)">
+                [disabled]="isloading" mat-button color="primary" (click)="retranslate(i)">
                 <span>Dịch</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
               </button>
 
-              <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-                [disabled]="isloading" mat-button color="primary" (click)="analyzeAndTranslateToTheEnd()">
-                <span>Dịch hết</span>
-                <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
-                    diameter="20"></mat-spinner></mat-icon>
-              </button>
             </div>
             <mat-form-field class="full-width">
               <textarea matInput [value]="(translatedPageChunks[i]??[]).join('\r\n')" [rows]="20">

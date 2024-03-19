@@ -150,12 +150,7 @@ export class MainComponent implements OnInit {
       );
   }
 
-  async analyzeAndTranslateCurrent(chunkindex: number) {
-    await this.retranslate(chunkindex);
-  }
-
-  async analyzeAndTranslateToTheEnd() {
-    await this.analyzeToTheEnd(0);
+  async translateToTheEnd() {
     for (let index = 0; index < this.pageChunks.length; index++) {
       await this.retranslate(index);
      }
@@ -164,19 +159,20 @@ export class MainComponent implements OnInit {
   async analyzeToTheEnd(chunkindex:number)
   {
     var targetingSetting: AnalyzeResponse = {
-      name: this.settingService.settingValue.name,
+      name: this.settingService.settingValue.name
+        ? this.settingService.settingValue.name.join(',')
+        : '',
     };
-    for (let index = chunkindex; index < this.pageChunks.length; index=index+10) {
-      var textToTranslate = this.pageChunks.slice(index, index + 10).join('\r\n') ?? '';
-      var result = await this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
-      if (!result) {
-        this.snackbar.open("Phân tích bị lỗi")
-        return;
-      }
-      targetingSetting.name =  `${targetingSetting.name +result.name}, ${result.name}`;
+    var textToTranslate = this.originalResponse?.lines.join('\r\n') ?? '';
+    var result = await this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
+    if (!result) {
+      this.snackbar.open("Phân tích bị lỗi")
+      return;
     }
-    this.settingService.settingValue.name = targetingSetting.name;
+    targetingSetting.name =  `, ${targetingSetting.name} , ${result.name},`;
+    this.settingService.settingValue.name = [...new Set(targetingSetting.name.split(',').map(c=>c.trim()))];
     this.settingService.saveSetting(this.settingService.settingValue);
+    this.isloading = false
   }
 
   async analyzeNameFromTextAndPreviousSetting(

@@ -33,7 +33,7 @@ namespace dichtruyen.Server.Controllers
                 var stringbuilder = new StringBuilder();
                 stringbuilder.AppendLine($"Hãy {request.Promt} ");
                 stringbuilder.AppendLine("Với các dữ liệu sau, ");
-                stringbuilder.AppendLine($" ưu tiên các tên riêng: {request.Name},");
+                stringbuilder.AppendLine($" ưu tiên dùng các tên riêng: {string.Join(", ", request.Name)}");
                 stringbuilder.AppendLine($" thể loại {request.Type},");
                 stringbuilder.AppendLine($" giọng văn: {request.Voice},");
                 stringbuilder.AppendLine($" bối cảnh: {request.Time},");
@@ -74,7 +74,7 @@ namespace dichtruyen.Server.Controllers
                    "{\"name\":\"tên riêng, tên địa danh, tên đồ vật\"} \r\n" +
                     "Lưu ý:\r\n" +
                     "- Chỉ trả về kết quả JSON, không chứa thêm bất kỳ giải thích nào. Ví dụ: {\"name\":\"Lâm Phàm, Vân Tiêu Cốc\"}\r\n" +
-                    "- Toàn bộ tên riêng được dịch sang tiếng Việt.\r\n"+
+                    "- Toàn bộ tên riêng được dịch sang tiếng Việt sử dụng cách dịch thông dụng nhất (dùng nhiều trong hộ chiếu, visa của công dân Trung Quốc).\r\n"+
                     "- Kết quả trả về phải tổng hợp tất cả tên riêng. Kết quả trả về phải tổng hợp tất cả tên riêng. ví dụ: Kết quả đoạn truyện trước đó: {\"name\":\"Lâm Phàm\"}, kết quả phân tích của đoạn truyện đang phân tích: {\"name\": \"Tiêu Linh Nhi\"}, kết quả trả về: {\"name\": \"Lâm Phàm, Tiêu Linh Nhi\"}\r\n" +
                     $"- Đây là kết quả phân tích của đoạn truyện trước đó: {JsonConvert.SerializeObject(request.PreviousResult)}";                    
                 var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";

@@ -2,7 +2,7 @@
 {
     public class TranslationProxyRequest
     {
-        public string Name { get; set; }
+        public List<string> Name { get; set; }
         public string Role { get; set; }
         public string Type { get; set; }
         public string Voice { get; set; }

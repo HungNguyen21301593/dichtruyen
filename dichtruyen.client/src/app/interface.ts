@@ -12,7 +12,7 @@ export interface ScanRequest {
 
 export interface SettingModel {
   lastUrl: string;
-  name: string;
+  name: string[];
   role: string;
   type: string;
   voice: string;

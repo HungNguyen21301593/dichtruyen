@@ -15380,7 +15380,7 @@ var AdditionalSettting;
 (function(AdditionalSettting2) {
   AdditionalSettting2["GiuNguyenThuTuTen"] = "Gi\u1EEF nguy\xEAn th\u1EE9 t\u1EF1 t\xEAn ri\xEAng trong ti\u1EBFng Trung, v\xED d\u1EE5 : L\xE3m Nguy\u1EC7t T\xF4ng, Ng\u1ECDc L\xE2n Cung, M\xE3 s\u01B0 huynh, L\xE2m huynh, L\xFD huynh, Tr\u01B0\u01A1ng \u0111\u1EC7,...";
   AdditionalSettting2["GiuNguyenCadao"] = "Gi\u1EEF nguy\xEAn ca giao, t\u1EE5c ng\u1EEF, th\u01A1";
-  AdditionalSettting2["SoDemHanViet"] = "D\xF9ng s\u1ED1 \u0111\u1EBFm v\xE0 s\u1ED1 th\u1EE9 t\u1EF1 H\xE1n Vi\u1EC7t, v\xED d\u1EE5: nh\u1EA5t, nh\u1ECB, tam, t\u1EE9, ng\u0169, l\u1EE5c, th\u1EA5t, b\xE1t, c\u1EEDu, th\u1EADp";
+  AdditionalSettting2["SoDemHanViet"] = "D\xF9ng s\u1ED1 \u0111\u1EBFm v\xE0 s\u1ED1 th\u1EE9 t\u1EF1 H\xE1n Vi\u1EC7t, v\xED d\u1EE5: nh\u1EA5t, nh\u1ECB, tam, t\u1EE9, th\u1EA5t ph\u1EA9m thay v\xEC b\u1EA3y ph\u1EA9m, c\u1EEDu ph\u1EA9m thay v\xEC ch\xEDn ph\u1EA9m,...";
 })(AdditionalSettting || (AdditionalSettting = {}));
 
 // node_modules/@angular/cdk/fesm2022/coercion.mjs
@@ -28904,7 +28904,7 @@ var _SettingService = class _SettingService {
     this.settingKey = "settingKey";
     this.dataKey = "dataKey";
     this.initSettingValue = {
-      name: "",
+      name: [],
       role: "",
       time: "",
       type: "",
@@ -43066,21 +43066,46 @@ function SettingComponent_mat_chip_option_66_Template(rf, ctx) {
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const item_r2 = ctx.$implicit;
+    const item_r5 = ctx.$implicit;
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(item_r2);
+    \u0275\u0275textInterpolate(item_r5);
   }
 }
-function SettingComponent_p_77_Template(rf, ctx) {
+function SettingComponent_mat_option_70_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "mat-option", 22);
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const name_r6 = ctx.$implicit;
+    \u0275\u0275property("value", name_r6);
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(name_r6);
+  }
+}
+function SettingComponent_mat_chip_option_73_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "mat-chip-option");
+    \u0275\u0275text(1);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const item_r7 = ctx.$implicit;
+    \u0275\u0275advance();
+    \u0275\u0275textInterpolate(item_r7);
+  }
+}
+function SettingComponent_p_79_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "p");
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const ctx_r1 = \u0275\u0275nextContext();
+    const ctx_r4 = \u0275\u0275nextContext();
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate1(" Translated Text: ", ctx_r1.translatedText, "");
+    \u0275\u0275textInterpolate1(" Translated Text: ", ctx_r4.translatedText, "");
   }
 }
 var _SettingComponent = class _SettingComponent {
@@ -43091,7 +43116,7 @@ var _SettingComponent = class _SettingComponent {
     this.translatedText = "";
     this.UNKNOWN = "T\xF9y \xFD";
     this.formGroup = this.fb.group({
-      name: [this.UNKNOWN, void 0],
+      name: [[], void 0],
       role: [this.UNKNOWN, void 0],
       type: [this.UNKNOWN, void 0],
       voice: [this.UNKNOWN, void 0],
@@ -43113,11 +43138,23 @@ var _SettingComponent = class _SettingComponent {
     this.settingService.saveSetting(newSetting);
     this.snackBar.open("C\u1EADp nh\u1EADt ho\xE0n t\u1EA5t", void 0, { duration: 1e3 });
   }
+  splitName() {
+    return this.formGroup.get("name")?.value;
+  }
+  add(event) {
+    const value = (event.value || "").trim();
+    if (value) {
+      var current = this.formGroup.get("name")?.value;
+      current.push(value);
+      this.formGroup.get("name")?.patchValue(current);
+    }
+    event.chipInput.clear();
+  }
 };
 _SettingComponent.\u0275fac = function SettingComponent_Factory(t) {
   return new (t || _SettingComponent)(\u0275\u0275directiveInject(FormBuilder), \u0275\u0275directiveInject(SettingService), \u0275\u0275directiveInject(MatSnackBar));
 };
-_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 78, vars: 13, consts: [["fxLayout", "column", "fxLayoutAlign", "start start", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field", 3, "color"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["value", "T\xF9y \xFD"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field", 3, "color"], ["formControlName", "role"], ["value", "h\u1EAFn - ta - ng\u01B0\u01A1i, ch\xE0ng - n\xE0ng, huynh-\u0111\u1EC7, t\u1EC9 - mu\u1ED9i"], ["value", "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, anh - em, ch\u1ECB - em"], ["formControlName", "promt"], ["value", "H\xE3y s\u1EEDa l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho Thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 ch\u1EC9nh s\u1EEDa"], ["value", "h\xE3y d\u1ECBch l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 d\u1ECBch"], ["formControlName", "additional", "multiple", ""], [3, "value"], ["aria-label", "Fish selection"], [4, "ngFor", "ngForOf"], ["rows", "5", "matInput", "", "formControlName", "name", "placeholder", "VD: Ti\xEAu Vi\xEAm, H\u1ED3ng H\xE0i Nhi, B\u1EA5t Di\u1EC7t Th\xF4n Vi\xEAm,..."], ["mat-raised-button", "", "color", "accent", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
+_SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SettingComponent, selectors: [["app-setting"]], decls: 80, vars: 15, consts: [["fxLayout", "column", "fxLayoutAlign", "start stretch", 3, "formGroup"], ["fxLayout", "column", "fxLayoutAlign", "start start"], [1, "form-field", "full-width", 3, "color"], ["formControlName", "time"], ["value", "C\u1ED5 \u0111\u1EA1i"], ["value", "Hi\u1EC7n \u0111\u1EA1i"], ["value", "T\xF9y \xFD"], ["formControlName", "type"], ["value", "Tu ti\xEAn"], ["value", "\u0110\xF4 th\u1ECB"], ["value", "V\xF5ng du"], ["formControlName", "voice"], ["value", "H\xE0i h\u01B0\u1EDBc"], ["value", "Nghi\xEAm t\xFAc"], ["appearance", "fill", 1, "form-field", "full-width", 3, "color"], ["formControlName", "role"], ["value", "h\u1EAFn - ta - ng\u01B0\u01A1i, ch\xE0ng - n\xE0ng, huynh-\u0111\u1EC7, t\u1EC9 - mu\u1ED9i"], ["value", "t\xF4i - b\u1EA1n, anh - em, cha - m\u1EB9, anh - em, ch\u1ECB - em"], ["formControlName", "promt"], ["value", "H\xE3y s\u1EEDa l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho Thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 ch\u1EC9nh s\u1EEDa"], ["value", "h\xE3y d\u1ECBch l\u1EA1i \u0111o\u1EA1n truy\u1EC7n sau cho thu\u1EA7n Vi\u1EC7t v\xE0 ch\u1EC9 tr\u1EA3 v\u1EC1 k\u1EBFt qu\u1EA3 \u0111\xE3 d\u1ECBch"], ["formControlName", "additional", "multiple", ""], [3, "value"], ["aria-label", "Fish selection"], [4, "ngFor", "ngForOf"], ["formControlName", "name", "multiple", ""], [3, "value", 4, "ngFor", "ngForOf"], ["chipGrid", ""], ["mat-raised-button", "", "color", "accent", 3, "click"], [4, "ngIf"]], template: function SettingComponent_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "form", 0)(1, "span");
     \u0275\u0275text(2, " C\xE0i \u0111\u1EB7t thi\u1EBFt l\u1EADp cho truy\u1EC7n, c\xF3 th\u1EC3 b\u1ECF qua !!! ");
@@ -43199,26 +43236,29 @@ _SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type
     \u0275\u0275elementStart(65, "mat-chip-listbox", 23);
     \u0275\u0275template(66, SettingComponent_mat_chip_option_66_Template, 2, 1, "mat-chip-option", 24);
     \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(67, "mat-form-field", 14)(68, "mat-label");
-    \u0275\u0275text(69, "T\xEAn ri\xEAng");
+    \u0275\u0275elementStart(67, "mat-form-field", 14)(68, "mat-select", 25);
+    \u0275\u0275element(69, "mat-select-trigger");
+    \u0275\u0275template(70, SettingComponent_mat_option_70_Template, 2, 2, "mat-option", 26);
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(70, "textarea", 25);
-    \u0275\u0275text(71, "      ");
+    \u0275\u0275elementStart(71, "mat-chip-grid", null, 27);
+    \u0275\u0275template(73, SettingComponent_mat_chip_option_73_Template, 2, 1, "mat-chip-option", 24);
     \u0275\u0275elementEnd()()();
-    \u0275\u0275element(72, "br");
-    \u0275\u0275elementStart(73, "button", 26);
-    \u0275\u0275listener("click", function SettingComponent_Template_button_click_73_listener() {
+    \u0275\u0275element(74, "br");
+    \u0275\u0275elementStart(75, "button", 28);
+    \u0275\u0275listener("click", function SettingComponent_Template_button_click_75_listener() {
       return ctx.submit();
     });
-    \u0275\u0275elementStart(74, "mat-icon");
-    \u0275\u0275text(75, "save");
+    \u0275\u0275elementStart(76, "mat-icon");
+    \u0275\u0275text(77, "save");
     \u0275\u0275elementEnd();
-    \u0275\u0275text(76, "L\u01B0u l\u1EA1i");
+    \u0275\u0275text(78, "L\u01B0u l\u1EA1i");
     \u0275\u0275elementEnd()();
-    \u0275\u0275template(77, SettingComponent_p_77_Template, 2, 1, "p", 27);
+    \u0275\u0275template(79, SettingComponent_p_79_Template, 2, 1, "p", 29);
   }
   if (rf & 2) {
     let tmp_10_0;
+    let tmp_12_0;
+    let tmp_13_0;
     \u0275\u0275property("formGroup", ctx.formGroup);
     \u0275\u0275advance(4);
     \u0275\u0275property("color", "accent");
@@ -43242,13 +43282,17 @@ _SettingComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type
     \u0275\u0275property("ngForOf", (tmp_10_0 = ctx.formGroup.get("additional")) == null ? null : tmp_10_0.value);
     \u0275\u0275advance();
     \u0275\u0275property("color", "accent");
-    \u0275\u0275advance(10);
+    \u0275\u0275advance(3);
+    \u0275\u0275property("ngForOf", (tmp_12_0 = ctx.formGroup.get("name")) == null ? null : tmp_12_0.value);
+    \u0275\u0275advance(3);
+    \u0275\u0275property("ngForOf", (tmp_13_0 = ctx.formGroup.get("name")) == null ? null : tmp_13_0.value);
+    \u0275\u0275advance(6);
     \u0275\u0275property("ngIf", ctx.translatedText);
   }
-}, dependencies: [NgForOf, NgIf, \u0275NgNoValidate, DefaultValueAccessor, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, DefaultLayoutDirective, DefaultLayoutAlignDirective, MatButton, MatIcon, MatFormField, MatLabel, MatSelect, MatSelectTrigger, MatOption, MatInput, MatChipListbox, MatChipOption], styles: ["\n\n.form-field[_ngcontent-%COMP%] {\n  padding: 5px;\n}\n/*# sourceMappingURL=setting.component.css.map */"] });
+}, dependencies: [NgForOf, NgIf, \u0275NgNoValidate, NgControlStatus, NgControlStatusGroup, FormGroupDirective, FormControlName, DefaultLayoutDirective, DefaultLayoutAlignDirective, MatButton, MatIcon, MatFormField, MatLabel, MatSelect, MatSelectTrigger, MatOption, MatChipGrid, MatChipListbox, MatChipOption], styles: ["\n\n.form-field[_ngcontent-%COMP%] {\n  padding: 5px;\n}\n/*# sourceMappingURL=setting.component.css.map */"] });
 var SettingComponent = _SettingComponent;
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SettingComponent, { className: "SettingComponent", filePath: "src\\app\\setting\\setting.component.ts", lineNumber: 12 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SettingComponent, { className: "SettingComponent", filePath: "src\\app\\setting\\setting.component.ts", lineNumber: 13 });
 })();
 
 // src/app/donate/donate.component.ts
@@ -43275,123 +43319,147 @@ var DonateComponent = _DonateComponent;
 // src/app/main/main.component.ts
 var _c014 = ["drawer"];
 var _c111 = ["class", "main"];
-function MainComponent_div_17_div_1_div_3_div_3_button_2_mat_spinner_4_Template(rf, ctx) {
+function MainComponent_div_17_div_1_button_4_mat_spinner_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "mat-spinner", 29);
+    \u0275\u0275element(0, "mat-spinner", 27);
   }
 }
-var _c28 = () => [];
-function MainComponent_div_17_div_1_div_3_div_3_button_2_Template(rf, ctx) {
+function MainComponent_div_17_div_1_button_4_Template(rf, ctx) {
   if (rf & 1) {
-    const _r16 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 27);
-    \u0275\u0275listener("click", function MainComponent_div_17_div_1_div_3_div_3_button_2_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r16);
-      const i_r8 = \u0275\u0275nextContext(2).index;
-      const ctx_r14 = \u0275\u0275nextContext(3);
-      return \u0275\u0275resetView(ctx_r14.analyzeAndTranslateCurrent(i_r8));
+    const _r11 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 25);
+    \u0275\u0275listener("click", function MainComponent_div_17_div_1_button_4_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r11);
+      const ctx_r10 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r10.analyzeToTheEnd(0));
     });
     \u0275\u0275elementStart(1, "span");
-    \u0275\u0275text(2, "D\u1ECBch");
+    \u0275\u0275text(2, "Ph\xE2n t\xEDch t\xEAn");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "mat-icon");
-    \u0275\u0275template(4, MainComponent_div_17_div_1_div_3_div_3_button_2_mat_spinner_4_Template, 1, 0, "mat-spinner", 28);
+    \u0275\u0275template(4, MainComponent_div_17_div_1_button_4_mat_spinner_4_Template, 1, 0, "mat-spinner", 26);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const i_r8 = \u0275\u0275nextContext(2).index;
-    const ctx_r11 = \u0275\u0275nextContext(3);
-    let tmp_1_0;
-    \u0275\u0275property("disabled", ctx_r11.isloading);
+    const ctx_r5 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("disabled", ctx_r5.isloading);
     \u0275\u0275advance(4);
-    \u0275\u0275property("ngIf", ctx_r11.isloading && ((tmp_1_0 = ctx_r11.translatedPageChunks[i_r8]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(2, _c28)).length == 0);
+    \u0275\u0275property("ngIf", ctx_r5.isloading);
   }
 }
-function MainComponent_div_17_div_1_div_3_div_3_button_3_mat_spinner_4_Template(rf, ctx) {
+function MainComponent_div_17_div_1_button_5_mat_spinner_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275element(0, "mat-spinner", 29);
+    \u0275\u0275element(0, "mat-spinner", 27);
   }
 }
-function MainComponent_div_17_div_1_div_3_div_3_button_3_Template(rf, ctx) {
+function MainComponent_div_17_div_1_button_5_Template(rf, ctx) {
   if (rf & 1) {
-    const _r20 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 27);
-    \u0275\u0275listener("click", function MainComponent_div_17_div_1_div_3_div_3_button_3_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r20);
-      const ctx_r19 = \u0275\u0275nextContext(5);
-      return \u0275\u0275resetView(ctx_r19.analyzeAndTranslateToTheEnd());
+    const _r14 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 25);
+    \u0275\u0275listener("click", function MainComponent_div_17_div_1_button_5_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r14);
+      const ctx_r13 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r13.translateToTheEnd());
     });
     \u0275\u0275elementStart(1, "span");
     \u0275\u0275text(2, "D\u1ECBch h\u1EBFt");
     \u0275\u0275elementEnd();
     \u0275\u0275elementStart(3, "mat-icon");
-    \u0275\u0275template(4, MainComponent_div_17_div_1_div_3_div_3_button_3_mat_spinner_4_Template, 1, 0, "mat-spinner", 28);
+    \u0275\u0275template(4, MainComponent_div_17_div_1_button_5_mat_spinner_4_Template, 1, 0, "mat-spinner", 26);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
-    const i_r8 = \u0275\u0275nextContext(2).index;
-    const ctx_r12 = \u0275\u0275nextContext(3);
-    let tmp_1_0;
-    \u0275\u0275property("disabled", ctx_r12.isloading);
+    const ctx_r6 = \u0275\u0275nextContext(3);
+    \u0275\u0275property("disabled", ctx_r6.isloading);
     \u0275\u0275advance(4);
-    \u0275\u0275property("ngIf", ctx_r12.isloading && ((tmp_1_0 = ctx_r12.translatedPageChunks[i_r8]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(2, _c28)).length == 0);
+    \u0275\u0275property("ngIf", ctx_r6.isloading);
   }
 }
-function MainComponent_div_17_div_1_div_3_div_3_Template(rf, ctx) {
+function MainComponent_div_17_div_1_div_6_div_3_button_2_mat_spinner_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div")(1, "div", 24);
-    \u0275\u0275template(2, MainComponent_div_17_div_1_div_3_div_3_button_2_Template, 5, 3, "button", 25)(3, MainComponent_div_17_div_1_div_3_div_3_button_3_Template, 5, 3, "button", 25);
+    \u0275\u0275element(0, "mat-spinner", 27);
+  }
+}
+var _c28 = () => [];
+function MainComponent_div_17_div_1_div_6_div_3_button_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r23 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 25);
+    \u0275\u0275listener("click", function MainComponent_div_17_div_1_div_6_div_3_button_2_Template_button_click_0_listener() {
+      \u0275\u0275restoreView(_r23);
+      const i_r16 = \u0275\u0275nextContext(2).index;
+      const ctx_r21 = \u0275\u0275nextContext(3);
+      return \u0275\u0275resetView(ctx_r21.retranslate(i_r16));
+    });
+    \u0275\u0275elementStart(1, "span");
+    \u0275\u0275text(2, "D\u1ECBch");
     \u0275\u0275elementEnd();
-    \u0275\u0275elementStart(4, "mat-form-field", 23)(5, "textarea", 26);
-    \u0275\u0275text(6, "              ");
+    \u0275\u0275elementStart(3, "mat-icon");
+    \u0275\u0275template(4, MainComponent_div_17_div_1_div_6_div_3_button_2_mat_spinner_4_Template, 1, 0, "mat-spinner", 26);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const i_r16 = \u0275\u0275nextContext(2).index;
+    const ctx_r19 = \u0275\u0275nextContext(3);
+    let tmp_1_0;
+    \u0275\u0275property("disabled", ctx_r19.isloading);
+    \u0275\u0275advance(4);
+    \u0275\u0275property("ngIf", ctx_r19.isloading && ((tmp_1_0 = ctx_r19.translatedPageChunks[i_r16]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(2, _c28)).length == 0);
+  }
+}
+function MainComponent_div_17_div_1_div_6_div_3_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "div")(1, "div", 21);
+    \u0275\u0275template(2, MainComponent_div_17_div_1_div_6_div_3_button_2_Template, 5, 3, "button", 22);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "mat-form-field", 28)(4, "textarea", 29);
+    \u0275\u0275text(5, "              ");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const i_r8 = \u0275\u0275nextContext().index;
-    const ctx_r9 = \u0275\u0275nextContext(3);
-    let tmp_2_0;
+    const i_r16 = \u0275\u0275nextContext().index;
+    const ctx_r17 = \u0275\u0275nextContext(3);
+    let tmp_1_0;
     \u0275\u0275advance(2);
-    \u0275\u0275property("ngIf", ctx_r9.translatedPageChunks.length > 0);
-    \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r9.translatedPageChunks.length > 0);
+    \u0275\u0275property("ngIf", ctx_r17.translatedPageChunks.length > 0);
     \u0275\u0275advance(2);
-    \u0275\u0275property("value", ((tmp_2_0 = ctx_r9.translatedPageChunks[i_r8]) !== null && tmp_2_0 !== void 0 ? tmp_2_0 : \u0275\u0275pureFunction0(4, _c28)).join("\r\n"))("rows", 20);
+    \u0275\u0275property("value", ((tmp_1_0 = ctx_r17.translatedPageChunks[i_r16]) !== null && tmp_1_0 !== void 0 ? tmp_1_0 : \u0275\u0275pureFunction0(3, _c28)).join("\r\n"))("rows", 20);
   }
 }
-function MainComponent_div_17_div_1_div_3_div_4_Template(rf, ctx) {
+function MainComponent_div_17_div_1_div_6_div_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div")(1, "mat-form-field", 23)(2, "textarea", 26);
+    \u0275\u0275elementStart(0, "div")(1, "mat-form-field", 28)(2, "textarea", 29);
     \u0275\u0275text(3, "              ");
     \u0275\u0275elementEnd()()();
   }
   if (rf & 2) {
-    const i_r8 = \u0275\u0275nextContext().index;
-    const ctx_r10 = \u0275\u0275nextContext(3);
+    const i_r16 = \u0275\u0275nextContext().index;
+    const ctx_r18 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(2);
-    \u0275\u0275property("value", ctx_r10.pageChunks[i_r8].join("\r\n"))("rows", 20);
+    \u0275\u0275property("value", ctx_r18.pageChunks[i_r16].join("\r\n"))("rows", 20);
   }
 }
-function MainComponent_div_17_div_1_div_3_Template(rf, ctx) {
+function MainComponent_div_17_div_1_div_6_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "div", 23)(1, "p");
+    \u0275\u0275elementStart(0, "div", 28)(1, "p");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(3, MainComponent_div_17_div_1_div_3_div_3_Template, 7, 5, "div", 20)(4, MainComponent_div_17_div_1_div_3_div_4_Template, 4, 2, "div", 20);
+    \u0275\u0275template(3, MainComponent_div_17_div_1_div_6_div_3_Template, 6, 4, "div", 20)(4, MainComponent_div_17_div_1_div_6_div_4_Template, 4, 2, "div", 20);
     \u0275\u0275element(5, "br")(6, "br");
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const i_r8 = ctx.index;
-    const ctx_r5 = \u0275\u0275nextContext(3);
+    const i_r16 = ctx.index;
+    const ctx_r7 = \u0275\u0275nextContext(3);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate1("Ph\u1EA7n ", i_r8 + 1, ": ");
+    \u0275\u0275textInterpolate1("Ph\u1EA7n ", i_r16 + 1, ": ");
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r5.version == "translated");
+    \u0275\u0275property("ngIf", ctx_r7.version == "translated");
     \u0275\u0275advance();
-    \u0275\u0275property("ngIf", ctx_r5.version == "origin");
+    \u0275\u0275property("ngIf", ctx_r7.version == "origin");
   }
 }
-function MainComponent_div_17_div_1_div_4_Template(rf, ctx) {
+function MainComponent_div_17_div_1_div_7_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "div", 30);
     \u0275\u0275element(1, "app-donate");
@@ -43403,13 +43471,20 @@ function MainComponent_div_17_div_1_Template(rf, ctx) {
     \u0275\u0275elementStart(0, "div")(1, "p");
     \u0275\u0275text(2);
     \u0275\u0275elementEnd();
-    \u0275\u0275template(3, MainComponent_div_17_div_1_div_3_Template, 7, 3, "div", 21)(4, MainComponent_div_17_div_1_div_4_Template, 2, 0, "div", 22);
+    \u0275\u0275elementStart(3, "div", 21);
+    \u0275\u0275template(4, MainComponent_div_17_div_1_button_4_Template, 5, 2, "button", 22)(5, MainComponent_div_17_div_1_button_5_Template, 5, 2, "button", 22);
+    \u0275\u0275elementEnd();
+    \u0275\u0275template(6, MainComponent_div_17_div_1_div_6_Template, 7, 3, "div", 23)(7, MainComponent_div_17_div_1_div_7_Template, 2, 0, "div", 24);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
     const ctx_r4 = \u0275\u0275nextContext(2);
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1("", ctx_r4.originalResponse.title, " ");
+    \u0275\u0275advance(2);
+    \u0275\u0275property("ngIf", ctx_r4.translatedPageChunks.length > 0);
+    \u0275\u0275advance();
+    \u0275\u0275property("ngIf", ctx_r4.translatedPageChunks.length > 0);
     \u0275\u0275advance();
     \u0275\u0275property("ngForOf", ctx_r4.pageChunks);
     \u0275\u0275advance();
@@ -43418,14 +43493,14 @@ function MainComponent_div_17_div_1_Template(rf, ctx) {
 }
 function MainComponent_div_17_Template(rf, ctx) {
   if (rf & 1) {
-    const _r25 = \u0275\u0275getCurrentView();
+    const _r28 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "div", 19);
     \u0275\u0275listener("scroll", function MainComponent_div_17_Template_div_scroll_0_listener($event) {
-      \u0275\u0275restoreView(_r25);
-      const ctx_r24 = \u0275\u0275nextContext();
-      return \u0275\u0275resetView(ctx_r24.onScroll($event));
+      \u0275\u0275restoreView(_r28);
+      const ctx_r27 = \u0275\u0275nextContext();
+      return \u0275\u0275resetView(ctx_r27.onScroll($event));
     });
-    \u0275\u0275template(1, MainComponent_div_17_div_1_Template, 5, 3, "div", 20);
+    \u0275\u0275template(1, MainComponent_div_17_div_1_Template, 8, 5, "div", 20);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -43537,14 +43612,8 @@ var _MainComponent = class _MainComponent {
       this.isloading = false;
     });
   }
-  analyzeAndTranslateCurrent(chunkindex) {
+  translateToTheEnd() {
     return __async(this, null, function* () {
-      yield this.retranslate(chunkindex);
-    });
-  }
-  analyzeAndTranslateToTheEnd() {
-    return __async(this, null, function* () {
-      yield this.analyzeToTheEnd(0);
       for (let index = 0; index < this.pageChunks.length; index++) {
         yield this.retranslate(index);
       }
@@ -43553,19 +43622,18 @@ var _MainComponent = class _MainComponent {
   analyzeToTheEnd(chunkindex) {
     return __async(this, null, function* () {
       var targetingSetting = {
-        name: this.settingService.settingValue.name
+        name: this.settingService.settingValue.name ? this.settingService.settingValue.name.join(",") : ""
       };
-      for (let index = chunkindex; index < this.pageChunks.length; index = index + 10) {
-        var textToTranslate = this.pageChunks.slice(index, index + 10).join("\r\n") ?? "";
-        var result = yield this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
-        if (!result) {
-          this.snackbar.open("Ph\xE2n t\xEDch b\u1ECB l\u1ED7i");
-          return;
-        }
-        targetingSetting.name = `${targetingSetting.name + result.name}, ${result.name}`;
+      var textToTranslate = this.originalResponse?.lines.join("\r\n") ?? "";
+      var result = yield this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
+      if (!result) {
+        this.snackbar.open("Ph\xE2n t\xEDch b\u1ECB l\u1ED7i");
+        return;
       }
-      this.settingService.settingValue.name = targetingSetting.name;
+      targetingSetting.name = `, ${targetingSetting.name} , ${result.name},`;
+      this.settingService.settingValue.name = [...new Set(targetingSetting.name.split(",").map((c) => c.trim()))];
       this.settingService.saveSetting(this.settingService.settingValue);
+      this.isloading = false;
     });
   }
   analyzeNameFromTextAndPreviousSetting(previousSetting, textToAnalyze) {
@@ -43722,16 +43790,16 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     let _t;
     \u0275\u0275queryRefresh(_t = \u0275\u0275loadQuery()) && (ctx.drawer = _t.first);
   }
-}, attrs: _c111, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["fxFlex", "80", "fxFlexOffset", "1", "div", "", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "input"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", 3, "value", "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], ["class", "full-width", 4, "ngFor", "ngForOf"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], [1, "full-width"], ["fxLayout", "row", "fxLayoutAlign", "start start"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click", 4, "ngIf"], ["matInput", "", 3, "value", "rows"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click"], ["color", "accent", "diameter", "20", 4, "ngIf"], ["color", "accent", "diameter", "20"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center"]], template: function MainComponent_Template(rf, ctx) {
+}, attrs: _c111, decls: 33, vars: 7, consts: [["autosize", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", 1, "container"], ["mode", "push", 1, "sidenav"], ["drawer", ""], ["top", ""], ["fxLayout", "column", "fxLayoutAlign", "space-between stretch"], ["fxLayout", "row", "fxLayoutAlign", "space-between center", "fxFlex", "12", 1, "header-bar"], ["fxLayout", "row", "type", "button", "mat-icon-button", "", "color", "primary", 1, "button", 3, "click"], ["fxFlex", "80", "fxFlexOffset", "1", "div", "", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "input"], ["placeholder", "B\u1EA1n nh\u1EADp ngu\u1ED3n truy\u1EC7n \u1EDF \u0111\xE2y...", "type", "text", 3, "value", "change"], ["input", ""], ["fxFlexOffset", "1", "type", "button", "mat-icon-button", "", "color", "primary", "fxLayout", "row", 1, "button", 3, "disabled", "click"], ["flex", "", "class", "sidenav-content full-height content", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 3, "scroll", 4, "ngIf"], ["fxFlex", "20", "fxLayout", "column", "fxLayoutAlign", "start stretch", 1, "full-width", "footer-bar"], ["fxLayout", "row", "fxLayoutAlign", "space-around center"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 1, "full-height", 3, "disabled", "click"], [3, "value", "disabled", "valueChange"], ["value", "origin"], ["value", "translated", 3, "click"], ["type", "button", "mat-raised-button", "", "color", "primary", "fxLayout", "row", "fxLayoutAlign", "end center", 3, "disabled", "click"], ["flex", "", "fxLayout", "column", "fxLayoutAlign", "space-between stretch", "fxFlex", "68", 1, "sidenav-content", "full-height", "content", 3, "scroll"], [4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "start start"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click", 4, "ngIf"], ["class", "full-width", 4, "ngFor", "ngForOf"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center", 4, "ngIf"], ["fxLayout", "row", "fxLayoutAlign", "center center", "mat-button", "", "color", "primary", 3, "disabled", "click"], ["color", "accent", "diameter", "20", 4, "ngIf"], ["color", "accent", "diameter", "20"], [1, "full-width"], ["matInput", "", 3, "value", "rows"], ["div", "", "fxLayout", "column", "fxLayoutAlign", "center center"]], template: function MainComponent_Template(rf, ctx) {
   if (rf & 1) {
-    const _r26 = \u0275\u0275getCurrentView();
+    const _r29 = \u0275\u0275getCurrentView();
     \u0275\u0275elementStart(0, "mat-drawer-container", 0)(1, "mat-drawer", 1, 2);
     \u0275\u0275element(3, "app-setting");
     \u0275\u0275elementEnd();
     \u0275\u0275element(4, "div", null, 3);
     \u0275\u0275elementStart(6, "mat-drawer-content", 4)(7, "mat-toolbar", 5)(8, "button", 6);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_8_listener() {
-      \u0275\u0275restoreView(_r26);
+      \u0275\u0275restoreView(_r29);
       const _r0 = \u0275\u0275reference(2);
       return \u0275\u0275resetView(_r0.toggle());
     });
@@ -43740,7 +43808,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275elementEnd()();
     \u0275\u0275elementStart(11, "div", 7)(12, "input", 8, 9);
     \u0275\u0275listener("change", function MainComponent_Template_input_change_12_listener() {
-      \u0275\u0275restoreView(_r26);
+      \u0275\u0275restoreView(_r29);
       const _r2 = \u0275\u0275reference(13);
       return \u0275\u0275resetView(ctx.openSetting(_r2.value));
     });
@@ -43755,7 +43823,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275template(17, MainComponent_div_17_Template, 2, 1, "div", 11);
     \u0275\u0275elementStart(18, "mat-toolbar", 12)(19, "div", 13)(20, "button", 14);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_20_listener() {
-      \u0275\u0275restoreView(_r26);
+      \u0275\u0275restoreView(_r29);
       const _r1 = \u0275\u0275reference(5);
       ctx.previous();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));
@@ -43780,7 +43848,7 @@ _MainComponent.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(30, "button", 18);
     \u0275\u0275listener("click", function MainComponent_Template_button_click_30_listener() {
-      \u0275\u0275restoreView(_r26);
+      \u0275\u0275restoreView(_r29);
       const _r1 = \u0275\u0275reference(5);
       ctx.next();
       return \u0275\u0275resetView(_r1.scrollIntoView(true));
