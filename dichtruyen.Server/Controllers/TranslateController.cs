@@ -32,18 +32,17 @@ namespace dichtruyen.Server.Controllers
                 //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
                 var stringbuilder = new StringBuilder();
                 stringbuilder.AppendLine($"Hãy {request.Promt} ");
-                stringbuilder.AppendLine("Với các dữ liệu sau, ");
-                stringbuilder.AppendLine($" ưu tiên dùng các tên riêng: {string.Join(", ", request.Name)}");
-                stringbuilder.AppendLine($" thể loại {request.Type},");
-                stringbuilder.AppendLine($" giọng văn: {request.Voice},");
-                stringbuilder.AppendLine($" bối cảnh: {request.Time},");
-                stringbuilder.AppendLine($" xưng hô {request.Role},");
+                stringbuilder.AppendLine(" Với các dữ liệu sau: ");
+                stringbuilder.AppendLine($" -ưu tiên sử dùng các tên riêng sau nếu đồng âm hoặc đồng ngĩa: {string.Join(", ", request.Name)}");
+                stringbuilder.AppendLine($" -thể loại {request.Type},");
+                stringbuilder.AppendLine($" -giọng văn: {request.Voice},");
+                stringbuilder.AppendLine($" -bối cảnh: {request.Time},");
+                stringbuilder.AppendLine($" -xưng hô {request.Role},");
                 if (request.AdditionalRequirements.Any())
                 {
-                    stringbuilder.AppendLine($" một số yêu cầu khác: {string.Join(",", request.AdditionalRequirements)} ");
+                    stringbuilder.AppendLine($" -một số yêu cầu khác: {string.Join(",", request.AdditionalRequirements)} ");
                 }                
-                stringbuilder.AppendLine($" ví dụ, input: {request.ExampleInput}, ");
-                stringbuilder.AppendLine($" output: {request.ExampleOutput}");
+                stringbuilder.AppendLine($" -ví dụ, input: {request.ExampleInput}, output: {request.ExampleOutput}");
                 stringbuilder.AppendLine($" sau đây là đoạn truyện:");
                 stringbuilder.AppendLine(request.TextToTranslate);
                 var promt = stringbuilder.ToString();
@@ -75,8 +74,8 @@ namespace dichtruyen.Server.Controllers
                     "Lưu ý:\r\n" +
                     "- Chỉ trả về kết quả JSON, không chứa thêm bất kỳ giải thích nào. Ví dụ: {\"name\":\"Lâm Phàm, Vân Tiêu Cốc\"}\r\n" +
                     "- Toàn bộ tên riêng được dịch sang tiếng Việt sử dụng cách dịch thông dụng nhất (dùng nhiều trong hộ chiếu, visa của công dân Trung Quốc).\r\n"+
-                    "- Kết quả trả về phải tổng hợp tất cả tên riêng. Kết quả trả về phải tổng hợp tất cả tên riêng. ví dụ: Kết quả đoạn truyện trước đó: {\"name\":\"Lâm Phàm\"}, kết quả phân tích của đoạn truyện đang phân tích: {\"name\": \"Tiêu Linh Nhi\"}, kết quả trả về: {\"name\": \"Lâm Phàm, Tiêu Linh Nhi\"}\r\n" +
-                    $"- Đây là kết quả phân tích của đoạn truyện trước đó: {JsonConvert.SerializeObject(request.PreviousResult)}";                    
+                    "- Kết quả trả về phải tổng hợp tất cả tên riêng. Kết quả trả về phải tổng hợp tất cả tên riêng của đoạn truyện đang phân tích và đoạn truyện trước đó. ví dụ: Kết quả đoạn truyện trước đó: {\"name\":\"Lâm Phàm\"}, kết quả phân tích của đoạn truyện đang phân tích: {\"name\": \"Tiêu Linh Nhi\"}, kết quả trả về: {\"name\": \"Lâm Phàm, Tiêu Linh Nhi\"}\r\n" +
+                    $"- Đây là kết quả JSON từ phân tích của đoạn truyện trước đó: {JsonConvert.SerializeObject(request.PreviousResult)}";                    
                 var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
                 var result = JsonConvert.DeserializeObject<AnalyzeResponse>(translatedText);
                 _logger.LogInformation($"Success");
