@@ -12,7 +12,7 @@ export interface ScanRequest {
 
 export interface SettingModel {
   lastUrl: string;
-  name: string[];
+  name: TranslateResult[];
   role: string;
   type: string;
   voice: string;
@@ -21,11 +21,13 @@ export interface SettingModel {
   exampleInput: string;
   exampleOutput: string;
   additional: AdditionalSettting[];
+  additionalRequirements: string[];
 }
+
+
 
 export interface TranslationProxyRequest extends SettingModel {
   textToTranslate: string;
-  additionalRequirements: string[];
 }
 
 export interface TranslationProxyResponse {
@@ -41,11 +43,17 @@ export interface SavedDataModel {
 }
 
 export interface AnalyzeResponse {
-  name: string;
+  name: TranslateResult[];
+}
+
+export interface TranslateResult
+{
+  origin:string;
+  translated:string;
 }
 
 
 export interface AnalyzeProxyRequest {
   text: string;
-  previousResult: AnalyzeResponse;
+  setting: SettingModel;
 }

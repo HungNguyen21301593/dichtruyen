@@ -1,4 +1,4 @@
-import { AnalyzeResponse } from './../interface';
+import { AnalyzeResponse, TranslateResult } from './../interface';
 import { AdditionalSettting } from './../additional-settting.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
   isloading = false;
   version: 'origin' | 'translated' = 'translated';
 
-  CHUNK_SIZE = 100;
+  CHUNK_SIZE = 80;
   UNKNOWN = 'Tùy ý';
   PRE_LOAD = 2000;
   title = 'Dọc Truyện Convert';
@@ -64,10 +64,10 @@ export class MainComponent implements OnInit {
       });
       return;
     }
-
-    if (!this.url.includes('metruyencv') && !this.url.includes('69shu')) {
+    //https://www.songyunshu.com/oqodrh/v7k2e1uvi.html
+    if (!this.url.includes('metruyencv') && !this.url.includes('69shu') &&  !this.url.includes('songyunshu')) {
       this.snackbar.open(
-        'Bạn vui lòng nhập nguồn từ ***metruyencv, 69shu*** nhé',
+        'Bạn vui lòng nhập nguồn từ ***metruyencv, 69shu***, songyunshu*** nhé',
         undefined,
         { duration: 3000 }
       );
@@ -109,10 +109,6 @@ export class MainComponent implements OnInit {
     return url;
   }
 
-  async retranslate(index: number) {
-    await this.translateSinglePageChunk(this.pageChunks[index], index);
-  }
-
   openSetting(newurl: string) {
     if (newurl !== this.url) {
       this.drawer.open();
@@ -152,40 +148,59 @@ export class MainComponent implements OnInit {
 
   async translateToTheEnd() {
     for (let index = 0; index < this.pageChunks.length; index++) {
-      await this.retranslate(index);
-     }
+      await this.translateSinglePageChunk(this.pageChunks[index], index);
+    }
   }
 
-  async analyzeToTheEnd(chunkindex:number)
-  {
-    var targetingSetting: AnalyzeResponse = {
-      name: this.settingService.settingValue.name
-        ? this.settingService.settingValue.name.join(',')
-        : '',
-    };
-    var textToTranslate = this.originalResponse?.lines.join('\r\n') ?? '';
-    var result = await this.analyzeNameFromTextAndPreviousSetting(targetingSetting, textToTranslate);
+  async analyzeToTheEnd(chunkindex: number) {
+    for (const pageChunk of this.pageChunks) {
+      var targetingSetting: AnalyzeResponse = {
+        name: this.settingService.settingValue.name,
+      };
+      var textToTranslate = pageChunk.join('\r\n') ?? '';
+      await this.analyzeText(targetingSetting, textToTranslate);
+    }
+  }
+
+  async analyzeText(
+    targetingSetting: AnalyzeResponse,
+    textToTranslate: string
+  ) {
+    var result = await this.analyzeNameFromTextAndPreviousSetting(
+      targetingSetting,
+      textToTranslate
+    );
     if (!result) {
-      this.snackbar.open("Phân tích bị lỗi")
+      this.snackbar.open('Phân tích bị lỗi');
       return;
     }
-    targetingSetting.name =  `, ${targetingSetting.name} , ${result.name},`;
-    this.settingService.settingValue.name = [...new Set(targetingSetting.name.split(',').map(c=>c.trim()))];
+    var analyzeResults = targetingSetting.name;
+
+    var filteredResults: TranslateResult[] = [];
+    analyzeResults.forEach((result) => {
+      var first = this.settingService.settingValue.name
+        .reverse()
+        .find((n) => n.origin == result.origin);
+      if (!first) {
+        filteredResults.push(result);
+      }
+    });
+    this.settingService.settingValue.name = [
+      ...new Set(filteredResults),
+      ...new Set(this.settingService.settingValue.name),
+    ];
     this.settingService.saveSetting(this.settingService.settingValue);
-    this.isloading = false
+    this.isloading = false;
   }
 
   async analyzeNameFromTextAndPreviousSetting(
     previousSetting: AnalyzeResponse,
-    textToAnalyze:string
+    textToAnalyze: string
   ): Promise<AnalyzeResponse | undefined> {
-    var previousResult: AnalyzeResponse = {
-      name: previousSetting.name,
-    };
     this.isloading = true;
     var request: AnalyzeProxyRequest = {
       text: textToAnalyze,
-      previousResult: previousResult,
+      setting: this.settingService.settingValue
     };
 
     const headers: HttpHeaders = new HttpHeaders();
@@ -214,8 +229,18 @@ export class MainComponent implements OnInit {
 
   getPageChunk(originalMasterPage: ScanResponse) {
     var pages: string[][] = [[]];
-    for (let i = 0; i < originalMasterPage.lines.length; i += this.CHUNK_SIZE) {
-      const chunk = originalMasterPage.lines.slice(i, i + this.CHUNK_SIZE);
+    var formartedlines = originalMasterPage.lines
+      .filter((l) => l)
+      .map((l) =>
+        l
+          .replaceAll('\t', '')
+          .replaceAll(
+            /[\u00A0\u1680​\u180e\u2000-\u2009\u200a​\u200b​\u202f\u205f​\u3000]/g,
+            ''
+          )
+      );
+    for (let i = 0; i < formartedlines.length; i += this.CHUNK_SIZE) {
+      const chunk = formartedlines.slice(i, i + this.CHUNK_SIZE);
       pages.push(chunk);
     }
     pages.shift();
@@ -233,9 +258,15 @@ export class MainComponent implements OnInit {
     this.isloading = true;
     this.translatedPageChunks[index] = [];
     var textToTranslate = page.join('\n');
+    this.settingService.settingValue.name.reverse().forEach((name) => {
+      textToTranslate = textToTranslate.replaceAll(
+        name.origin,
+        name.translated
+      );
+    });
     var currentSetting = this.settingService.settingValue;
     var request: TranslationProxyRequest = {
-      name: currentSetting.name ?? this.UNKNOWN,
+      name: currentSetting.name ?? [],
       role: currentSetting.role ?? this.UNKNOWN,
       time: currentSetting.time ?? this.UNKNOWN,
       type: currentSetting.type ?? this.UNKNOWN,
@@ -264,7 +295,9 @@ export class MainComponent implements OnInit {
         return;
       }
       console.log(result);
-      this.translatedPageChunks[index] = result.translatedLines;
+      this.translatedPageChunks[index] = result.translatedLines.map((line) =>
+        this.removeChineseCharacters(line)
+      );
       this.isloading = false;
       this.saveCurrentChapterToData();
       this.ref.markForCheck();
@@ -273,6 +306,11 @@ export class MainComponent implements OnInit {
       this.isloading = false;
       this.ref.markForCheck();
     }
+  }
+
+  removeChineseCharacters(text: string) {
+    console.log(text);
+    return text.replace(/[\u4E00-\u9FFF]/g, '');
   }
 
   mapToAdditionalRequirements(settings: AdditionalSettting[]) {

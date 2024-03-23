@@ -3,6 +3,6 @@
     public class AnalyzeProxyRequest
     {
         public string Text { get; set; }
-        public AnalyzeResponse PreviousResult { get; set; }
+        public SettingModel Setting { get; set; }
     }
 }

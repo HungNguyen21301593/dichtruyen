@@ -45,7 +45,7 @@
           <div *ngIf="version=='translated'">
             <div fxLayout="row" fxLayoutAlign="start start" >
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-                [disabled]="isloading" mat-button color="primary" (click)="retranslate(i)">
+                [disabled]="isloading" mat-button color="primary" (click)="translateSinglePageChunk(pageChunks[i], i)">
                 <span>Dịch</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
@@ -53,14 +53,14 @@
 
             </div>
             <mat-form-field class="full-width">
-              <textarea matInput [value]="(translatedPageChunks[i]??[]).join('\r\n')" [rows]="20">
+              <textarea matInput [value]="(translatedPageChunks[i]??[]).join('\r\n \r\n')" [rows]="20">
               </textarea>
             </mat-form-field>
           </div>
 
           <div *ngIf="version=='origin'">
             <mat-form-field class="full-width">
-              <textarea matInput [value]="pageChunks[i].join('\r\n')" [rows]="20">
+              <textarea matInput [value]="pageChunks[i].join('\r\n \r\n')" [rows]="20">
               </textarea>
             </mat-form-field>
           </div>

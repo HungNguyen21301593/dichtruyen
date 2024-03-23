@@ -1,3 +1,4 @@
+import { AdditionalSettting } from './additional-settting.enum';
 import { SavedDataModel, SettingModel } from './interface';
 import { Injectable, Type } from '@angular/core';
 
@@ -16,8 +17,9 @@ export class SettingService {
     exampleInput: '',
     exampleOutput: '',
     promt: '',
-    lastUrl:'',
-    additional:[],
+    lastUrl: '',
+    additional: [],
+    additionalRequirements: [],
   };
 
   private initDataValue: SavedDataModel[] = [];
@@ -30,7 +32,29 @@ export class SettingService {
     this.dataValue = this.load(this.dataKey);
   }
 
+  mapToAdditionalRequirements(settings: AdditionalSettting[]) {
+    return settings.map((key) => {
+      switch (key.toString()) {
+        case 'GiuNguyenCadao':
+          return AdditionalSettting.GiuNguyenCadao.toString();
+          break;
+        case 'GiuNguyenThuTuTen':
+          return AdditionalSettting.GiuNguyenThuTuTen.toString();
+          break;
+        case 'SoDemHanViet':
+          return AdditionalSettting.SoDemHanViet.toString();
+          break;
+        default:
+          return '';
+          break;
+      }
+    });
+  }
+
   saveSetting(value: SettingModel) {
+    value.additionalRequirements = this.mapToAdditionalRequirements(
+      this.settingValue.additional
+    );
     this.settingValue = value;
     this.save(this.settingKey, value);
   }

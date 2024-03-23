@@ -33,7 +33,7 @@ namespace dichtruyen.Server.Controllers
                 var stringbuilder = new StringBuilder();
                 stringbuilder.AppendLine($"Hãy {request.Promt} ");
                 stringbuilder.AppendLine(" Với các dữ liệu sau: ");
-                stringbuilder.AppendLine($" -ưu tiên sử dùng các tên riêng sau nếu đồng âm hoặc đồng ngĩa: {string.Join(", ", request.Name)}");
+                stringbuilder.AppendLine($" -ưu tiên sử dùng các phép dịch sau: {string.Join(", ", request.Name.Select(n => $"{n.Origin} -> {n.Translated}"))}");
                 stringbuilder.AppendLine($" -thể loại {request.Type},");
                 stringbuilder.AppendLine($" -giọng văn: {request.Voice},");
                 stringbuilder.AppendLine($" -bối cảnh: {request.Time},");
@@ -67,24 +67,28 @@ namespace dichtruyen.Server.Controllers
             try
             {
                 _logger.LogInformation($"Received {DateTime.Now} {JsonConvert.SerializeObject(request)}");
-                //hãy sửa lại đoạn truyện sau cho đúng ngữ pháp tiếng việt và trả về kết quả đã chỉnh sửa
-                var promt = $" Cho đoạn truyện: {request.Text}" +
-                    "Hãy phân tích tên riêng, tên địa danh, tên đồ vật trong đoạn truyện sau và trả về kết quả JSON theo mẫu:\r\n" +
-                   "{\"name\":\"tên riêng, tên địa danh, tên đồ vật\"} \r\n" +
-                    "Lưu ý:\r\n" +
-                    "- Chỉ trả về kết quả JSON, không chứa thêm bất kỳ giải thích nào. Ví dụ: {\"name\":\"Lâm Phàm, Vân Tiêu Cốc\"}\r\n" +
-                    "- Toàn bộ tên riêng được dịch sang tiếng Việt sử dụng cách dịch thông dụng nhất (dùng nhiều trong hộ chiếu, visa của công dân Trung Quốc).\r\n"+
-                    "- Kết quả trả về phải tổng hợp tất cả tên riêng. Kết quả trả về phải tổng hợp tất cả tên riêng của đoạn truyện đang phân tích và đoạn truyện trước đó. ví dụ: Kết quả đoạn truyện trước đó: {\"name\":\"Lâm Phàm\"}, kết quả phân tích của đoạn truyện đang phân tích: {\"name\": \"Tiêu Linh Nhi\"}, kết quả trả về: {\"name\": \"Lâm Phàm, Tiêu Linh Nhi\"}\r\n" +
-                    $"- Đây là kết quả JSON từ phân tích của đoạn truyện trước đó: {JsonConvert.SerializeObject(request.PreviousResult)}";                    
-                var translatedText = await CallGenerateContentApi(promt, API_KEY) ?? "";
-                var result = JsonConvert.DeserializeObject<AnalyzeResponse>(translatedText);
+
+                var additonalRequirements = string.Join("-", request.Setting.AdditionalRequirements);
+
+                var promtListout = $"Liệt kê **tất cả** các **danh từ riêng** trong đoạn truyện sau: {request.Text}  bao gồm: " +
+                    $"tên nhân vật, đồ vật, địa danh, khái niệm **tiếng trung quốc** và trả về kết quả theo cấu trúc" +
+                    $"ví dụ: [范坚强,萧灵儿,笑容]  " +
+                    $"Lưu ý: - chỉ trả về kết quả, không giải thích gì thêm. - chỉ trả về 1 kết quả chứa tất cả các tên riêng";                    
+                var names = await CallGenerateContentApi(promtListout, API_KEY) ?? "";
+
+                var promtTranslate = $"Dịch các danh từ sau: {names} sang tiếng Việt sử dụng cách dịch phổ biến nhất, trong trường hợp từ có nhiều nghĩa, hãy chọn cách dịch có âm đọc thuần việt nhất. " +
+                    $" Lưu ý: {additonalRequirements} " +
+                    $"Trả về kết quả JSON hoàn chỉnh, không được rút gọn.\r\n" +
+                    $"ví dụ:\r\n{{ \"name\": [{{\"origin:\"范坚强\", \"translated\":\"Phạm Kiên Cường\"}},  {{\"origin:\"萧灵儿\", \"translated\":\"Tiêu Linh Nhi}} ]}}";
+                var translateResult = await CallGenerateContentApi(promtTranslate, API_KEY) ?? "";
+                var result = JsonConvert.DeserializeObject<AnalyzeResponse>(translateResult.Replace("json","").Trim());
                 _logger.LogInformation($"Success");
                 return new OkObjectResult(result);
             }
             catch (Exception e)
             {
                 _logger.LogError($"Failed: {e.Message}");
-                return new OkObjectResult(new AnalyzeResponse { name = "" });
+                return new OkObjectResult(new AnalyzeResponse { name = [] });
             }
         }
 

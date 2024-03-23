@@ -29,9 +29,9 @@ namespace dichtruyen.Server.Controllers
             {
                 return BadRequest("Url is required");
             }
-            if (!request.Url.Contains("metruyencv") && !request.Url.Contains("69shu"))
+            if (!request.Url.Contains("metruyencv") && !request.Url.Contains("69shu") && !request.Url.Contains("songyunshu"))
             {
-                return BadRequest("Chỉ hỗ trợ nguồn truyện metruyencv, 69shu");
+                return BadRequest("Chỉ hỗ trợ nguồn truyện metruyencv, 69shu, songyunshu");
             }
 
 
@@ -57,12 +57,7 @@ namespace dichtruyen.Server.Controllers
 
             if (url.Contains("metruyencv"))
             {
-                var document = await BrowsingContext.New(config).OpenAsync(url);
-
-                if (document == null)
-                {
-                    throw new Exception("Failed to load the website");
-                }
+                var document = await BrowsingContext.New(config).OpenAsync(url) ?? throw new Exception("Failed to load the website");
 
 
                 // Extract text from the website
@@ -89,26 +84,41 @@ namespace dichtruyen.Server.Controllers
 
             if (url.Contains("69shu"))
             {
-                var document = await BrowsingContext.New(config).OpenAsync(url);
-
-                if (document == null)
-                {
-                    throw new Exception("Failed to load the website");
-                }
+                var document = await BrowsingContext.New(config).OpenAsync(url) ?? throw new Exception("Failed to load the website");
 
 
                 // Extract text from the website
                 var title = document.QuerySelector("h1.hide720").TextContent;
-                var articleNodes = document.QuerySelector(".txtnav").ChildNodes;
-                if (articleNodes == null)
-                {
-                    throw new Exception("Failed to load the website");
-                }
+                var articleNodes = document.QuerySelector(".txtnav").ChildNodes ?? throw new Exception("Failed to load the website");
                 var lines = new List<string>();
                 foreach (var node in articleNodes.ToList())
                 {
 
                     lines.Add(node.TextContent);
+                }
+
+                return new ScanReqsponse
+                {
+                    Url = url,
+                    Title = title ?? "",
+                    lines = lines
+                };
+            }
+
+            if (url.Contains("songyunshu"))
+            {
+                var document = await BrowsingContext.New(config).OpenAsync(url) ?? throw new Exception("Failed to load the website");
+
+
+                // Extract text from the website
+                var title = document.QuerySelector("h1.bookname").TextContent;
+                var articleNodes = document.QuerySelector("#content").ChildNodes ?? throw new Exception("Failed to load the website");
+                var lines = new List<string>();
+                foreach (var node in articleNodes
+                    .ToList())
+                {
+
+                    lines.Add(node.Text());
                 }
 
                 return new ScanReqsponse

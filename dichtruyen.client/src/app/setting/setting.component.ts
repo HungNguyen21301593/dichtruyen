@@ -4,6 +4,7 @@ import { SettingService } from '../setting.service';
 import { SettingModel } from '../interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { AdditionalSettting } from '../additional-settting.enum';
 
 @Component({
   selector: 'app-setting',
@@ -39,8 +40,11 @@ export class SettingComponent implements OnInit {
     const data = this.formGroup.value;
     var newSetting: SettingModel = data;
     this.settingService.saveSetting(newSetting);
+
     this.snackBar.open('Cập nhật hoàn tất', undefined, { duration: 1000 });
   }
+
+
 
   splitName()
   {

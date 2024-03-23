@@ -34,7 +34,7 @@
     <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
       <mat-label>Xưng hô</mat-label>
       <mat-select formControlName="role">
-        <mat-option value="hắn - ta - ngươi, chàng - nàng, huynh-đệ, tỉ - muội">hắn, ta - ngươi, ...</mat-option>
+        <mat-option value="hắn - ta - ngươi, huynh - đệ, tỉ - muội">hắn, ta - ngươi, ...</mat-option>
         <mat-option value="tôi - bạn, anh - em, cha - mẹ, anh - em, chị - em">tôi - bạn, anh - em,...</mat-option>
         <mat-option value="Tùy ý">Tùy ý</mat-option>
       </mat-select>
@@ -67,14 +67,17 @@
 
     <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
       <mat-select formControlName="name" multiple>
+        <input matInput >
         <mat-select-trigger>
         </mat-select-trigger>
-        <mat-option *ngFor="let name of (formGroup.get('name')?.value)" [value]="name">{{name}}</mat-option>
+        <mat-option *ngFor="let name of (formGroup.get('name')?.value)" [value]="name">{{name.translated}}</mat-option>
       </mat-select>
-      <mat-chip-grid #chipGrid>
-        <mat-chip-option *ngFor="let item of (formGroup.get('name')?.value)">{{item}}</mat-chip-option>
-      </mat-chip-grid>
+
     </mat-form-field>
+    <mat-chip-listbox>
+      <mat-chip-option *ngFor="let name of (formGroup.get('name')?.value)">{{name.origin+ "->"+
+        name.translated}}</mat-chip-option>
+    </mat-chip-listbox>
   </div>
 
 
