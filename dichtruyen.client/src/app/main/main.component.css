@@ -28,6 +28,11 @@
   padding-bottom: 22px;
 }
 
+.novel-selection
+{
+  width: 50vw;
+}
+
 .mat-icon {
   vertical-align: middle;
 }

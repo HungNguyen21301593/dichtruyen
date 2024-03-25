@@ -6,46 +6,54 @@
   <mat-drawer-content fxLayout="column" fxLayoutAlign="space-between stretch">
 
     <mat-toolbar class="header-bar" fxLayout="row" fxLayoutAlign="space-between center" fxFlex="12">
-      <button fxLayout="row" class="button" type="button" mat-icon-button color="primary" (click)="drawer.toggle()">
+      <button fxLayout="row" class="button" type="button" mat-icon-button color="accent" (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <div fxFlex="80" fxFlexOffset="1" class="input" div fxLayout="column" fxLayoutAlign="start stretch">
         <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text" #input (change)="openSetting(input.value)"
           [value]="url">
       </div>
-
-      <button class="button" fxFlexOffset="1" [disabled]="isloading" type="button" mat-icon-button color="primary"
+      <button class="button" fxFlexOffset="1" [disabled]="isloading" type="button" mat-icon-button color="accent"
         (click)="submit()" fxLayout="row">
         <mat-icon>subdirectory_arrow_right</mat-icon>
       </button>
     </mat-toolbar>
     <div *ngIf="originalResponse" flex class="sidenav-content full-height content" fxLayout="column"
-      fxLayoutAlign="space-between stretch" fxFlex="68" (scroll)="onScroll($event)">
+      fxLayoutAlign="space-between stretch" fxFlex="68">
       <div *ngIf="originalResponse">
+        <div fxLayout="column" fxLayoutAlign="start center" class="full-width">
+          <div fxLayout="row" fxLayoutAlign="center start" class="full-width">
+            <mat-form-field [color]="'accent'">
+              <mat-label>Chọn Truyện</mat-label>
+              <mat-select (valueChange)="novelSettingChanged($event)" #novelSelection>
+                <mat-option *ngFor="let novel of allnovels | keyvalue"
+                  [value]="{key: novel.key, setting:novel.value.setting}">{{novel.value.setting.novelName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
         <p>{{originalResponse.title}}
         </p>
-        <div fxLayout="row" fxLayoutAlign="start start" >
+        <div fxLayout="row" fxLayoutAlign="start start">
           <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-            [disabled]="isloading" mat-button color="primary" (click)="analyzeToTheEnd(0)">
+            [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="analyzeToTheEnd(0)">
             <span>Phân tích tên</span>
-            <mat-icon><mat-spinner *ngIf="isloading" color="accent"
-                diameter="20"></mat-spinner></mat-icon>
+            <mat-icon><mat-spinner *ngIf="isloading" color="accent" diameter="20"></mat-spinner></mat-icon>
           </button>
 
           <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-            [disabled]="isloading" mat-button color="primary" (click)="translateToTheEnd()">
+            [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="translateToTheEnd()">
             <span>Dịch hết</span>
-            <mat-icon><mat-spinner *ngIf="isloading" color="accent"
-                diameter="20"></mat-spinner></mat-icon>
+            <mat-icon><mat-spinner *ngIf="isloading" color="accent" diameter="20"></mat-spinner></mat-icon>
           </button>
         </div>
         <div *ngFor="let pageChunk of pageChunks; let i=index" class="full-width">
           <p>Phần {{i+1}}:
           </p>
           <div *ngIf="version=='translated'">
-            <div fxLayout="row" fxLayoutAlign="start start" >
+            <div fxLayout="row" fxLayoutAlign="start start">
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-                [disabled]="isloading" mat-button color="primary" (click)="translateSinglePageChunk(pageChunks[i], i)">
+                [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="translateSinglePageChunk(pageChunks[i], i)">
                 <span>Dịch</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
@@ -67,7 +75,6 @@
           <br>
           <br>
         </div>
-        <!-- <mat-spinner *ngIf="isloading" color="accent" diameter="30"></mat-spinner> -->
 
         <div *ngIf="originalResponse" div fxLayout="column" fxLayoutAlign="center center">
           <app-donate></app-donate>
@@ -78,7 +85,7 @@
 
     <mat-toolbar class="full-width footer-bar" fxFlex="20" fxLayout="column" fxLayoutAlign="start stretch">
       <div fxLayout="row" fxLayoutAlign="space-around center">
-        <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center"
+        <button type="button" mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="end center"
           class="full-height" [disabled]="!originalResponse" (click)="previous(); top.scrollIntoView(true)">
           <mat-icon>chevron_left</mat-icon>
         </button>
@@ -88,7 +95,7 @@
           <mat-button-toggle (click)="copy()" value="translated"> <mat-icon>translate</mat-icon></mat-button-toggle>
         </mat-button-toggle-group>
 
-        <button type="button" mat-raised-button color="primary" fxLayout="row" fxLayoutAlign="end center"
+        <button type="button" mat-raised-button color="accent" fxLayout="row" fxLayoutAlign="end center"
           [disabled]="!originalResponse" (click)="next(); top.scrollIntoView(true)">
           <mat-icon>chevron_right</mat-icon>
         </button>

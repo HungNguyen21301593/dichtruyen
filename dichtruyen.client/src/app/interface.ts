@@ -12,6 +12,7 @@ export interface ScanRequest {
 
 export interface SettingModel {
   lastUrl: string;
+  novelName:string;
   name: TranslateResult[];
   role: string;
   type: string;
@@ -56,4 +57,15 @@ export interface TranslateResult
 export interface AnalyzeProxyRequest {
   text: string;
   setting: SettingModel;
+}
+
+
+export interface NovelsSetting{
+  key:string;
+  setting: SettingModel;
+}
+
+
+export interface Dictionary<T> {
+  [Key: string]: T;
 }

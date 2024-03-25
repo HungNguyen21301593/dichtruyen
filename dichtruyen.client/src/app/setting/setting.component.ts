@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { SettingService } from '../setting.service';
-import { SettingModel } from '../interface';
+import { NovelsSetting, SettingModel } from '../interface';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { AdditionalSettting } from '../additional-settting.enum';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-setting',
@@ -14,40 +15,80 @@ import { AdditionalSettting } from '../additional-settting.enum';
 export class SettingComponent implements OnInit {
   translatedText: string = '';
   UNKNOWN = 'Tùy ý';
+  selectedNovelId: string | null | undefined = undefined;
+  selectedNovel: NovelsSetting | null = null;
+  allnovels: Map<string, NovelsSetting> | undefined;
   formGroup: FormGroup = this.fb.group({
+    // novelId: ['', undefined],
+    novelName: ['', undefined],
     name: [[], undefined],
     role: [this.UNKNOWN, undefined],
     type: [this.UNKNOWN, undefined],
     voice: [this.UNKNOWN, undefined],
     time: [this.UNKNOWN, undefined],
     text: [this.UNKNOWN, undefined],
-    promt: ['Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa:', undefined],
+    promt: [
+      'Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa:',
+      undefined,
+    ],
     additional: [[], undefined],
   });
   constructor(
     private fb: FormBuilder,
-    private settingService: SettingService,
-    private snackBar: MatSnackBar
+    public settingService: SettingService,
+    private snackBar: MatSnackBar,
+    private ref: ChangeDetectorRef
   ) {}
-  ngOnInit(): void {
-    this.formGroup.patchValue(this.settingService.settingValue);
+  async ngOnInit(): Promise<void> {
+    this.allnovels = await this.settingService.getAll();
+    console.log(this.allnovels);
   }
 
-  submit() {
+  changed(value: string) {
+    this.selectedNovelId = value;
+    if (this.selectedNovelId === '') {
+      this.selectedNovel = null;
+      this.formGroup.reset();
+      this.ref.markForCheck();
+      return;
+    }
+    if (this.allnovels === undefined) {
+      return;
+    }
+    this.selectedNovel = (this.allnovels as any)[this.selectedNovelId];
+
+    if (!this.selectedNovel?.setting) {
+      return;
+    }
+    this.formGroup.patchValue(this.selectedNovel?.setting);
+    this.ref.markForCheck();
+  }
+
+  async submit() {
     if (!this.formGroup.valid) {
       return;
     }
     const data = this.formGroup.value;
     var newSetting: SettingModel = data;
-    this.settingService.saveSetting(newSetting);
-
-    this.snackBar.open('Cập nhật hoàn tất', undefined, { duration: 1000 });
+    if (!this.selectedNovelId) {
+      this.selectedNovel = await this.settingService.createNewNovel(
+        newSetting
+      );
+      this.snackBar.open('Tạo mới hoàn tất', undefined, { duration: 1000 });
+      this.allnovels = await this.settingService.getAll();
+      return;
+    } else {
+      await this.settingService.saveNovelSetting(
+        this.selectedNovelId,
+        newSetting
+      );
+      this.snackBar.open('Cập nhật hoàn tất', undefined, { duration: 1000 });
+      this.allnovels = await this.settingService.getAll();
+      return;
+    }
   }
 
-
-
-  splitName()
-  {
+  splitName() {
     return this.formGroup.get('name')?.value as string[];
   }
 

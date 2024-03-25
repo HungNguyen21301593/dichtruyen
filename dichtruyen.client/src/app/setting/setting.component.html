@@ -2,86 +2,104 @@
   <span>
     Cài đặt thiết lập cho truyện, có thể bỏ qua !!!
   </span>
+  <mat-divider></mat-divider>
   <div fxLayout="column" fxLayoutAlign="start start">
     <mat-form-field class="form-field full-width" [color]="'accent'">
-      <mat-label>Thời đại</mat-label>
-      <mat-select formControlName="time">
-        <mat-option value="Cổ đại">Cổ đại</mat-option>
-        <mat-option value="Hiện đại">Hiện đại</mat-option>
-        <mat-option value="Tùy ý">Tùy ý</mat-option>
+      <mat-label>Chọn Truyện</mat-label>
+      <mat-select (valueChange)="changed($event)" [(value)]="selectedNovelId">
+        <mat-option *ngFor="let novel of allnovels | keyvalue"
+          [value]="novel.key">{{novel.value.setting.novelName}}</mat-option>
+        <mat-option [value]="''">***Tạo truyện mới***</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field class="form-field full-width" [color]="'accent'">
-      <mat-label>Thể loại</mat-label>
-      <mat-select formControlName="type">
-        <mat-option value="Tu tiên">Tu tiên</mat-option>
-        <mat-option value="Đô thị">Đô thị</mat-option>
-        <mat-option value="Võng du">Võng du</mat-option>
-        <mat-option value="Tùy ý">Tùy ý</mat-option>
-      </mat-select>
-    </mat-form-field>
 
-    <mat-form-field class="form-field full-width" [color]="'accent'">
-      <mat-label>Giọng văn</mat-label>
-      <mat-select formControlName="voice">
-        <mat-option value="Hài hước">Hài hước</mat-option>
-        <mat-option value="Nghiêm túc">Nghiêm túc</mat-option>
-        <mat-option value="Tùy ý">Tùy ý</mat-option>
-      </mat-select>
-    </mat-form-field>
+    <div *ngIf="selectedNovelId !== undefined" class="full-width">
+      <div class="full-width" *ngIf="this.selectedNovelId == ''">
+        <mat-form-field class="form-field full-width" [color]="'accent'">
+          <mat-label>Điền Tên Truyện</mat-label>
+          <input matInput formControlName="novelName">
+        </mat-form-field>
+      </div>
+      <mat-form-field class="form-field full-width" [color]="'accent'">
+        <mat-label>Thời đại</mat-label>
+        <mat-select formControlName="time">
+          <mat-option value="Cổ đại">Cổ đại</mat-option>
+          <mat-option value="Hiện đại">Hiện đại</mat-option>
+          <mat-option value="Tùy ý">Tùy ý</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
-      <mat-label>Xưng hô</mat-label>
-      <mat-select formControlName="role">
-        <mat-option value="hắn - ta - ngươi, huynh - đệ, tỉ - muội">hắn, ta - ngươi, ...</mat-option>
-        <mat-option value="tôi - bạn, anh - em, cha - mẹ, anh - em, chị - em">tôi - bạn, anh - em,...</mat-option>
-        <mat-option value="Tùy ý">Tùy ý</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field class="form-field full-width" [color]="'accent'">
+        <mat-label>Thể loại</mat-label>
+        <mat-select formControlName="type">
+          <mat-option value="Tu tiên">Tu tiên</mat-option>
+          <mat-option value="Đô thị">Đô thị</mat-option>
+          <mat-option value="Võng du">Võng du</mat-option>
+          <mat-option value="Tùy ý">Tùy ý</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
-      <mat-label>Câu promt</mat-label>
-      <mat-select formControlName="promt">
-        <mat-option value="Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa">Edit truyện
-          convert</mat-option>
-        <mat-option value="hãy dịch lại đoạn truyện sau cho thuần Việt và chỉ trả về kết quả đã dịch">Dịch truyện tiếng
-          trung</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field class="form-field full-width" [color]="'accent'">
+        <mat-label>Giọng văn</mat-label>
+        <mat-select formControlName="voice">
+          <mat-option value="Hài hước">Hài hước</mat-option>
+          <mat-option value="Nghiêm túc">Nghiêm túc</mat-option>
+          <mat-option value="Tùy ý">Tùy ý</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
-      <mat-label>Các yều cầu khác</mat-label>
-      <mat-select formControlName="additional" multiple>
-        <mat-select-trigger>
-        </mat-select-trigger>
-        <mat-option [value]="'GiuNguyenThuTuTen'">Giữ nguyên thứ tự tên riêng, ví dụ : Lãm Nguyệt Tông, Ngọc Lân Cung,
-          Mã sư huynh'</mat-option>
-        <mat-option [value]="'GiuNguyenCadao'">Giữ nguyên ca giao, tục ngữ, thơ</mat-option>
-        <mat-option [value]="'SoDemHanViet'">Dùng số đếm Hán Việt: nhất, nhị, tam</mat-option>
-      </mat-select>
-      <mat-chip-listbox aria-label="Fish selection">
-        <mat-chip-option *ngFor="let item of (formGroup.get('additional')?.value)">{{item}}</mat-chip-option>
+      <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
+        <mat-label>Xưng hô</mat-label>
+        <mat-select formControlName="role">
+          <mat-option value="hắn - ta - ngươi, huynh - đệ, tỉ - muội">hắn, ta - ngươi, ...</mat-option>
+          <mat-option value="tôi - bạn, anh - em, cha - mẹ, anh - em, chị - em">tôi - bạn, anh - em,...</mat-option>
+          <mat-option value="Tùy ý">Tùy ý</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
+        <mat-label>Câu promt</mat-label>
+        <mat-select formControlName="promt">
+          <mat-option value="Hãy sửa lại đoạn truyện sau cho Thuần Việt và chỉ trả về kết quả đã chỉnh sửa">Edit truyện
+            convert</mat-option>
+          <mat-option value="hãy dịch lại đoạn truyện sau cho thuần Việt và chỉ trả về kết quả đã dịch">Dịch truyện
+            tiếng
+            trung</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
+        <mat-label>Các yều cầu khác</mat-label>
+        <mat-select formControlName="additional" multiple>
+          <mat-select-trigger>
+          </mat-select-trigger>
+          <mat-option [value]="'GiuNguyenThuTuTen'">Giữ nguyên thứ tự tên riêng, ví dụ : Lãm Nguyệt Tông, Ngọc Lân Cung,
+            Mã sư huynh'</mat-option>
+          <mat-option [value]="'GiuNguyenCadao'">Giữ nguyên ca giao, tục ngữ, thơ</mat-option>
+          <mat-option [value]="'SoDemHanViet'">Dùng số đếm Hán Việt: nhất, nhị, tam</mat-option>
+        </mat-select>
+        <mat-chip-listbox aria-label="Fish selection">
+          <mat-chip-option *ngFor="let item of (formGroup.get('additional')?.value)">{{item}}</mat-chip-option>
+        </mat-chip-listbox>
+      </mat-form-field>
+
+      <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
+        <mat-select formControlName="name" multiple>
+          <input matInput>
+          <mat-select-trigger>
+          </mat-select-trigger>
+          <mat-option *ngFor="let name of (formGroup.get('name')?.value)"
+            [value]="name">{{name.translated}}</mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <mat-chip-listbox>
+        <mat-chip-option *ngFor="let name of (formGroup.get('name')?.value)">{{name.origin+ "->"+
+          name.translated}}</mat-chip-option>
       </mat-chip-listbox>
-    </mat-form-field>
-
-    <mat-form-field class="form-field full-width" appearance="fill" [color]="'accent'">
-      <mat-select formControlName="name" multiple>
-        <input matInput >
-        <mat-select-trigger>
-        </mat-select-trigger>
-        <mat-option *ngFor="let name of (formGroup.get('name')?.value)" [value]="name">{{name.translated}}</mat-option>
-      </mat-select>
-
-    </mat-form-field>
-    <mat-chip-listbox>
-      <mat-chip-option *ngFor="let name of (formGroup.get('name')?.value)">{{name.origin+ "->"+
-        name.translated}}</mat-chip-option>
-    </mat-chip-listbox>
+    </div>
   </div>
-
-
-  <br>
   <button mat-raised-button color="accent" (click)="submit()">
     <mat-icon>save</mat-icon>Lưu lại</button>
 </form>

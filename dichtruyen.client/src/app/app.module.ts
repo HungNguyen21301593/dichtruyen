@@ -27,8 +27,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { AdContainerComponent } from './ad.container/ad.container.component';
-import {MatChipsModule} from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MainComponent } from './main/main.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from '../environment';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,9 @@ import { MainComponent } from './main/main.component';
     MatDialogModule,
     MatProgressBarModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

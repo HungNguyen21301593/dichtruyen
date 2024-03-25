@@ -1,4 +1,4 @@
-import { AnalyzeResponse, TranslateResult } from './../interface';
+import { AnalyzeResponse, NovelsSetting, TranslateResult } from './../interface';
 import { AdditionalSettting } from './../additional-settting.enum';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -28,6 +28,7 @@ export class MainComponent implements OnInit {
   public pageChunks: string[][] = [[]];
   public translatedPageChunks: string[][] = [[]];
   public currentpageIndex = 0;
+  allnovels: Map<string, NovelsSetting> | undefined;
   url: string = '';
   isloading = false;
   version: 'origin' | 'translated' = 'translated';
@@ -38,16 +39,18 @@ export class MainComponent implements OnInit {
   title = 'Dọc Truyện Convert';
 
   constructor(
-    private http: HttpClient,
+
     private ref: ChangeDetectorRef,
     private settingService: SettingService,
     public dialog: MatDialog,
     private snackbar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.allnovels = await this.settingService.getAll();
     this.activatedRoute.queryParams.subscribe((queryParams) => {
       var urlFromRoute = queryParams['url'];
       if (urlFromRoute) {
@@ -64,7 +67,6 @@ export class MainComponent implements OnInit {
       });
       return;
     }
-    //https://www.songyunshu.com/oqodrh/v7k2e1uvi.html
     if (!this.url.includes('metruyencv') && !this.url.includes('69shu') &&  !this.url.includes('songyunshu')) {
       this.snackbar.open(
         'Bạn vui lòng nhập nguồn từ ***metruyencv, 69shu***, songyunshu*** nhé',
@@ -93,8 +95,9 @@ export class MainComponent implements OnInit {
     this.translatedPageChunks = [[]];
   }
 
-  runads() {
-    this.dialog.open(AdComponent, { hasBackdrop: true, disableClose: true });
+  novelSettingChanged(novelSetting: NovelsSetting)
+  {
+    this.settingService.currentSettingValue.next(novelSetting);
   }
 
   getNewChapterUrl(url: string, add: number): string {
@@ -141,6 +144,7 @@ export class MainComponent implements OnInit {
         },
         (error) => {
           console.error(error);
+          this.snackbar.open('Lỗi', 'Ok', { duration: 100000 });
           this.isloading = false;
         }
       );
@@ -153,78 +157,19 @@ export class MainComponent implements OnInit {
   }
 
   async analyzeToTheEnd(chunkindex: number) {
-    for (const pageChunk of this.pageChunks) {
-      var targetingSetting: AnalyzeResponse = {
-        name: this.settingService.settingValue.name,
-      };
-      var textToTranslate = pageChunk.join('\r\n') ?? '';
-      await this.analyzeText(targetingSetting, textToTranslate);
-    }
-  }
-
-  async analyzeText(
-    targetingSetting: AnalyzeResponse,
-    textToTranslate: string
-  ) {
-    var result = await this.analyzeNameFromTextAndPreviousSetting(
-      targetingSetting,
-      textToTranslate
-    );
-    if (!result) {
-      this.snackbar.open('Phân tích bị lỗi');
-      return;
-    }
-    var analyzeResults = targetingSetting.name;
-
-    var filteredResults: TranslateResult[] = [];
-    analyzeResults.forEach((result) => {
-      var first = this.settingService.settingValue.name
-        .reverse()
-        .find((n) => n.origin == result.origin);
-      if (!first) {
-        filteredResults.push(result);
-      }
-    });
-    this.settingService.settingValue.name = [
-      ...new Set(filteredResults),
-      ...new Set(this.settingService.settingValue.name),
-    ];
-    this.settingService.saveSetting(this.settingService.settingValue);
-    this.isloading = false;
-  }
-
-  async analyzeNameFromTextAndPreviousSetting(
-    previousSetting: AnalyzeResponse,
-    textToAnalyze: string
-  ): Promise<AnalyzeResponse | undefined> {
     this.isloading = true;
-    var request: AnalyzeProxyRequest = {
-      text: textToAnalyze,
-      setting: this.settingService.settingValue
-    };
-
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set('Content-Type', 'application/x-www-form-urlencoded');
     try {
-      var result: AnalyzeResponse | undefined = await this.http
-        .post<AnalyzeResponse>('/api/Translate/analyze', request, {
-          headers: headers,
-        })
-        .toPromise();
-      if (!result) {
-        console.error(result);
-        this.isloading = false;
-        return undefined;
-      }
-      previousSetting.name = result?.name;
-      this.ref.markForCheck();
-      return previousSetting;
+      var textArrray = this.pageChunks.map(pageChunk=>pageChunk.join('\r\n') ?? '');
+    await this.settingService.analyzeText(textArrray);
     } catch (error) {
-      console.error(error);
-      this.isloading = false;
-      this.ref.markForCheck();
-      return undefined;
+      this.snackbar.open(`Lỗi ${error}`, 'Ok', { duration: 100000 });
     }
+    finally
+    {
+      this.isloading = false;
+    }
+
+
   }
 
   getPageChunk(originalMasterPage: ScanResponse) {
@@ -256,16 +201,18 @@ export class MainComponent implements OnInit {
 
   async translateSinglePageChunk(page: string[], index: number) {
     this.isloading = true;
+    var currentSetting = this.settingService.currentSettingValue.value.setting;
     this.translatedPageChunks[index] = [];
     var textToTranslate = page.join('\n');
-    this.settingService.settingValue.name.reverse().forEach((name) => {
+    currentSetting.name.reverse().forEach((name) => {
       textToTranslate = textToTranslate.replaceAll(
         name.origin,
         name.translated
       );
     });
-    var currentSetting = this.settingService.settingValue;
+
     var request: TranslationProxyRequest = {
+      novelName: currentSetting.novelName,
       name: currentSetting.name ?? [],
       role: currentSetting.role ?? this.UNKNOWN,
       time: currentSetting.time ?? this.UNKNOWN,
@@ -291,6 +238,7 @@ export class MainComponent implements OnInit {
         .toPromise();
       if (!result) {
         console.error(result);
+        this.snackbar.open('Lỗi', 'Ok', { duration: 100000 });
         this.isloading = false;
         return;
       }
@@ -299,10 +247,10 @@ export class MainComponent implements OnInit {
         this.removeChineseCharacters(line)
       );
       this.isloading = false;
-      this.saveCurrentChapterToData();
       this.ref.markForCheck();
     } catch (error) {
       console.error(error);
+      this.snackbar.open('Lỗi', 'Ok', { duration: 100000 });
       this.isloading = false;
       this.ref.markForCheck();
     }
@@ -330,40 +278,6 @@ export class MainComponent implements OnInit {
           break;
       }
     });
-  }
-
-  onScroll(event: any) {
-    return;
-    if (this.isloading) {
-      return;
-    }
-    if (
-      event.target.offsetHeight + event.target.scrollTop + this.PRE_LOAD <
-      event.target.scrollHeight
-    ) {
-      return;
-    }
-    console.log('end');
-    if (!this.pageChunks[this.currentpageIndex + 1]) {
-      return;
-    }
-    this.translateSinglePageChunk(
-      this.pageChunks[this.currentpageIndex + 1],
-      this.currentpageIndex + 1
-    );
-    this.currentpageIndex = this.currentpageIndex + 1;
-  }
-
-  saveCurrentChapterToData() {
-    return;
-    var value = {
-      url: this.url,
-      setting: this.settingService.settingValue,
-      pageChunks: this.pageChunks,
-      translatedPageChunks: this.translatedPageChunks,
-      originalResponse: this.originalResponse,
-    };
-    this.settingService.addData(value);
   }
 
   async copy() {
