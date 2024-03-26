@@ -127,6 +127,9 @@ export class SettingService {
     }
     var currentNames = this.currentSettingValue.value.setting.name ?? [];
     for (const textToTranslate of textToTranslateArray) {
+      if (textToTranslate.length < 50) {
+        continue;
+      }
       var result = await this.analyzeNameFromTextAndPreviousSetting(
         textToTranslate
       );

@@ -39711,6 +39711,9 @@ var _SettingService = class _SettingService {
       }
       var currentNames = this.currentSettingValue.value.setting.name ?? [];
       for (const textToTranslate of textToTranslateArray) {
+        if (textToTranslate.length < 50) {
+          continue;
+        }
         var result = yield this.analyzeNameFromTextAndPreviousSetting(textToTranslate);
         if (!result || !result.name) {
           this.snackbar.open("Ph\xE2n t\xEDch b\u1ECB l\u1ED7i");
