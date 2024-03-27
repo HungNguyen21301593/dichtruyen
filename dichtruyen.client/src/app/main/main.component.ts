@@ -37,6 +37,8 @@ export class MainComponent implements OnInit {
   UNKNOWN = 'Tùy ý';
   PRE_LOAD = 2000;
   title = 'Dọc Truyện Convert';
+  analyzeIndex=0;
+  translateIndex=0;
 
   constructor(
 
@@ -151,12 +153,35 @@ export class MainComponent implements OnInit {
   }
 
   async translateToTheEnd() {
+    this.analyzeIndex = 0;
+    this.translateIndex = 0;
+
+    for (let index = 0; index < this.pageChunks.length; index++) {
+      await this.analyzeSingleChunk(this.pageChunks[index]);
+      this.analyzeIndex = (index+1) *100/this.pageChunks.length;
+    }
+
     for (let index = 0; index < this.pageChunks.length; index++) {
       await this.translateSinglePageChunk(this.pageChunks[index], index);
+      this.translateIndex = (index+1) *100/this.pageChunks.length;
     }
   }
 
-  async analyzeToTheEnd(chunkindex: number) {
+  async analyzeSingleChunk( pageChunk: string[]) {
+    this.isloading = true;
+    try {
+      var textArrray = [pageChunk.join('\r\n') ?? ''];
+    await this.settingService.analyzeText(textArrray);
+    } catch (error) {
+      this.snackbar.open(`Lỗi ${error}`, 'Ok', { duration: 100000 });
+    }
+    finally
+    {
+      this.isloading = false;
+    }
+  }
+
+  async analyzeToTheEnd() {
     this.isloading = true;
     try {
       var textArrray = this.pageChunks.map(pageChunk=>pageChunk.join('\r\n') ?? '');
@@ -168,8 +193,6 @@ export class MainComponent implements OnInit {
     {
       this.isloading = false;
     }
-
-
   }
 
   getPageChunk(originalMasterPage: ScanResponse) {

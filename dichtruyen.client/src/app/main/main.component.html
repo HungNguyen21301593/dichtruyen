@@ -32,28 +32,36 @@
             </mat-form-field>
           </div>
         </div>
-        <p>{{originalResponse.title}}
-        </p>
-        <div fxLayout="row" fxLayoutAlign="start start">
-          <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-            [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="analyzeToTheEnd(0)">
-            <span>Phân tích tên</span>
-            <mat-icon><mat-spinner *ngIf="isloading" color="accent" diameter="20"></mat-spinner></mat-icon>
-          </button>
 
-          <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
+        <div fxLayout="row" fxLayoutAlign="start start">
+          <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0" mat-flat-button
             [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="translateToTheEnd()">
             <span>Dịch hết</span>
-            <mat-icon><mat-spinner *ngIf="isloading" color="accent" diameter="20"></mat-spinner></mat-icon>
           </button>
         </div>
+        <br>
+
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <mat-label>Phân tích tên:</mat-label>
+          <mat-progress-bar class="example-margin" color="accent" [mode]="'determinate'" [value]="analyzeIndex">
+          </mat-progress-bar>
+          <br>
+          <mat-label>Dịch:</mat-label>
+          <mat-progress-bar class="example-margin" color="primary" [mode]="'determinate'" [value]="translateIndex">
+          </mat-progress-bar>
+        </div>
+        <br>
+        <br>
+        <p>{{originalResponse.title}}
+        </p>
         <div *ngFor="let pageChunk of pageChunks; let i=index" class="full-width">
           <p>Phần {{i+1}}:
           </p>
           <div *ngIf="version=='translated'">
             <div fxLayout="row" fxLayoutAlign="start start">
               <button fxLayout="row" fxLayoutAlign="center center" *ngIf="translatedPageChunks.length>0"
-                [disabled]="isloading || !novelSelection.value" mat-button color="accent" (click)="translateSinglePageChunk(pageChunks[i], i)">
+                [disabled]="isloading || !novelSelection.value" mat-button color="accent"
+                (click)="translateSinglePageChunk(pageChunks[i], i)">
                 <span>Dịch</span>
                 <mat-icon><mat-spinner *ngIf="isloading && (translatedPageChunks[i]??[]).length==0" color="accent"
                     diameter="20"></mat-spinner></mat-icon>
