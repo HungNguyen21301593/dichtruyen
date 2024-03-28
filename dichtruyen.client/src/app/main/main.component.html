@@ -10,7 +10,7 @@
         <mat-icon>menu</mat-icon>
       </button>
       <div fxFlex="80" fxFlexOffset="1" class="input" div fxLayout="column" fxLayoutAlign="start stretch">
-        <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text" #input (change)="openSetting(input.value)"
+        <input placeholder="Bạn nhập nguồn truyện ở đây..." type="text" #input (change)="urlChanged(input.value)"
           [value]="url">
       </div>
       <button class="button" fxFlexOffset="1" [disabled]="isloading" type="button" mat-icon-button color="accent"
@@ -23,7 +23,7 @@
       <div *ngIf="originalResponse">
         <div fxLayout="column" fxLayoutAlign="start center" class="full-width">
           <div fxLayout="row" fxLayoutAlign="center start" class="full-width">
-            <mat-form-field [color]="'accent'">
+            <mat-form-field [color]="'accent'" fxFlex="50">
               <mat-label>Chọn Truyện</mat-label>
               <mat-select (valueChange)="novelSettingChanged($event)" #novelSelection>
                 <mat-option *ngFor="let novel of allnovels | keyvalue"

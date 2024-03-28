@@ -77,8 +77,8 @@ export class MainComponent implements OnInit {
       );
       return;
     }
-
-    this.router.navigate([''], { queryParams: { url: this.url } });
+    this.scanContent(this.url);
+    // this.router.navigate([''], { queryParams: { url: this.url } });
   }
 
   next() {
@@ -114,10 +114,7 @@ export class MainComponent implements OnInit {
     return url;
   }
 
-  openSetting(newurl: string) {
-    if (newurl !== this.url) {
-      this.drawer.open();
-    }
+  urlChanged(newurl: string) {
     this.url = newurl;
   }
 
