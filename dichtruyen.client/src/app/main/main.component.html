@@ -23,7 +23,7 @@
       <div *ngIf="originalResponse">
         <div fxLayout="column" fxLayoutAlign="start center" class="full-width">
           <div fxLayout="row" fxLayoutAlign="center start" class="full-width">
-            <mat-form-field [color]="'accent'" fxFlex="50">
+            <mat-form-field [color]="'accent'" fxFlex="80">
               <mat-label>Chọn Truyện</mat-label>
               <mat-select (valueChange)="novelSettingChanged($event)" #novelSelection>
                 <mat-option *ngFor="let novel of allnovels | keyvalue"
@@ -43,10 +43,12 @@
 
         <div fxLayout="column" fxLayoutAlign="start start">
           <mat-label>Phân tích tên:</mat-label>
+          <br>
           <mat-progress-bar class="example-margin" color="accent" [mode]="'determinate'" [value]="analyzeIndex">
           </mat-progress-bar>
           <br>
           <mat-label>Dịch:</mat-label>
+          <br>
           <mat-progress-bar class="example-margin" color="primary" [mode]="'determinate'" [value]="translateIndex">
           </mat-progress-bar>
         </div>
