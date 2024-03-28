@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/ad/ad.component.css"],
+  "sourcesContent": [".ad{\r\n  overflow-y: scroll;\r\n  overflow-x: hidden;\r\n  max-width: 100vw;\r\n  max-height: 80vh;\r\n  display: inline-block;\r\n}\r\n\r\n.container{\r\n  overflow-y: visible;\r\n  display: inline-block;\r\n  height: 150vh;\r\n}\r\n\r\n.back-drop\r\n{\r\n  background-color: black;\r\n}\r\n\r\n.button{\r\n  padding: 20px;\r\n  margin: 20px;\r\n}\r\n"],
+  "mappings": ";AAAA,CAAC;AACC,cAAY;AACZ,cAAY;AACZ,aAAW;AACX,cAAY;AACZ,WAAS;AACX;AAEA,CAAC;AACC,cAAY;AACZ,WAAS;AACT,UAAQ;AACV;AAEA,CAAC;AAEC,oBAAkB;AACpB;AAEA,CAAC;AACC,WAAS;AACT,UAAQ;AACV;",
+  "names": []
+}
